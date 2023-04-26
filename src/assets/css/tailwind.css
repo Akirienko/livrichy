@@ -1,0 +1,28 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* font-family: "Gotham", system-ui, sans-serif; */
+  }
+
+	h1, h2, h3, h4, h5, h6 {
+		/* font-family: "Montserrat", sans-serif; */
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+		font-size: 16px;
+    color: #000;
+	}
+	* {
+		position: relative;
+	}
+	ul, li {
+		list-style: none;
+	}
+
+}
