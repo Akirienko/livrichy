@@ -45,6 +45,7 @@ module.exports = {
             colors: {
                 palette: {
                     peach: "#EEB891",
+                    cream: "#FDF6E9",
                 },
             },
             boxShadowColor: {
