@@ -8,17 +8,17 @@ const description = 'A leading company, ready to provide unique properties at co
 
 <template>
 	<section class="about">
-		<div class="container mx-auto tablet:py-20 tablet:px-0 py-12 px-8">
-			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem]">{{ title }}<span class="tablet:ml-2 colored"> {{ title2 }}</span></h2>
-			<p class="tablet:mt-12 mt-9 text-xl">{{ subtitle }}</p>
+		<div class="container mx-auto tablet:py-20 tablet:px-0 pt-8 pb-32">
+			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 px-8">{{ title }}<span class="tablet:ml-2 colored"> {{ title2 }}</span></h2>
+			<p class="tablet:mt-12 mt-9 text-xl tablet:px-0 px-8">{{ subtitle }}</p>
 			<div class="content flex flex-wrap items-stretch">
-				<div class="text md:w-1/2 pl-[5vw] pr-[6vw] flex items-center justify-center py-9 tablet:py-0">
+				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center py-9 tablet:py-0  px-8">
 					<p>
 						{{ description }}
 					</p>
 				</div>
 				<div class="image md:w-1/2 relative">
-					<div class="arrow absolute tablet:top-1/2 tablet:left-8 tablet:translate-y-[-50%] bottom-[-5rem] left-1/2 translate-x-[-50%] w-40 h-40 rounded-full flex justify-center items-center z-10 bg-gradient-to-b from-[#081621e6] to-[#172940e6]">
+					<div class="arrow absolute tablet:top-1/2 tablet:left-28 tablet:translate-y-[-50%] bottom-[-5rem] left-1/2 translate-x-[-50%] w-40 h-40 rounded-full flex justify-center items-center z-10 bg-gradient-to-b from-[#081621e6] to-[#172940e6]">
 						<div class="text absolute top-0 left-0">
 							<svg viewBox="0 0 100 100" class="w-full fill-white h-auto">
 								<defs>
