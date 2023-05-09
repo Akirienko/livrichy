@@ -48,7 +48,7 @@ const updates = [
   </section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .card {
   box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
   overflow: hidden;
