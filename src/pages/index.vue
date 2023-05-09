@@ -2,4 +2,5 @@
 	<About />
 	<OurProjects />
 	<Benefits />
+	<RealtyUpdates />
 </template>
