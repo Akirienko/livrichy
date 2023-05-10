@@ -1,20 +1,23 @@
 {
-  "name": "nuxt-app",
-  "private": true,
-  "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
-  },
-  "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.6.6",
-    "@pinia/nuxt": "^0.4.9",
-    "@types/node": "^18",
-    "@vueuse/core": "^10.1.0",
-    "nuxt": "^3.4.2",
-    "sass": "^1.62.1",
-    "sass-loader": "^13.2.2"
-  }
+	"name": "nuxt-app",
+	"private": true,
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"devDependencies": {
+		"@nuxtjs/tailwindcss": "^6.6.6",
+		"@pinia/nuxt": "^0.4.9",
+		"@vueuse/core": "^10.1.0",
+		"nuxt": "^3.4.2",
+		"sass": "^1.62.1",
+		"sass-loader": "^13.2.2"
+	},
+	"dependencies": {
+		"@storyblok/nuxt": "^5.4.4",
+		"nuxt-graphql-client": "^0.2.27"
+	}
 }

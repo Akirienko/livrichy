@@ -1,0 +1,11 @@
+query App {
+	AppItem(id: "app") {
+		content {
+		phone
+		email
+		adress
+		socialMedias
+		contacts
+		}
+	}
+}
