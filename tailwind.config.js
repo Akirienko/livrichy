@@ -45,6 +45,14 @@ module.exports = {
             colors: {
                 palette: {
                     peach: "#EEB891",
+										body: 'hsla(39, 83%, 95%, 1)',
+										gradient_blue: 'hsla(206, 61%, 8%, 0.9)',
+										gradient_dblue: 'hsla(214, 48%, 17%, 0.9)',
+										dark_blue1: '#081621',
+										dark_blue2: '#172941',
+										gold_yellow: '#FCD07D',
+										gold_dark: '#5B391E'
+
                 },
             },
             boxShadowColor: {

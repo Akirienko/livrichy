@@ -1,13 +1,14 @@
 query Article($articleID: ID!) {
-	ArticleItem(id: $articleID) {
-		name
-		full_slug
-		content {
-			poster {
-				id
-				alt
-			}
-			body
-		}
-	}
+  ArticleItem(id: $articleID) {
+    name
+    full_slug
+    content {
+      poster {
+        id
+        alt
+        filename
+      }
+      body
+    }
+  }
 }

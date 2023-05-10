@@ -9,8 +9,8 @@ export default defineNuxtConfig({
 		],
 	},
 	typescript: {
-		strict: true,
-		typeCheck: false,
+		// strict: true,
+		// typeCheck: false,
 		shim: false
 	},
 	modules: [
