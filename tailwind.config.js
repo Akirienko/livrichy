@@ -51,8 +51,8 @@ module.exports = {
                     dark_blue1: '#081621',
                     dark_blue2: '#172941',
                     gold_yellow: '#FCD07D',
-                    gold_dark: '#5B391E'
-
+                    gold_dark: '#5B391E',
+                    beige: '#FDF6E9'
                 },
             },
             boxShadowColor: {
