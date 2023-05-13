@@ -1,6 +1,6 @@
 <template>
   <footer class="py-16 lg:py-28 px-6">
-    <img src="@/assets/img/footerBg.jpg" class="absolute w-full h-full object-cover -z-10 left-0 top-0" alt="sea">
+    <img src="sea-min.jpg" class="absolute w-full h-full object-cover -z-10 left-0 top-0" alt="sea">
     <div class="footer_wrapper ">
       <h2 class="text-[40px] font-bold leading-[79px] uppercase mb-12 text-white lg:text-[64px] lg:mb-20"><span class="gold-title">Contact</span> info</h2>
       <div class="lg:flex mb-12 lg:mb-44">
