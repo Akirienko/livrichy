@@ -1,0 +1,15 @@
+query LatestArticles($articleNumber: Int!){
+	ArticleItems(per_page: $articleNumber) {
+		items {
+			name
+			full_slug
+			published_at
+			content {
+				poster {
+					alt
+					filename
+				}
+			}
+		}
+	}
+}

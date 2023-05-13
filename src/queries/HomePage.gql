@@ -1,10 +1,8 @@
 query HomePage {
 	PageItem(id: "home") {
-    name
-    content {
-      body
-      component
-          _uid
-    }
+		name
+		content {
+			body
+		}
 	}
 }

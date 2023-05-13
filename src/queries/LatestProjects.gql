@@ -1,0 +1,19 @@
+query LatestProjects($projectNumber: Int!) {
+    ProjectItems(per_page: $projectNumber) {
+        items {
+            name
+            full_slug
+            content {
+                poster {
+                    alt
+                    filename
+                }
+                area
+                prize
+                size
+                bedroom
+                bathroom
+            }
+        }
+    }
+}

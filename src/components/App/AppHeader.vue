@@ -105,7 +105,7 @@ const menuItems = ['home', 'realty', 'blog', 'contacts']
         </svg>
       </NuxtLink>
 			<!-- Burger button -->
-			<div class="flex items-center">
+		<div class="flex items-center">
         <div @click="showMenu = !showMenu" class="burger-menu lg:mr-10">
           <span></span>
         </div>
@@ -212,7 +212,7 @@ const menuItems = ['home', 'realty', 'blog', 'contacts']
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    // text-fill-color: transparent;
   }
 }
 .burger-menu {
