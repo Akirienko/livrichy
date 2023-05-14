@@ -9,6 +9,6 @@ const { data, pending } = await useAsyncGql('HomePage')
     <!-- <template v-if="data?.PageItem && !pending">
       <StoryblokComponent v-for="blok in data.PageItem.content?.body" :key="blok.uid" :blok="blok" />
     </template> -->
-		<HomeIntro />
+		<HomeIntro :data="{ title: 'Habibi', subtitle: 'choose your place for living' }"/>
   </div>
 </template>
