@@ -5,7 +5,6 @@ export default defineNuxtConfig({
 	components: {
 		"dirs": [
 			{ "path": "~/components/App", "global": true, pathPrefix: false, },
-			{ "path": "~/components/Sections", "global": true, pathPrefix: false, },
 		],
 	},
 	typescript: {

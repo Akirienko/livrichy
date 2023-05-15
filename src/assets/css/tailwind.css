@@ -6,11 +6,16 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    font-family: "Montserrat", system-ui, sans-serif;
-  }
+	html {
+		font-family: "Montserrat", system-ui, sans-serif;
+	}
 
-	h1, h2, h3, h4, h5, h6 {
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
 		font-family: "Unbounded", sans-serif;
 	}
 
@@ -28,21 +33,27 @@
 		object-position: top;
 	}
 
-	a, p, span {}
+	a,
+	p,
+	span {}
 
 	body {
 		margin: 0;
 		padding: 0;
 		font-size: 16px;
-    color: #000;
+		color: #000;
 		background-color: hsla(39, 83%, 95%, 1);
 	}
+
 	* {
 		position: relative;
 	}
-	ul, li {
+
+	ul,
+	li {
 		list-style: none;
 	}
+
 	.gold-title {
 		background: linear-gradient(180deg, #FCD07D 0%, #5B391E 100%);
 		-webkit-background-clip: text;

@@ -1,0 +1,8 @@
+query Page($pageID: ID!) {
+	PageItem(id: $pageID) {
+		name
+		content {
+			body
+		}
+	}
+}
