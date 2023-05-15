@@ -3,7 +3,7 @@
 </script>
 
 <template>
-	<section class="section-blog">
-		<h2>section-blog</h2>
+	<section class="section-market">
+		<h2>section-market</h2>
 	</section>
 </template>
