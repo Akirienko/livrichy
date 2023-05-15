@@ -11,10 +11,13 @@
 	"devDependencies": {
 		"@nuxtjs/tailwindcss": "^6.6.6",
 		"@pinia/nuxt": "^0.4.9",
+		"@vee-validate/zod": "^4.9.3",
 		"@vueuse/core": "^10.1.0",
 		"nuxt": "^3.4.2",
 		"sass": "^1.62.1",
-		"sass-loader": "^13.2.2"
+		"sass-loader": "^13.2.2",
+		"vee-validate": "^4.9.3",
+		"zod": "^3.21.4"
 	},
 	"dependencies": {
 		"@storyblok/nuxt": "^5.4.4",
