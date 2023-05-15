@@ -27,6 +27,7 @@ defineProps<{
 		<span>{{ data.content?.prize }}</span>
 		<span>{{ data.content?.bathroom }}</span>
 		<span>{{ data.content?.bedroom }}</span>
+		<img :src="data.content?.poster?.filename!" >
 	</div>
 </template>
 
@@ -34,5 +35,9 @@ defineProps<{
 .project-card{
 	display: flex;
 	flex-direction: column;
+	img{
+		width: 200px;
+		height: 200px;
+	}
 }
 </style>

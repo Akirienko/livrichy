@@ -4,7 +4,6 @@ export default defineNuxtConfig({
 	srcDir: "src",
 	components: {
 		"dirs": [
-			{ "path": "~/components", "global": true, pathPrefix: false, },
 			{ "path": "~/components/App", "global": true, pathPrefix: false, },
 		],
 	},

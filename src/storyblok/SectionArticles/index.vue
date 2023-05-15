@@ -5,32 +5,31 @@ defineProps<{
 	}
 }>()
 
-const projectNumber = 3
-const { data:projects, pending } = await useAsyncGql("LatestProjects", { projectNumber })
+const articleNumber = 2
+const { data: articles, pending } = await useAsyncGql("LatestArticles", { articleNumber })
 </script>
 
 <template>
-	<div class="projects-wrapper">
-		<template v-if="projects && !pending">
+	<section class="section-articles">
+		<template v-if="articles && !pending">
 			<h2>{{ blok.title }}</h2>
 			<div class="grid">
-				<ProjectCard v-for="item in projects.ProjectItems?.items" :data="item!"/>
+				<ArticleCard v-for="item in articles.ArticleItems?.items" :data="item!" />
 			</div>
-    	</template>
-	</div>
+		</template>
+	</section>
 </template>
 
 <style lang="scss" scoped>
-.projects-wrapper{
+.section-articles {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 
-	.grid{
+	.grid {
 		width: 100%;
 		display: flex;
 		justify-content: space-evenly;
 	}
 }
-
 </style>

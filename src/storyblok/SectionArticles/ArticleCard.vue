@@ -15,16 +15,21 @@ defineProps<{
 </script>
 
 <template>
-	<div class="project-card">
+	<div class="article-card">
 		<h4>{{ data.name }}</h4>
 		<NuxtLink :to="data.full_slug!">{{ data.full_slug }}</NuxtLink>
 		<span>{{ data.published_at }}</span>
+		<img :src="data.content?.poster?.filename!" >
 	</div>
 </template>
 
 <style lang="scss" scoped>
-.project-card{
+.article-card{
 	display: flex;
 	flex-direction: column;
+	img{
+		width: 200px;
+		height: 200px;
+	}
 }
 </style>
