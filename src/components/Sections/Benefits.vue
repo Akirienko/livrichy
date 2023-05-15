@@ -10,32 +10,32 @@ interface benefit {
 
 }
 
-const data: benefit = {
-	title: 'Expertise info',
-	subtitle: 'We work with the best',
-	list: [
-		{
-			numbers: [
-				'1', '2'
-			],
-			text: [
-				'We present lots both from the middle segment of real estate, and objects that are not put on the market.',
-				'We cooperate with top managers of Dubai for the sale of real estate.',
-			],
-			image: "benefits1.jpg",
-		},
-		{
-			numbers: [
-				'3', '4'
-			],
-			text: [
-				'Top quality service not available from competitors.',
-				'Always in touch with our clients 24/7. Our managers are trained to the highest standards of service quality.'
-			],
-			image: "benefits2.jpg"
-		},
-	],
-}
+// const data: benefit = {
+// 	title: 'Expertise info',
+// 	subtitle: 'We work with the best',
+// 	list: [
+// 		{
+// 			numbers: [
+// 				'1', '2'
+// 			],
+// 			text: [
+// 				'We present lots both from the middle segment of real estate, and objects that are not put on the market.',
+// 				'We cooperate with top managers of Dubai for the sale of real estate.',
+// 			],
+// 			image: "benefits1.jpg",
+// 		},
+// 		{
+// 			numbers: [
+// 				'3', '4'
+// 			],
+// 			text: [
+// 				'Top quality service not available from competitors.',
+// 				'Always in touch with our clients 24/7. Our managers are trained to the highest standards of service quality.'
+// 			],
+// 			image: "benefits2.jpg"
+// 		},
+// 	],
+// }
 
 const titleBlue = computed( () => { return data.title.split(' ')[1] })
 const titleGold = computed( () => { return data.title.split(' ')[0] })

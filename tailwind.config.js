@@ -45,6 +45,7 @@ module.exports = {
             colors: {
                 palette: {
                     peach: "#EEB891",
+										light_beige: "#FDF6E9",
                     body: 'hsla(39, 83%, 95%, 1)',
                     gradient_blue: 'hsla(206, 61%, 8%, 0.9)',
                     gradient_dblue: 'hsla(214, 48%, 17%, 0.9)',
