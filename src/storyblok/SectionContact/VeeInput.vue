@@ -10,6 +10,8 @@ const props = defineProps<{ data: {
 } }>()
 const nameRef = toRef(props.data, 'name')
 const { errorMessage, value } = useField(nameRef)
+
+// const icons
 </script>
 
 <template>
@@ -56,19 +58,19 @@ const { errorMessage, value } = useField(nameRef)
 
 	input {
 		width: 100%;
-		border: none;
-		border-bottom: 1px solid theme("colors.palette.light_beige");
+		border: 2px solid theme('colors.palette.dark_blue1');
+		border-radius: 2rem;
 		background: transparent;
-		padding: 10px 16px;
+		padding: 1rem 1.5rem;
 
-		color: theme("colors.palette.light_beige");
+		color: theme("colors.palette.dark_blue1");
 		font-size: 1rem;
 		font-weight: 100;
 		line-height: 1rem;
 		letter-spacing: 1px;
 
 		&::placeholder {
-			color: theme("colors.palette.light_beige");
+			color: theme("colors.palette.dark_blue1");
 			opacity: 0.7;
 			// text-transform: lowercase;
 			&::first-letter {
