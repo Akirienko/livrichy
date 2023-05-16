@@ -1,43 +1,43 @@
 const plugin = require("tailwindcss/plugin");
 
 module.exports = {
-    content: [
-        "./src/**/*.js",
-        "./src/**/*.ts",
-        "./src/**/*.css",
-        "./src/**/*.vue",
-    ],
-    variants: {
-    extend: {
-        opacity: ['hover'],
-        translate: ['group-hover'],
-    },
-    },
-    theme: {
-        screens: {
-            xs: "400px",
+	content: [
+		"./src/**/*.js",
+		"./src/**/*.ts",
+		"./src/**/*.css",
+		"./src/**/*.vue",
+	],
+	variants: {
+		extend: {
+			opacity: ['hover'],
+			translate: ['group-hover'],
+		},
+	},
+	theme: {
+		screens: {
+			xs: "400px",
 
-            sm: "640px",
+			sm: "640px",
 
-            md: "768px",
+			md: "768px",
 
-            lg: "1024px",
+			lg: "1024px",
 
-            tablet: "1200px",
+			tablet: "1200px",
 
-            xl: "1280px",
+			xl: "1280px",
 
-            "macbook-13": "1440px",
+			"macbook-13": "1440px",
 
-            "landing-2xl": "1536px",
+			"landing-2xl": "1536px",
 
-            "2xl": "1600px",
+			"2xl": "1600px",
 
-            "3xl": "1800px",
+			"3xl": "1800px",
 
-            "full-hd": "1920px",
+			"full-hd": "1920px",
 
-            "2k": "2560px",
+			"2k": "2560px",
 
             "4k": "4096px",
         },
@@ -79,26 +79,5 @@ module.exports = {
             },
         },
     },
-    plugins: [
-        // require("tailwind-scrollbar"),
-        // require("@tailwindcss/line-clamp"),
-        // // firefox only modifier
-        // plugin(function ({ addVariant, e, postcss }) {
-        //     addVariant("firefox", ({ container, separator }) => {
-        //         const isFirefoxRule = postcss.atRule({
-        //             name: "supports",
-        //             params: "(-moz-appearance:none)",
-        //         });
-        //         isFirefoxRule.append(container.nodes);
-        //         container.append(isFirefoxRule);
-        //         isFirefoxRule.walkRules((rule) => {
-        //             rule.selector = `.${e(
-        //                 `firefox${separator}${rule.selector
-        //                     .slice(1)
-        //                     .replaceAll("\\", "")}`
-        //             )}`;
-        //         });
-        //     });
-        // }),
-    ],
+    plugins: [],
 };
