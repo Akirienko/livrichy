@@ -13,6 +13,7 @@
 		"@pinia/nuxt": "^0.4.9",
 		"@vueuse/core": "^10.1.0",
 		"nuxt": "^3.4.2",
+		"nuxt-icon": "^0.4.0",
 		"sass": "^1.62.1",
 		"sass-loader": "^13.2.2"
 	},

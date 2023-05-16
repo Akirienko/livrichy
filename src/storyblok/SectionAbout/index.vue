@@ -60,7 +60,7 @@ defineProps<{
 	</section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .title {
 	background: linear-gradient(180deg, theme('colors.palette.dark_blue1') 0%, theme('colors.palette.dark_blue2') 100%);
 	-webkit-background-clip: text;

@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const showMenu = ref(false)
 
-const menuItems = ['home', 'realty', 'blog', 'contacts']
-
 export interface Link {
 	title: string,
 	url: string,
@@ -22,7 +20,6 @@ const links: Link[] = [
 		url: "/blog"
 	},
 ]
-
 </script>
 
 <template>
