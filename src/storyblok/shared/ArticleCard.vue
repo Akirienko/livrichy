@@ -15,21 +15,43 @@ defineProps<{
 </script>
 
 <template>
-	<div class="article-card">
-		<h4>{{ data.name }}</h4>
-		<NuxtLink :to="data.full_slug!">{{ data.full_slug }}</NuxtLink>
-		<span>{{ data.published_at }}</span>
-		<img :src="data.content?.poster?.filename!" >
-	</div>
+	<NuxtLink
+		:to="data.full_slug!"
+		class="card block mb-10 max-w-[470px] lg:mb-0 lg:first:mr-[130px]"
+	>
+		<div class="h-60">
+			<!-- <img :src="project.img" alt="flat"> -->
+			<img :src="data.content?.poster?.filename!" >
+		</div>
+		<div class="px-4 pt-5 pb-6">
+
+			<p class="text-lg font-semibold uppercase line-clamp-3 mb-4 md:text-2xl">{{ data.name }}</p>
+
+			<div class="md:flex">
+				<p class="text-base line-clamp-2">{{  }}</p>
+				<p class="text-base text-end">{{ data.published_at }}</p>
+			</div>
+
+		</div>
+        </NuxtLink>
 </template>
 
 <style lang="scss" scoped>
-.article-card{
-	display: flex;
-	flex-direction: column;
-	img{
-		width: 200px;
-		height: 200px;
-	}
+.card {
+  box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
+  overflow: hidden;
+  border-radius: 16px;
+  transition: .3s;
+  &:hover {
+    transform: scale(1.05);
+  }
+
+}
+.img-card {
+  object-fit: cover;
+  height: 100%;
+  object-position: top;
+  width: 100%;
+  position: absolute;
 }
 </style>

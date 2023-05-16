@@ -11,12 +11,12 @@ const { data: articles, pending } = await useAsyncGql("LatestArticles", { articl
 
 <template>
 	<section class="section-articles">
-		<template v-if="articles && !pending">
-			<h2>{{ blok.title }}</h2>
-			<div class="grid">
+		<div v-if="articles && !pending" class="container mx-auto px-6 xl:px-0">
+			<h2 class="title text-center w-full mb-10 md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0">Realty <span class="tablet:ml-2 colored">Updates</span></h2>
+			<div class="lg:flex lg:items-center lg:justify-center">
 				<ArticleCard v-for="item in articles.ArticleItems?.items" :data="item!" />
 			</div>
-		</template>
+		</div>
 	</section>
 </template>
 

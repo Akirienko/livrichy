@@ -11,26 +11,26 @@ const { data:projects, pending } = await useAsyncGql("LatestProjects", { project
 
 <template>
 	<section class="section-projects">
-		<template v-if="projects && !pending">
-			<h2>{{ blok.title }}</h2>
-			<div class="grid">
+		<!-- remove template ASK MARTIN IF ITS OK-->
+		<div v-if="projects && !pending" class="container mx-auto px-6 xl:px-0">
+			<h2 class="title w-full mb-10 md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0">Our<span class="tablet:ml-2 colored">projects</span></h2>
+			<div class="md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3">
 				<ProjectCard v-for="item in projects.ProjectItems?.items" :data="item!"/>
 			</div>
-    	</template>
+    	</div>
 	</section>
 </template>
 
 <style lang="scss" scoped>
-.section-projects{
-	width: 100%;
-	display: flex;
-	flex-direction: column;
+.card {
+  box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
+  overflow: hidden;
+  border-radius: 16px;
+  transition: .3s;
+  &:hover {
+    transform: scale(1.05);
+  }
 
-	.grid{
-		width: 100%;
-		display: flex;
-		justify-content: space-evenly;
-	}
 }
 
 </style>

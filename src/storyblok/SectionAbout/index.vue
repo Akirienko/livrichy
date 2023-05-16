@@ -15,7 +15,7 @@ defineProps<{
 <template>
 	<section class="about">
 		<div class="container mx-auto tablet:py-20 tablet:px-0 pt-8 pb-32">
-			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 px-8">{{ blok.title }}<span class="tablet:ml-2 colored"> {{ blok.title }}</span></h2>
+			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 px-8">About <span class="tablet:ml-2 colored">livrichy</span></h2>
 			<p class="tablet:mt-12 mt-9 text-xl tablet:px-0 px-8">{{ blok.subtitle }}</p>
 			<div class="content flex flex-wrap items-stretch">
 				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center py-9 tablet:py-0  px-8">
@@ -93,4 +93,3 @@ defineProps<{
 	}
 }
 </style>
-  
