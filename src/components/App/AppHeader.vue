@@ -1,8 +1,6 @@
 <script setup lang="ts">
 const showMenu = ref(false)
 
-const menuItems = ['home', 'realty', 'blog', 'contacts']
-
 export interface Link {
 	title: string,
 	url: string,
@@ -22,12 +20,11 @@ const links: Link[] = [
 		url: "/blog"
 	},
 ]
-
 </script>
 
 <template>
 	<header class="fixed top-0 z-[1000] w-full">
-		<div class="header_wrapper flex justify-between bg-white items-center w-full h-20 px-6 lg:h-24">
+		<div class="header_wrapper flex justify-between backdrop-blur items-center w-full h-20 px-6 lg:h-24">
 			<!-- Logo -->
 			<NuxtLink to="/" class="lg:mr-14">
 				<svg class="w-[110px]" viewBox="0 0 170 53" fill="none" xmlns="http://www.w3.org/2000/svg">

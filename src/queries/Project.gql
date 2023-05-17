@@ -3,11 +3,11 @@ query Project($projectId: ID!) {
         name
         content {
             poster {
-                id
+                filename
                 alt
             }
             gallery {
-                id
+                filename
                 alt
             }
             prize

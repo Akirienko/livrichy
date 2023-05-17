@@ -13,11 +13,11 @@ export default defineNuxtConfig({
 		shim: false
 	},
 	modules: [
-		// 'nuxt-icon',
+		'nuxt-icon',
 		'nuxt-graphql-client',
 		'@pinia/nuxt',
 		'@nuxtjs/tailwindcss',
-		'@storyblok/nuxt'
+		'@storyblok/nuxt',
 	],
 	tailwindcss: {
 		cssPath: '~/assets/css/tailwind.css',

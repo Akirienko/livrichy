@@ -13,7 +13,7 @@ const { data:projects, pending } = await useAsyncGql("LatestProjects", { project
 	<section class="section-projects">
 		<!-- remove template ASK MARTIN IF ITS OK-->
 		<div v-if="projects && !pending" class="container mx-auto px-6 xl:px-0">
-			<h2 class="title w-full mb-10 md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0">Our<span class="tablet:ml-2 colored">projects</span></h2>
+			<h2 class="title w-full mb-10 md:flex-row flex flex-col tablet:px-0">Our<span class="tablet:ml-2 gold-title">projects</span></h2>
 			<div class="md:grid md:grid-cols-2 md:gap-8 lg:grid-cols-3">
 				<ProjectCard v-for="item in projects.ProjectItems?.items" :data="item!"/>
 			</div>

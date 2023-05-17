@@ -9,8 +9,8 @@ const description = 'A leading company, ready to provide unique properties at co
 <template>
 	<section class="about">
 		<div class="container mx-auto tablet:py-20 tablet:px-0 pt-8 pb-32">
-			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 px-8">{{ title }}<span class="tablet:ml-2 colored"> {{ title2 }}</span></h2>
-			<p class="tablet:mt-12 mt-9 text-xl tablet:px-0 px-8">{{ subtitle }}</p>
+			<h2 class="title w-full md:flex-row flex flex-col tablet:px-0 px-8">{{ title }}<span class="tablet:ml-2 gold-title"> {{ title2 }}</span></h2>
+			<h5 class="tablet:mt-12 mt-9 text-xl tablet:px-0 px-8">{{ subtitle }}</h5>
 			<div class="content flex flex-wrap items-stretch">
 				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center py-9 tablet:py-0  px-8">
 					<p>
@@ -73,7 +73,7 @@ const description = 'A leading company, ready to provide unique properties at co
 	.text {
 		animation: spin 7s infinite linear;
 	}
-	@keyframes spin { 
+	@keyframes spin {
 		0% {
 			transform: rotateZ(0);
 		}

@@ -17,7 +17,7 @@ defineProps<{
 <template>
 	<NuxtLink
 		:to="data.full_slug!"
-		class="card block mb-10 max-w-[470px] lg:mb-0 lg:first:mr-[130px]"
+		class="card block mb-10 max-w-[470px] lg:mb-0 lg:first:mr-[130px] lg:w-[470px]"
 	>
 		<div class="h-60">
 			<!-- <img :src="project.img" alt="flat"> -->

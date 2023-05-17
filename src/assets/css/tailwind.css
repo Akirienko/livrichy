@@ -8,8 +8,11 @@
 @layer base {
 
 	section {
-		height: 100%;
-		min-height: 100vh;
+		overflow: hidden;
+		padding-bottom: 120px;
+		@media (min-width:1240px) {
+			padding-bottom: 160px;
+		}
 	}
 
 	html {
@@ -58,6 +61,17 @@
 	ul,
 	li {
 		list-style: none;
+	}
+
+	.title {
+		font-weight: 700;
+		font-size: 40px;
+		line-height: 120%;
+		text-transform: uppercase;
+		@media (min-width:1024px) {
+			font-size: 64px;
+			line-height: 80px;
+		}
 	}
 
 	.gold-title {

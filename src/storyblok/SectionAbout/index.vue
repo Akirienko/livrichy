@@ -15,8 +15,8 @@ defineProps<{
 <template>
 	<section class="about">
 		<div class="container mx-auto tablet:py-20 tablet:px-0 pt-8 pb-32">
-			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 px-8">About <span class="tablet:ml-2 colored">livrichy</span></h2>
-			<p class="tablet:mt-12 mt-9 text-xl tablet:px-0 px-8">{{ blok.subtitle }}</p>
+			<h2 class="title w-full md:flex-rowflex flex-col tablet:px-0 px-8">About <span class="tablet:ml-2 gold-title">livrichy</span></h2>
+			<h5 class="tablet:mt-12 mt-9 text-xl tablet:px-0 px-8">{{ blok.subtitle }}</h5>
 			<div class="content flex flex-wrap items-stretch">
 				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center py-9 tablet:py-0  px-8">
 					<p>
@@ -60,20 +60,20 @@ defineProps<{
 	</section>
 </template>
 
-<style lang="scss">
-.title {
-	background: linear-gradient(180deg, theme('colors.palette.dark_blue1') 0%, theme('colors.palette.dark_blue2') 100%);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	background-clip: text;
+<style lang="scss" scoped>
+// .title {
+// 	background: linear-gradient(180deg, theme('colors.palette.dark_blue1') 0%, theme('colors.palette.dark_blue2') 100%);
+// 	-webkit-background-clip: text;
+// 	-webkit-text-fill-color: transparent;
+// 	background-clip: text;
 
-	span {
-		background: linear-gradient(180deg, theme('colors.palette.gold_yellow') 0%, theme('colors.palette.gold_dark') 100%);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-}
+// 	span {
+// 		background: linear-gradient(180deg, theme('colors.palette.gold_yellow') 0%, theme('colors.palette.gold_dark') 100%);
+// 		-webkit-background-clip: text;
+// 		-webkit-text-fill-color: transparent;
+// 		background-clip: text;
+// 	}
+// }
 
 .arrow {
 	backdrop-filter: blur(2.5px);

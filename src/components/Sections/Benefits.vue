@@ -46,10 +46,10 @@ const titleGold = computed( () => { return data.title.split(' ')[0] })
 <template>
 	<section class="benefits">
 		<div class="container mx-auto flex flex-wrap tablet:py-20 tablet:px-0 py-12">
-			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 px-8">
-				<span class="tablet:ml-2 colored tablet:mr-3"> {{ titleGold }}</span> {{ titleBlue }} 
+			<h2 class="title w-full md:flex-row flex flex-col tablet:px-0 px-8">
+				<span class="tablet:ml-2 gold-title tablet:mr-3"> {{ titleGold }}</span> {{ titleBlue }}
 			</h2>
-			<p class="tablet:mt-12 mt-9 text-xl w-full mb-4 tablet:px-0 px-8">{{ data.subtitle }}</p>
+			<h5 class="tablet:mt-12 mt-9 text-xl w-full mb-4 tablet:px-0 px-8">{{ data.subtitle }}</h5>
 			<div class="wrapper_content flex flex-wrap">
 				<div class="content md:w-1/2 w-full flex flex-col items-center justify-center tablet:px-16 px-8">
 					<ul>
@@ -113,7 +113,7 @@ const titleGold = computed( () => { return data.title.split(' ')[0] })
 			img {
 				transform: scale(1.1);
 			}
-		} 
+		}
 	}
 	@media (max-width: 768px) {
 		.reverse {

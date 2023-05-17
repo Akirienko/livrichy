@@ -20,7 +20,7 @@ const updates = [
 <template>
   <section class="our-projects">
     <div class="container mx-auto px-6 xl:px-0">
-      <h2 class="title w-full mb-10 md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 lg:mb-[90px] lg:justify-center">{{ title }}<span class="tablet:ml-2 colored"> {{ title2 }}</span></h2>
+      <h2 class="title w-full mb-10 md:flex-row flex flex-col tablet:px-0 lg:mb-[90px] lg:justify-center">{{ title }}<span class="tablet:ml-2 gold-title"> {{ title2 }}</span></h2>
       <div class="lg:flex lg:items-center lg:justify-center">
         <a
           :href="update.uid"
@@ -48,7 +48,7 @@ const updates = [
   </section>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .card {
   box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
   overflow: hidden;
