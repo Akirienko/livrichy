@@ -20,7 +20,6 @@ defineProps<{
 		class="card block mb-10 max-w-[470px] lg:mb-0 lg:first:mr-[130px] lg:w-[470px]"
 	>
 		<div class="h-60">
-			<!-- <img :src="project.img" alt="flat"> -->
 			<img :src="data.content?.poster?.filename!" >
 		</div>
 		<div class="px-4 pt-5 pb-6">

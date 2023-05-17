@@ -2,8 +2,14 @@
 defineProps<{
   blok: {
     subtitle: string,
-    imageTop: string,
-    imageBottom: string,
+    imageTop: {
+			filename: string,
+			alt: string
+		},
+    imageBottom: {
+			filename: string,
+			alt: string
+		},
     text1: string,
     text2: string,
     text3: string,
@@ -32,14 +38,14 @@ defineProps<{
 				</div>
 				<div class="image_wrapper md:w-1/2 w-full">
 					<div class="image-wrapper overflow-hidden rounded-l-[300px] md:my-0 my-4">
-						<img :src="blok.imageTop" alt="" class="w-full h-full object-cover" />
+						<img :src="blok.imageTop.filename" alt="" class="w-full h-full object-cover" />
 					</div>
 				</div>
 			</div>
 			<div class="wrapper_content reverse flex flex-wrap">
 				<div class="image_wrapper md:w-1/2 w-full md:my-0 my-4">
 					<div class="image-wrapper overflow-hidden rounded-r-[300px]">
-						<img :src="blok.imageBottom" alt="" class="w-full h-full object-cover" />
+						<img :src="blok.imageBottom.filename" alt="" class="w-full h-full object-cover" />
 					</div>
 				</div>
 				<div class="content md:w-1/2 w-full flex flex-col items-center justify-center tablet:px-16 px-8">
