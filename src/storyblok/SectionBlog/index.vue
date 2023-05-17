@@ -6,6 +6,9 @@ const { data: articles, pending } = await useAsyncGql("LatestArticles", { articl
 <template>
 	<section class="section-blog">
 		<template v-if="articles && !pending">
+			<div class="main-article">
+
+			</div>
 			<div class="grid">
 				<ArticleCard v-for="item in articles.ArticleItems?.items" :data="item!" />
 			</div>

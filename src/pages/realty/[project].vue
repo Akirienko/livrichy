@@ -3,7 +3,8 @@ const { params } = useRoute()
 const { data, pending } = await useAsyncGql(
 	"Project",
 	{ projectId: `realty/${params.project}` }
-)	
+)
+
 </script>
 
 <template>
@@ -12,37 +13,47 @@ const { data, pending } = await useAsyncGql(
 			<div class="left">
 				<img :src="data.ProjectItem.content?.poster?.filename">
 				<h1 class="title">
-					<span>{{ data.ProjectItem.name }}</span>
+					{{ data.ProjectItem.name }}
 					<span>{{ data.ProjectItem.content?.prize }} usd</span>
 				</h1>
 				<p class="area">
-					<span>area: {{ data.ProjectItem.content?.area }}</span>
+					<Icon name="Location" size="16" />
+					{{ data.ProjectItem.content?.area }}
 				</p>
-				<p class="info">
-					<span>bathroom: {{ data.ProjectItem.content?.bathroom }}</span>
-					<span>bedroom: {{ data.ProjectItem.content?.bedroom }}</span>
-					<span>size: {{ data.ProjectItem.content?.size }}</span>
-				</p>
+				<div class="info">
+					<div class="icon-label">
+						<Icon name="Bedroom" size="22" />
+						<span>{{ data.ProjectItem.content?.bedroom }} bedroom</span>
+					</div>
+					<div class="icon-label">
+						<Icon name="Bathroom" size="22" />
+						<span>{{ data.ProjectItem.content?.bathroom }} bathroom</span>
+					</div>
+					<div class="icon-label">
+						<Icon name="Size" size="18" />
+						<span>{{ data.ProjectItem.content?.size }} sq. ft.</span>
+					</div>
+				</div>
 				<p class="description">
 					{{ data.ProjectItem.content?.description }}
 				</p>
 			</div>
 			<div class="right">
-				<div class="img"></div>
-				<p class="adress">
-					{{ data.ProjectItem.content?.adress }}
-				</p>
+				<div class="map">
+					<div class="img"></div>
+					<p class="adress">
+						{{ data.ProjectItem.content?.adress }}
+					</p>
+				</div>
 				<div class="amenities">
-					<h4>
-						amenities
-						<AppIcon />
-					</h4>
-					<span v-for="item in data.ProjectItem.content?.Amenities">
-						{{ item }}
+					<h4 class="title">amenities</h4>
+					<span class="icon-label" v-for="item in data.ProjectItem.content?.amenities">
+						<Icon :name="item.icon" size="22" />
+						{{ item.label }}
 					</span>
 				</div>
 				<div class="facts">
-					<h4>facts</h4>
+					<h4 class="title">facts</h4>
 					<span v-for="item in data.ProjectItem.content?.facts">
 						{{ item.value }}
 					</span>
@@ -55,14 +66,43 @@ const { data, pending } = await useAsyncGql(
 <style lang="scss" scoped>
 .realty-project {
 	margin: 200px 0; //header height
-	padding-left: calc((100vw - 1200px) / 2);
-	padding-right: calc((100vw - 1200px) / 2);
+	padding: 0 calc((100vw - 1200px) / 2);
 	width: 100%;
 	height: 100%;
 	min-height: 100vh;
 
 	display: flex;
 	gap: 2rem;
+
+	.icon-label {
+		width: fit-content;
+		display: flex;
+		align-items: center;
+
+		font-size: 1rem;
+		line-height: 1rem;
+
+		.icon {
+			margin-right: 0.5rem;
+			fill: #081621;
+		}
+	}
+
+	.title {
+		display: flex;
+		justify-content: space-between;
+
+		color: #081621; // ask how to get colors
+		text-transform: uppercase;
+		font-family: "Montserrat";
+		font-size: 1.5rem;
+		font-weight: 600;
+		line-height: 2rem;
+
+		span {
+			font-weight: normal;
+		}
+	}
 
 	.left {
 		display: flex;
@@ -78,14 +118,11 @@ const { data, pending } = await useAsyncGql(
 
 		.title {
 			margin-bottom: 2rem;
-			display: flex;
-			justify-content: space-between;
+		}
 
-			color: #081621; // ask how to get colors
-			text-transform: uppercase;
-			font-family: "Montserrat";
-			font-size: 1.5rem;
-			line-height: 2rem;
+		.info {
+			display: flex;
+			gap: 2rem;
 		}
 
 		.area {
@@ -107,15 +144,37 @@ const { data, pending } = await useAsyncGql(
 		display: flex;
 		flex-direction: column;
 
-		.img {
-			width: 370px;
-			height: 370px;
-			background: #4d4b4b;
+		.map {
+			margin-bottom: 2rem;
+			height: 440px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+
+			.img {
+				width: 370px;
+				height: 370px;
+				background: #4d4b4b;
+			}
+
+		}
+
+		.title {
+			margin-bottom: 1rem;
 		}
 
 		.amenities {
+			margin-bottom: 1rem;
 			display: flex;
 			flex-direction: column;
+			gap: .75rem;
+
+			.icon-label {
+
+				.icon {
+					margin-right: 1rem;
+				}
+			}
 		}
 
 		.facts {
