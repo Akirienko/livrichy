@@ -2,23 +2,19 @@
 defineProps<{
 	blok: {
 		subtitle: string,
-		list: {
-			text: any,
-			image: {
-				alt: string,
-				filename: string,
-			}
-		}[]
+		imageTop: string,
+		imageBottom: string,
+		text1: string,
+		text2: string,
+		text3: string,
+		text4: string,
 	}
 }>()
 </script>
 
 <template>
 	<section class="section-info">
-		<h4>{{ blok.subtitle }}</h4>
-		<div class="grid">
-			<InfoCard v-for="item in blok.list" :data="item" />
-		</div>
+		<h4>{{ blok }}</h4>
 	</section>
 </template>
 

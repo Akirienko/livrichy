@@ -7,6 +7,9 @@ const { data: projects, pending } = await useAsyncGql("LatestProjects", { projec
 <template>
 	<section class="section-realty">
 		<template v-if="projects && !pending">
+			<div class="filters">
+
+			</div>
 			<div class="grid">
 				<ProjectCard v-for="item in projects.ProjectItems?.items" :data="item!" />
 			</div>
