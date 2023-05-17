@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-// import { useMouse } from mouse.js'
-
-const props =  defineProps<{
-	data: {
+defineProps<{
+	blok: {
 		title: string,
 		subtitle: string,
 	}
@@ -1014,8 +1012,6 @@ onMounted( () => {
 	
 });
 
-
-
 </script>
 
 
@@ -1023,8 +1019,8 @@ onMounted( () => {
 	<section class="home_intro overflow-hidden relative">
 
 		<div class="main_content absolute top-[20vh] z-[60] sm:block hidden">
-			<h1 class="main_title text-palette-light_beige text-3xl">{{ data.title }}</h1>
-			<h4 class="main_subtitle text-palette-light_beige">{{ data.subtitle }}</h4>
+			<h1 class="main_title text-palette-light_beige text-3xl">{{ blok.title }}</h1>
+			<h4 class="main_subtitle text-palette-light_beige">{{ blok.subtitle }}</h4>
 		</div>
 
 		<div class="sm:hidden block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-120%] w-[80%] px-4 z-[60]">

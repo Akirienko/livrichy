@@ -22,6 +22,8 @@
 	},
 	"dependencies": {
 		"@storyblok/nuxt": "^5.4.4",
+		"@types/lodash": "^4.14.194",
+		"loadsh": "^0.0.4",
 		"nuxt-graphql-client": "^0.2.27"
 	}
 }
