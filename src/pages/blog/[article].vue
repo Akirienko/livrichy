@@ -19,14 +19,12 @@ const { data, pending } = await useAsyncGql(
 			</div>
       <div class="">
 				<div class="rounded-2xl overflow-hidden h-[400px] mb-4 lg:hidden">
-					<!-- NEED MAIN IMG -->
 					<img :src="data.ArticleItem.content?.poster?.filename" alt="hotel">
 				</div>
 				<div class="richText text-sm md:columns-2 lg:columns-3">
 					{{ data.ArticleItem.content?.body }}
 				</div>
 				<div class="hidden rounded-2xl overflow-hidden max-h-[650px] lg:block ">
-					<!-- NEED MAIN IMG -->
 					<img :src="data.ArticleItem.content?.poster?.filename" alt="hotel">
 				</div>
 			</div>

@@ -163,8 +163,8 @@ const links: Link[] = [
 					</svg>
 				</button>
 			</div>
-			<div class="lg:flex lg:items-end lg:justify-between">
-				<nav class="mb-24 lg:order-2 lg:mb-0">
+			<!-- <div class="lg:flex lg:items-end lg:justify-between"> -->
+				<nav class="mb-24 lg:order-2 lg:mb-5">
 					<ul class="text-end">
 						<li v-for="link in links" class="mb-6 lg:last:mb-0 lg:mb-8">
 							<NuxtLink :to="link.url" class="link-menu text-palette-cream font-extrabold text-5xl uppercase lg:text-[96px]">
@@ -173,7 +173,8 @@ const links: Link[] = [
 						</li>
 					</ul>
 				</nav>
-				<div class="flex flex-col items-center space-y-10 lg:order-1 lg:items-start">
+			<!-- </div> -->
+			<div class="flex flex-col items-center space-y-10 lg:order-1 lg:items-start">
 					<div class="flex items-center">
 						<a href="" class="mr-7">
 							<svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -213,7 +214,6 @@ const links: Link[] = [
 							</svg>
 						</a>
 					</div>
-				</div>
 			</div>
 		</div>
 	</header>
@@ -229,7 +229,7 @@ const links: Link[] = [
 
 .link-menu {
 	transition: .3s;
-
+	color: #FDF6E9;
 	&:hover {
 		background: linear-gradient(184.4deg, #FCD07D 3.57%, #926D3F 96.43%);
 		-webkit-background-clip: text;
