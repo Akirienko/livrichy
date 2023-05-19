@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+
 const { params } = useRoute()
 const { data, pending } = await useAsyncGql(
 	"Project",
@@ -11,7 +12,8 @@ const { data, pending } = await useAsyncGql(
 	<section class="realty-project">
 		<template v-if="data?.ProjectItem && !pending">
 			<div class="left">
-				<img :src="data.ProjectItem.content?.poster?.filename">
+
+				<SliderLightbox :data="data.ProjectItem.content?.gallery!" />
 				<h1 class="title">
 					{{ data.ProjectItem.name }}
 					<span>{{ data.ProjectItem.content?.prize }} usd</span>
@@ -54,8 +56,9 @@ const { data, pending } = await useAsyncGql(
 				</div>
 				<div class="facts">
 					<h4 class="title">facts</h4>
-					<span v-for="item in data.ProjectItem.content?.facts">
-						{{ item.value }}
+					<span class="icon-label" v-for="item in data.ProjectItem.content?.facts">
+						<Icon :name="item.icon" size="22" />
+						{{ item.label }}
 					</span>
 				</div>
 			</div>
@@ -110,12 +113,6 @@ const { data, pending } = await useAsyncGql(
 		width: 100%;
 		max-width: 812px;
 
-		img {
-			width: 812px;
-			height: 440px;
-			margin-bottom: 2rem;
-		}
-
 		.title {
 			margin-bottom: 2rem;
 		}
@@ -145,7 +142,6 @@ const { data, pending } = await useAsyncGql(
 		flex-direction: column;
 
 		.map {
-			margin-bottom: 2rem;
 			height: 440px;
 			display: flex;
 			flex-direction: column;
@@ -160,11 +156,12 @@ const { data, pending } = await useAsyncGql(
 		}
 
 		.title {
-			margin-bottom: 1rem;
+			margin-top: 2rem;
+			// margin-bottom: 1rem;
 		}
 
-		.amenities {
-			margin-bottom: 1rem;
+		.amenities,
+		.facts {
 			display: flex;
 			flex-direction: column;
 			gap: .75rem;
@@ -177,10 +174,7 @@ const { data, pending } = await useAsyncGql(
 			}
 		}
 
-		.facts {
-			display: flex;
-			flex-direction: column;
-		}
+
 	}
 
 }

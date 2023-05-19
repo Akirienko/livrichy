@@ -6,6 +6,7 @@ export default defineNuxtConfig({
 		"dirs": [
 			{ "path": "~/components/App", "global": true, pathPrefix: false, },
 			{ "path": "~/components/Icons", "global": true, pathPrefix: false, },
+			{ "path": "~/components/", "global": true, pathPrefix: false, },
 		],
 	},
 	typescript: {
