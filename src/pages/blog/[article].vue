@@ -2,8 +2,8 @@
 
 const { params } = useRoute()
 const { data, pending } = await useAsyncGql(
-  "Article",
-  { articleID: `blog/${params.article}` }
+	"Article",
+	{ articleID: `blog/${params.article}` }
 )
 
 </script>

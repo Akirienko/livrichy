@@ -167,7 +167,7 @@ const links: Link[] = [
 				<nav class="mb-24 lg:order-2 lg:mb-5">
 					<ul class="text-end">
 						<li v-for="link in links" class="mb-6 lg:last:mb-0 lg:mb-8">
-							<NuxtLink :to="link.url" class="link-menu text-palette-cream font-extrabold text-5xl uppercase lg:text-[96px]">
+							<NuxtLink @click="showMenu = false" :to="link.url" class="link-menu text-palette-cream font-extrabold text-5xl uppercase lg:text-[96px]">
 								{{ link.title }}
 							</NuxtLink>
 						</li>

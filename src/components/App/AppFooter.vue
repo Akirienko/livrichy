@@ -258,4 +258,5 @@
 	100% {
 		max-width: 215px;
 	}
-}</style>
+}
+</style>
