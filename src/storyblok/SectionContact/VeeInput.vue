@@ -7,6 +7,7 @@ const props = defineProps<{ data: {
 	name: string,
 	label: string,
 	placeholder: string,
+	icon: string,
 } }>()
 const nameRef = toRef(props.data, 'name')
 const { errorMessage, value } = useField(nameRef)
@@ -19,7 +20,11 @@ const { errorMessage, value } = useField(nameRef)
 		<div class="error">
 			<span v-show="errorMessage"> {{ errorMessage }} </span>
 		</div>
-		<label :for="data.name">{{ data.label }}</label>
+		<!-- <label :for="data.name">{{ data.label }}</label> -->
+		<div class="icon w-5 h-5 flex justify-center items-center top-[45%] left-[1.4rem] absolute z-[50]">
+			<Icon :name="data.icon" />
+		</div>
+
 		<input v-if="data.name === 'phone'" v-model="value" type="number" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
 		<input v-else v-model="value" type="text" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
 	</div>
@@ -28,7 +33,7 @@ const { errorMessage, value } = useField(nameRef)
 <style lang="scss" scoped>
 .field {
 	width: 100%;
-	margin-bottom: 2rem;
+	margin-bottom: 1rem;
 	position: relative;
 
 	display: flex;
@@ -39,7 +44,7 @@ const { errorMessage, value } = useField(nameRef)
 		font-size: 12px;
 		line-height: 18px;
 		font-weight: 400;
-		color: theme("colors.palette.light_beige");
+		color: theme("colors.palette.dark_blue2");
 	}
 
 	.error {
@@ -59,9 +64,9 @@ const { errorMessage, value } = useField(nameRef)
 	input {
 		width: 100%;
 		border: 2px solid theme('colors.palette.dark_blue1');
-		border-radius: 2rem;
+		border-radius: 1rem;
 		background: transparent;
-		padding: 1rem 1.5rem;
+		padding: 1rem 1.5rem 1rem 4rem;
 
 		color: theme("colors.palette.dark_blue1");
 		font-size: 1rem;

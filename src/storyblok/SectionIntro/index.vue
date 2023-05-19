@@ -1167,7 +1167,7 @@ const hideCard = () => {
 			</div>
 			<!-- boat -->
 
-			<div class="card absolute z-[55] max-w-md p-7  flex-col items-start" :style="cardPosition">
+			<div class="card absolute z-[55] max-w-md p-7 hidden flex-col items-start" :style="cardPosition">
 				<div class="card_wrapper justify-start absolute">
 				</div>
 				<h3 class="card_title text-palette-light_beige uppercase text-3xl">Card Title</h3>

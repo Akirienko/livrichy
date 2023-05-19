@@ -76,7 +76,7 @@ onKeyStroke(['Escape', 'ArrowLeft', 'ArrowRight'], (e: KeyboardEvent) => {
 		left: 0;
 		width: 100%;
 		height: 100%;
-		background-color: $dark80;
+		background-color: theme('colors.palette.dark_blue2');
 
 		display: flex;
 		justify-content: center;
@@ -99,13 +99,13 @@ onKeyStroke(['Escape', 'ArrowLeft', 'ArrowRight'], (e: KeyboardEvent) => {
 				position: absolute;
 				width: 3rem;
 				height: 3rem;
-				stroke: $white50;
+				stroke: theme('colors.palette.light_beige');
 				fill: none;
 				transition: all 0.2s ease;
 
 				&:hover {
 					cursor: pointer;
-					stroke: $primary;
+					stroke: theme('colors.palette.dark_blue2');
 				}
 			}
 
