@@ -1,10 +1,11 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
 	data: {
 		name?: string | null,
 		full_slug?: string | null,
 		published_at?: string | null,
 		content?:{
+			cardInfo?: string | null,
 			poster?: {
 				alt?: string | null,
 				filename?: string | null,
@@ -12,6 +13,9 @@ defineProps<{
 		} | null
 	}
 }>()
+
+const date = new Date(props.data.published_at).toLocaleDateString();
+const formattedDate = date.replace(/\./g, '/')
 </script>
 
 <template>
@@ -27,8 +31,8 @@ defineProps<{
 			<p class="text-lg font-semibold uppercase line-clamp-3 mb-4 md:text-2xl">{{ data.name }}</p>
 
 			<div class="md:flex">
-				<p class="text-base line-clamp-2">{{  }}</p>
-				<p class="text-base text-end">{{ data.published_at }}</p>
+				<p class="text-base line-clamp-2">{{ data.content?.cardInfo }}</p>
+				<p class="text-base text-end">{{ formattedDate }}</p>
 			</div>
 
 		</div>

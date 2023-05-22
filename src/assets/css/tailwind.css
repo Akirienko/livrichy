@@ -74,6 +74,21 @@
 		}
 	}
 
+	.richTextArticle {
+		margin-bottom: 28px;
+	}
+
+	.richTextArticle p {
+		margin-bottom: 16px;
+	}
+
+	.richTextArticle p img {
+		margin-bottom: 16px;
+		border-radius: 16px;
+		height: 290px;
+		overflow: hidden;
+	}
+
 	.gold-title {
 		background: linear-gradient(180deg, #FCD07D 0%, #5B391E 100%);
 		-webkit-background-clip: text;
