@@ -1,0 +1,39 @@
+query FilteredProjects(
+		$projectNumber: Int!,
+		$area: [String], 
+		$market: [String], 
+		$prizeFrom: Int, 
+		$prizeTo: Int,
+		$bedroom: Int
+		$bathroom: Int,
+	){
+	ProjectItems(
+    per_page: $projectNumber,
+    # filter_query: {
+    #   __and: [
+    #     { area: { in_array: $area } },
+    #     { market: { in_array: $market } }
+    #   ]
+    # },
+    filter_query_v2: {
+    	area: { in_array: $area },
+    	market: { in_array: $market }, 
+    	prize: { gt_int: $prizeFrom , lt_int: $prizeTo },
+    	bedroom: { in_int: $bedroom },
+    	bathroom: { in_int: $bathroom },
+    },
+    sort_by:"content.prize:desc:int"
+  ){
+    total
+		items {
+      name
+			content {
+				area
+				prize
+				market
+        bedroom
+        bathroom
+			}
+		}
+	}
+}

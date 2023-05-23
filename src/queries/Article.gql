@@ -2,12 +2,12 @@ query Article($articleID: ID!) {
   ArticleItem(id: $articleID) {
     name
     content {
-		subtitle
-		poster {
-			alt
-			filename
-		}
-		richtext,
+			subtitle
+			poster {
+				alt
+				filename
+			}
+			richtext,
     }
   }
 }

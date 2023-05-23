@@ -180,16 +180,8 @@ $white75: rgba(253, 246, 233, 0.75);
 			}
 
 			.prev {
-				// top: 50%;
-				// left: -4rem;
 				transform: rotate(180deg);
 			}
-
-			.next {
-				// top: 50%;
-				// right: -4rem;
-			}
-
 
 			.dots {
 				display: none;

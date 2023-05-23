@@ -9,6 +9,7 @@ query LatestArticles($articleNumber: Int!){
 					alt
 					filename
 				}
+				cardInfo
 			}
 		}
 	}
