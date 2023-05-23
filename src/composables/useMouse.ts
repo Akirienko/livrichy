@@ -8,24 +8,27 @@ export function useMouse(e: any) {
   const y = ref(0)
 
 	const screenWidth = window.innerWidth;
-	console.log(screenWidth, x.value);
+	const screenHeight = window.innerHeight;
+	// console.log(screenWidth, x.value);
 	
 
 	const padding = 24;
 	const cardWidth = 448;
+	const cardHeight = 280;
 
   // a composable can update its managed state over time.
   function update(event: any) {
 		console.log(event);
 		
     x.value = event.pageX
-    y.value = event.pageY
+    y.value = event.clientY
   }
   update(e)
 
-	const leftPropertyCss = (screenWidth - x.value) < cardWidth ? `right: ${(screenWidth - x.value)}px;` : `left: ${x.value}px;`
-	const topPropertyCss = `top: ${y.value}px;`
-
+	const leftPropertyCss = (screenWidth - x.value) < cardWidth ? `right: ${Math.abs(screenWidth - x.value)}px;` : `left: ${x.value}px;`
+	const topPropertyCss = (screenHeight - y.value) < cardHeight ? `bottom: ${Math.abs(screenHeight - y.value)}px;` : `top: ${y.value}px;`
+	console.log(topPropertyCss);
+	
 	// if()
 
 
