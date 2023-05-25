@@ -3,12 +3,14 @@ import { useField } from 'vee-validate'
 import { toRef } from 'vue'
 // import type { TextField } from "~~/src/types";
 
-const props = defineProps<{ data: {
-	name: string,
-	label: string,
-	placeholder: string,
-	icon: string,
-} }>()
+const props = defineProps<{
+	data: {
+		name: string,
+		label: string,
+		placeholder: string,
+		icon: string,
+	}
+}>()
 const nameRef = toRef(props.data, 'name')
 const { errorMessage, value } = useField(nameRef)
 
@@ -52,6 +54,8 @@ const { errorMessage, value } = useField(nameRef)
 		align-self: flex-end;
 		overflow: hidden;
 		height: 0.75rem;
+		margin-right: 0.75rem;
+		margin-bottom: 0.25rem;
 
 		span {
 			color: theme("colors.palette.error");
@@ -77,6 +81,7 @@ const { errorMessage, value } = useField(nameRef)
 		&::placeholder {
 			color: theme("colors.palette.dark_blue1");
 			opacity: 0.7;
+
 			// text-transform: lowercase;
 			&::first-letter {
 				text-transform: capitalize;
