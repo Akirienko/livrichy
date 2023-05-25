@@ -20,7 +20,7 @@ const { data, pending } = await useAsyncGql(
 				</h1>
 				<p class="area">
 					<Icon name="Location" size="16" />
-					{{ data.ProjectItem.content?.area }}
+					{{ data.ProjectItem.content?.area![0] }}
 				</p>
 				<div class="info">
 					<div class="icon-label">
@@ -133,8 +133,6 @@ const { data, pending } = await useAsyncGql(
 		.description {
 			width: 80%;
 		}
-
-
 	}
 
 	.right {
@@ -177,5 +175,48 @@ const { data, pending } = await useAsyncGql(
 
 	}
 
+}
+
+@media (max-width: 1250px) {
+	.realty-project {
+		flex-direction: column;
+		align-items: center;
+		padding: 0 1.5rem;
+
+		.left {
+			width: 100%;
+		}
+
+		.right {
+			width: 100%;
+			max-width: 812px;
+		}
+	}
+}
+
+@media (max-width: 760px) {
+	.realty-project {
+		margin: 150px 0;
+
+		.left {
+			.title {
+				flex-direction: column;
+				margin-bottom: 1.5rem;
+
+				span {
+					margin-top: 1.5rem;
+				}
+			}
+
+			.info {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.description {
+				width: 100%;
+			}
+		}
+	}
 }
 </style>
