@@ -5,28 +5,19 @@ const { data: articles, pending } = await useAsyncGql("LatestArticles", { articl
 
 <template>
 	<section class="section-blog">
-		<template v-if="articles && !pending">
+		<div v-if="articles && !pending" class="container m-auto px-5 lg:px-0 max-w-[970px]">
 			<div class="main-article">
 
 			</div>
-			<div class="grid">
+			<div class="md:grid md:grid-cols-2 md:gap-7">
 				<ArticleCard v-for="item in articles.ArticleItems?.items" :data="item!" />
 			</div>
-		</template>
+		</div>
 	</section>
 </template>
 
 <style lang="scss" scoped>
 .section-blog {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-
-	.grid {
-		width: 100%;
-		display: flex;
-		justify-content: space-evenly;
-
-	}
+	padding: 20px 0;
 }
 </style>
