@@ -1,21 +1,7 @@
 <script setup lang="ts">
-interface AppData {
-	email: string,
-	adress: string,
-	phone: string,
-	contacts: {
-		link: string,
-		name: string,
-	},
-	socialMedias: {
-		link: string,
-		name: string,
-	},
-}
-defineProps<{
-	data: AppData
-}>()
+import type { AppData } from "~~/src/types"
 
+defineProps<{ data: AppData }>()
 
 export interface Link {
 	title: string,
@@ -35,8 +21,6 @@ const links: Link[] = [
 		url: "/blog"
 	},
 ]
-
-
 const showMenu = ref(false)
 </script>
 

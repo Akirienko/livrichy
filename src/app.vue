@@ -1,11 +1,15 @@
 <script lang="ts" setup>
-const { data } = await useAsyncGql('App')
+import type { AppData } from "~~/src/types"
+
+const story: Ref<AppData> = await useAsyncStoryblok("app", {
+	version: "published",
+})
 </script>
 
 <template>
 	<div class="app mt-20 lg:mt-24">
-		<AppHeader :data="data.AppItem.content" />
+		<AppHeader :data="story" />
 		<NuxtPage />
-		<AppFooter :data="data.AppItem.content" />
+		<AppFooter :data="story" />
 	</div>
 </template>
