@@ -3,12 +3,12 @@ query Article($articleID: ID!) {
     name
     published_at
     content {
-		subtitle
-		poster {
-			alt
-			filename
-		}
-		richtext,
+			subtitle
+			poster {
+				alt
+				filename
+			}
+			richtext,
     }
   }
 }
