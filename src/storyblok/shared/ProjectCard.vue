@@ -5,7 +5,7 @@ defineProps<{
 		full_slug?: string | null,
 		content?:{
 			area?: string | null,
-			prize?: string | null,
+			priсe?: string | null,
 			size?: string | null,
 			bedroom?: string | null,
 			bathroom?: string | null,
@@ -99,7 +99,7 @@ defineProps<{
                 {{ data.content?.size }}
               </p>
               <!-- price will be only in USD???  -->
-              <p>{{ data.content?.prize }}</p>
+              <p>{{ data.content?.priсe }}</p>
             </div>
 
           </div>
@@ -107,6 +107,16 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
+
+.card {
+  box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
+  overflow: hidden;
+  border-radius: 16px;
+  transition: .3s;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
 .img-card {
   object-fit: cover;
   height: 100%;

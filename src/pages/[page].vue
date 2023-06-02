@@ -18,7 +18,7 @@ const { data, pending } = await useAsyncGql(
 
 <style lang="scss">
 .page {
-	margin-top: 200px; // header height
+	// margin-top: 200px; // header height
 	display: flex;
 	flex-direction: column;
 }

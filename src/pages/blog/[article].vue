@@ -8,6 +8,9 @@ const { data, pending } = await useAsyncGql(
 
 const renderedRichText = renderRichText(data.value?.ArticleItem?.content?.richtext);
 
+const date = new Date(data.value?.ArticleItem?.published_at).toLocaleDateString();
+const formattedDate = date.replace(/\./g, '/')
+
 </script>
 
 <template>
@@ -16,13 +19,13 @@ const renderedRichText = renderRichText(data.value?.ArticleItem?.content?.richte
       <h1 class="text-lg mb-4 uppercase lg:text-[64px] lg:leading-[120%]">{{ data.ArticleItem.name }}</h1>
       <div class="text-base mb-4 lg:text-2xl lg:flex lg:justify-between lg:items-end lg:mb-8">
 				<p class="uppercase mb-4 lg:max-w-[175px] lg:mb-0">{{ data.ArticleItem.content?.subtitle }}</p>
-				<p>{{ data.ArticleItem.published_at }}</p>
+				<p>{{ formattedDate }}</p>
 			</div>
       <div class="">
 				<div class="rounded-2xl overflow-hidden h-[400px] mb-4 lg:hidden">
 					<img :src="data.ArticleItem.content?.poster?.filename" alt="hotel">
 				</div>
-				
+
 				<div class="richTextArticle text-sm md:columns-2 lg:columns-3" v-html="renderedRichText">
 
 				</div>
