@@ -251,15 +251,29 @@ const showMenu = ref(false)
 }
 
 .close {
-	border-width: 1.5px 0px 0px 1.5px;
 	border-style: solid;
 	border-color: #FDF6E9;
-	border-radius: 40px;
 	width: 48px;
 	height: 48px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	&::after {
+		content: "";
+		border-width: 1.5px 0px 0px 1.5px;
+		border-radius: 40px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: .5s;
+	}
+	&:hover {
+		&::after {
+			transform: rotate(180deg);
+		}
+	}
 }
 
 .burger-menu span,
