@@ -4,7 +4,7 @@ import type { Realty } from "~~/src/types"
 const storyblokApi = useStoryblokApi();
 const { data: realty, pending } = await useAsyncData<Realty>(
 	async () => await storyblokApi.get(`cdn/stories`, {
-		version: "published",
+		// version: "draft",
 		content_type: "project",
 		per_page: 6,
 		filter_query: {

@@ -50,7 +50,7 @@ const { data, pending } = await useAsyncGql(
 				<div class="amenities">
 					<h4 class="title">amenities</h4>
 					<span class="icon-label" v-for="item in data.ProjectItem.content?.amenities">
-						<Icon :name="item.icon" size="22" />
+						<Icon :name="item.icon[0]" size="22" />
 						{{ item.label }}
 					</span>
 				</div>
@@ -87,7 +87,7 @@ const { data, pending } = await useAsyncGql(
 
 		.icon {
 			margin-right: 0.5rem;
-			fill: #081621;
+			stroke: #081621;
 		}
 	}
 
