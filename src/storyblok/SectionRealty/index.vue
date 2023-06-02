@@ -1,19 +1,36 @@
 <script lang="ts" setup>
+import type { Realty } from "~~/src/types"
 
-const projectNumber = 6
-const { data: projects, pending } = await useAsyncGql("LatestProjects", { projectNumber })
+const storyblokApi = useStoryblokApi();
+const { data: realty, pending } = await useAsyncData<Realty>(
+	async () => await storyblokApi.get(`cdn/stories`, {
+		// version: "draft",
+		content_type: "project",
+		per_page: 6,
+		filter_query: {
+			price: {
+				"gt-int": 0,
+				"lt-int": 1300001,
+			},
+			area: { in_array: "Dubai Marina,Blue Waters" },
+			market: { in_array: "primary" },
+		},
+		sort_by: "content.price" //content.size:desc
+	})
+)
+
 </script>
 
 <template>
 	<section class="section-realty">
-		<template v-if="projects && !pending">
-			<div class="filters">
-
-			</div>
-			<div class="grid">
-				<ProjectCard v-for="item in projects.ProjectItems?.items" :data="item!" />
-			</div>
-		</template>
+		<div class="filters">
+			filters
+		</div>
+		<div class="grid">
+			<template v-if="realty && !pending">
+				<ProjectCard v-for="item in realty.data.stories" :data="item!" />
+			</template>
+		</div>
 	</section>
 </template>
 

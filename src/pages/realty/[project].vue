@@ -16,11 +16,11 @@ const { data, pending } = await useAsyncGql(
 				<SliderLightbox :data="data.ProjectItem.content?.gallery!" />
 				<h1 class="title">
 					{{ data.ProjectItem.name }}
-					<span>{{ data.ProjectItem.content?.prize }} usd</span>
+					<span>{{ data.ProjectItem.content?.price }} usd</span>
 				</h1>
 				<p class="area">
 					<Icon name="Location" size="16" />
-					{{ data.ProjectItem.content?.area }}
+					{{ data.ProjectItem.content?.area![0] }}
 				</p>
 				<div class="info">
 					<div class="icon-label">
@@ -50,7 +50,7 @@ const { data, pending } = await useAsyncGql(
 				<div class="amenities">
 					<h4 class="title">amenities</h4>
 					<span class="icon-label" v-for="item in data.ProjectItem.content?.amenities">
-						<Icon :name="item.icon" size="22" />
+						<Icon :name="item.icon[0]" size="22" />
 						{{ item.label }}
 					</span>
 				</div>
@@ -87,7 +87,7 @@ const { data, pending } = await useAsyncGql(
 
 		.icon {
 			margin-right: 0.5rem;
-			fill: #081621;
+			stroke: #081621;
 		}
 	}
 
@@ -133,8 +133,6 @@ const { data, pending } = await useAsyncGql(
 		.description {
 			width: 80%;
 		}
-
-
 	}
 
 	.right {
@@ -177,5 +175,48 @@ const { data, pending } = await useAsyncGql(
 
 	}
 
+}
+
+@media (max-width: 1250px) {
+	.realty-project {
+		flex-direction: column;
+		align-items: center;
+		padding: 0 1.5rem;
+
+		.left {
+			width: 100%;
+		}
+
+		.right {
+			width: 100%;
+			max-width: 812px;
+		}
+	}
+}
+
+@media (max-width: 760px) {
+	.realty-project {
+		margin: 150px 0;
+
+		.left {
+			.title {
+				flex-direction: column;
+				margin-bottom: 1.5rem;
+
+				span {
+					margin-top: 1.5rem;
+				}
+			}
+
+			.info {
+				display: flex;
+				flex-wrap: wrap;
+			}
+
+			.description {
+				width: 100%;
+			}
+		}
+	}
 }
 </style>
