@@ -10,7 +10,7 @@ query Project($projectId: ID!) {
                 filename
                 alt
             }
-            prize
+            price
             area
             adress
             size
