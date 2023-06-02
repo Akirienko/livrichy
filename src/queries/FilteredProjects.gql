@@ -2,8 +2,8 @@ query FilteredProjects(
 		$projectNumber: Int!,
 		$area: [String], 
 		$market: [String], 
-		$prizeFrom: Int, 
-		$prizeTo: Int,
+		$priceFrom: Int, 
+		$priceTo: Int,
 		$bedroom: Int
 		$bathroom: Int,
 	){
@@ -18,18 +18,18 @@ query FilteredProjects(
     filter_query_v2: {
     	area: { in_array: $area },
     	market: { in_array: $market }, 
-    	prize: { gt_int: $prizeFrom , lt_int: $prizeTo },
+    	price: { gt_int: $priceFrom , lt_int: $priceTo },
     	bedroom: { in_int: $bedroom },
     	bathroom: { in_int: $bathroom },
     },
-    sort_by:"content.prize:desc:int"
+    sort_by:"content.price:desc:int"
   ){
     total
 		items {
       name
 			content {
 				area
-				prize
+				price
 				market
         bedroom
         bathroom

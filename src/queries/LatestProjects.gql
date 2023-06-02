@@ -9,7 +9,7 @@ query LatestProjects($projectNumber: Int!) {
 					filename
 				}
 				area
-				prize
+				price
 				size
 				bedroom
 				bathroom

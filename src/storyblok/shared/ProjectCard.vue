@@ -5,7 +5,7 @@ defineProps<{
 		full_slug?: string | null,
 		content?:{
 			area?: string | null,
-			prize?: string | null,
+			price?: string | null,
 			size?: string | null,
 			bedroom?: string | null,
 			bathroom?: string | null,
@@ -99,7 +99,7 @@ defineProps<{
                 {{ data.content?.size }}
               </p>
               <!-- price will be only in USD???  -->
-              <p>{{ data.content?.prize }}</p>
+              <p>{{ data.content?.price }}</p>
             </div>
 
           </div>

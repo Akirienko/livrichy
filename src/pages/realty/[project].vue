@@ -16,7 +16,7 @@ const { data, pending } = await useAsyncGql(
 				<SliderLightbox :data="data.ProjectItem.content?.gallery!" />
 				<h1 class="title">
 					{{ data.ProjectItem.name }}
-					<span>{{ data.ProjectItem.content?.prize }} usd</span>
+					<span>{{ data.ProjectItem.content?.price }} usd</span>
 				</h1>
 				<p class="area">
 					<Icon name="Location" size="16" />
