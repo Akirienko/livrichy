@@ -96,4 +96,21 @@
 		background-clip: text;
 		text-fill-color: transparent;
 	}
+
+	svg path {
+		transition: .3s;
+	}
+	.twit:hover svg path {
+		fill: #4AA1EB;
+	}
+
+	.mass:hover svg path {
+		fill: #5BC541;
+	}
+	.link:hover svg path {
+		fill: #0A66C2;
+	}
+	.telegram:hover svg path {
+		fill: #229ED9;
+	}
 }
