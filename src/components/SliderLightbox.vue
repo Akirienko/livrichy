@@ -72,7 +72,7 @@ $white: rgba(253, 246, 233, 1);
 $white75: rgba(253, 246, 233, 0.75);
 
 .slider {
-	width: 812px;
+	width: 100%;
 	height: 440px;
 	margin-bottom: 2rem;
 
@@ -83,6 +83,7 @@ $white75: rgba(253, 246, 233, 0.75);
 	.wrapper {
 		width: inherit;
 		height: inherit;
+		max-width: 812px;
 
 		.image {
 			width: inherit;
@@ -135,7 +136,6 @@ $white75: rgba(253, 246, 233, 0.75);
 		}
 	}
 
-
 	&.lightbox {
 		position: fixed;
 		z-index: 1001;
@@ -150,13 +150,15 @@ $white75: rgba(253, 246, 233, 0.75);
 		align-items: center;
 
 		.wrapper {
+			max-width: 1030px;
 			display: flex;
-			justify-content: center;
+			justify-content: space-evenly;
 			align-items: center;
 			gap: 2rem;
 
 			.image {
-				width: 1030px;
+				width: 100%;
+				max-width: 1030px;
 				height: 558px;
 
 				&:hover {
@@ -166,7 +168,6 @@ $white75: rgba(253, 246, 233, 0.75);
 
 			.icon {
 				display: initial;
-				// position: absolute;
 				width: 2rem;
 				height: 2rem;
 				stroke: none;
@@ -183,6 +184,11 @@ $white75: rgba(253, 246, 233, 0.75);
 				transform: rotate(180deg);
 			}
 
+			// .next {
+			// top: 50%;
+			// right: -4rem;
+			// }
+
 			.dots {
 				display: none;
 			}
@@ -191,33 +197,15 @@ $white75: rgba(253, 246, 233, 0.75);
 	}
 }
 
+// @media (max-width: 1250px) {
+// }
+@media (max-width: 760px) {
+	.slider {
+		height: 100%;
 
-
-
-
-@media (max-width: 800px) {
-	#gallery {
-		.grid {
-			justify-content: space-between;
-
-			.image {
-				width: 48%;
-				margin-right: 0;
-			}
-		}
-	}
-}
-
-@media (max-width: 600px) {
-	#gallery {
-		padding-bottom: 2rem;
-
-		.grid {
-
-			.image {
-				width: 100%;
-				margin-bottom: 2rem;
-
+		&.lightbox {
+			.wrapper {
+				justify-content: space-evenly;
 			}
 		}
 	}
