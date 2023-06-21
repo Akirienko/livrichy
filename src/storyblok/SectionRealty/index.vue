@@ -1,138 +1,387 @@
 <script lang="ts" setup>
 import type { Realty } from "~~/src/types"
 
-const storyblokApi = useStoryblokApi();
-const { data: realty, pending } = await useAsyncData<Realty>(
+// ### Filters
+
+// Size
+const FilterMinSizeRef = ref("")
+const FilterMaxSizeRef = ref("")
+const FilterMinSize = computed(() => {
+	if (FilterMinSizeRef.value.length == 0) return null
+	return FilterMinSizeRef.value
+})
+const FilterMaxSize = computed(() => {
+	if (FilterMaxSizeRef.value.length == 0) return null
+	return FilterMaxSizeRef.value
+})
+
+// Name
+const FilterNameRef = ref("")
+const FilterName = computed(() => {
+	if (FilterNameRef.value.length == 0) return null
+	return `*${FilterNameRef.value}*`
+})
+
+// Price
+const FilterMinPriceRef = ref("")
+const FilterMaxPriceRef = ref("")
+const FilterMinPrice = computed(() => {
+	if (FilterMinPriceRef.value.length == 0) return null
+	return FilterMinPriceRef.value
+})
+const FilterMaxPrice = computed(() => {
+	if (FilterMaxPriceRef.value.length == 0) return null
+	return FilterMaxPriceRef.value
+})
+
+// Area
+const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "jumeirah park", "discovery gardens", "springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Villanova", "Silicon Oasis", "International City", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "City Walk / Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim"]
+const FilterAreaRef = ref([])
+const FilterArea = computed(() => {
+	if (FilterAreaRef.value.length == 0) return null
+	return FilterAreaRef.value.join()
+})
+
+// Bedroom
+const DataBedroom = [
+	{
+		value: "studio,1,2,3,4,5,6,7,8,9,10",
+		label: "any",
+	},
+	{
+		value: "studio",
+		label: "studio",
+	},
+	{
+		value: "1",
+		label: "1 bedroom",
+	},
+	{
+		value: "2",
+		label: "2 bedrooms",
+	},
+	{
+		value: "3",
+		label: "3 bedrooms",
+	},
+	{
+		value: "4",
+		label: "4 bedrooms",
+	},
+	{
+		value: "5,6,7,8,9,10",
+		label: "5+ bedrooms",
+	},
+]
+const FilterBedroomRef = ref([])
+const FilterBedroom = computed(() => {
+	if (FilterBedroomRef.value.length == 0) return null
+	return FilterBedroomRef.value.join()
+})
+
+// Bathroom
+const DataBathroom = [
+	{
+		value: "1,2,3,4,5,6,7,8,9,10",
+		label: "any",
+	},
+	{
+		value: "1",
+		label: "1 bathroom",
+	},
+	{
+		value: "2",
+		label: "2 bathrooms",
+	},
+	{
+		value: "3",
+		label: "3 bathrooms",
+	},
+	{
+		value: "4",
+		label: "4 bathrooms",
+	},
+	{
+		value: "5,6,7,8,9,10",
+		label: "5+ bathrooms",
+	},
+]
+const FilterBathroomRef = ref([])
+const FilterBathroom = computed(() => {
+	if (FilterBathroomRef.value.length == 0) return null
+	return FilterBathroomRef.value.join()
+})
+
+// Market
+const DataMarket = [
+	{
+		value: "primary",
+		label: "primary",
+	},
+	{
+		value: "secondary",
+		label: "secondary",
+	},
+]
+const FilterMarketRef = ref([])
+const FilterMarket = computed(() => {
+	if (FilterMarketRef.value.length == 0) return null
+	return FilterMarketRef.value.join()
+})
+
+// SortBy
+const DataSortBy = [
+	{
+		value: "content.size",
+		label: "Size (low to high)",
+	},
+	{
+		value: "content.size:desc",
+		label: "Size (high to low)",
+	},
+	{
+		value: "content.price",
+		label: "Price (low to high)",
+	},
+	{
+		value: "content.price:desc",
+		label: "Price (high to low))",
+	},
+]
+const FilterSortByRef = ref(DataSortBy[1])
+const FilterSortBy = computed(() => FilterSortByRef.value.value)
+
+// ### Fetch data
+const storyblokApi = useStoryblokApi()
+const { data: realty, pending, refresh } = await useAsyncData<Realty>(
 	async () => await storyblokApi.get(`cdn/stories`, {
-		// version: "draft",
+		version: "published",
 		content_type: "project",
 		per_page: 6,
 		filter_query: {
 			price: {
-				"gt-int": 0,
-				"lt-int": 1300001,
+				"gt-int": FilterMinPrice.value,
+				"lt-int": FilterMaxPrice.value,
 			},
-			area: { in_array: "Dubai Marina,Blue Waters" },
-			market: { in_array: "primary" },
+			size: {
+				"gt-int": FilterMinSize.value,
+				"lt-int": FilterMaxSize.value,
+			},
+			market: { in: FilterMarket.value },
+			area: { in: FilterArea.value },
+			bedroom: { in: FilterBedroom.value },
+			bathroom: { in: FilterBathroom.value },
+			name: { like: FilterName.value }
 		},
-		sort_by: "content.price" //content.size:desc
-	})
+		sort_by: FilterSortBy.value,
+	},
+	),
 )
 
 </script>
 
 <template>
-	<!-- realty && !pending" -->
-	<section class="section-realty py-20">
-		<div v-if="realty && !pending" class="container m-auto px-5 lg:px-0">
-			<div class="filters">
+	<section class="section-realty">
+		<div class="filters">
 
+			<!-- size -->
+			<div class="fitler-input">
+				<label for="minSize">
+					<Icon name="Size" />
+					Min
+				</label>
+				<input type="text" v-model="FilterMinSizeRef" name="minSize" id="minSize" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 			</div>
-			<div class="md:grid md:grid-cols-2 md:gap-7 lg:grid-cols-3">
-				<ProjectCard v-for="item in realty.data.stories" :data="item!" />
+			<div class="fitler-input">
+				<label for="maxSize">
+					<Icon name="Size" />
+					Max
+				</label>
+				<input type="text" v-model="FilterMaxSizeRef" name="maxSize" id="maxSize" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 			</div>
-			<div class="mt-10">
-				<button class="swipe-btn">
-					<div class="swipe-btn__content">
-						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M15 16C15.2833 16 15.521 15.904 15.713 15.712C15.905 15.52 16.0007 15.2827 16 15V6C16 5.71667 15.904 5.479 15.712 5.287C15.52 5.095 15.2827 4.99934 15 5C14.7167 5 14.479 5.096 14.287 5.288C14.095 5.48 13.9993 5.71734 14 6V14H6C5.71666 14 5.479 14.096 5.287 14.288C5.095 14.48 4.99933 14.7173 5 15C5 15.2833 5.096 15.521 5.288 15.713C5.48 15.905 5.71733 16.0007 6 16H15ZM10 11C10.2833 11 10.521 10.904 10.713 10.712C10.905 10.52 11.0007 10.2827 11 10V1C11 0.71667 10.904 0.479004 10.712 0.287004C10.52 0.0950036 10.2827 -0.000663206 10 3.4602e-06C9.71666 3.4602e-06 9.479 0.0960036 9.287 0.288004C9.095 0.480004 8.99933 0.717337 9 1V9H0.999996C0.716662 9 0.478997 9.096 0.286997 9.288C0.0949965 9.48 -0.000671387 9.71734 -3.8147e-06 10C-3.8147e-06 10.2833 0.0959959 10.521 0.287996 10.713C0.479997 10.905 0.71733 11.0007 0.999996 11H10Z" fill="#FDF6E9"/>
-						</svg>
-							<span class="whitespace-nowrap">See more apartments</span>
+
+			<!-- name -->
+			<div class="search-fitler">
+				<input type="text" name="filterByName" id="filterByName" v-model="FilterNameRef">
+				<Icon name="Search" size="24px" />
+			</div>
+
+			<!-- price -->
+			<FilterDropdown name="price">
+				<template #name>
+					<h5>price range</h5>
+					<Icon name="Dropdown" />
+				</template>
+				<template #dropdown>
+					<div class="fitler-input">
+						<label for="minPrice">
+							Min
+						</label>
+						<input type="text" v-model="FilterMinPriceRef" name="minPrice" id="minPrice" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 					</div>
-				</button>
-			</div>
+					<div class="fitler-input">
+						<label for="minPrice">
+							Max
+						</label>
+						<input type="text" v-model="FilterMaxPriceRef" name="minPrice" id="minPrice" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+					</div>
+
+				</template>
+			</FilterDropdown>
+
+			<!-- area -->
+			<FilterDropdown name="area">
+				<template #name>
+					<Icon name="Location" />
+					<h5>Area</h5>
+					<Icon name="Dropdown" />
+				</template>
+				<template #dropdown>
+					<template v-for="area in DataArea">
+						<div class="input-label">
+							<input :value="area" v-model="FilterAreaRef" type="checkbox" :id="area">
+							<label :for="area">{{ area }}</label>
+						</div>
+					</template>
+				</template>
+			</FilterDropdown>
+
+			<!-- bedroom -->
+			<FilterDropdown name="bedroom">
+				<template #name>
+					<Icon name="Bedroom" />
+					<h5>bedroom</h5>
+					<Icon name="Dropdown" />
+				</template>
+				<template #dropdown>
+					<template v-for="data in DataBedroom">
+						<input :value="data.value" v-model="FilterBedroomRef" type="checkbox" :id="data.value">
+						<label :for="data.value">{{ data.label }}</label>
+					</template>
+				</template>
+			</FilterDropdown>
+
+			<!-- bathroom -->
+			<FilterDropdown name="bathroom">
+				<template #name>
+					<Icon name="Bathroom" />
+					<h5>bathroom</h5>
+					<Icon name="Dropdown" />
+				</template>
+				<template #dropdown>
+					<template v-for="data in DataBathroom">
+						<input :value="data.value" v-model="FilterBathroomRef" type="checkbox" :id="data.value">
+						<label :for="data.value">{{ data.label }}</label>
+					</template>
+				</template>
+			</FilterDropdown>
+
+			<!-- market -->
+			<FilterDropdown name="market">
+				<template #name>
+					<h5>Market</h5>
+					<Icon name="Dropdown" />
+				</template>
+				<template #dropdown>
+					<template v-for="data in DataMarket">
+						<input :value="data.value" v-model="FilterMarketRef" type="checkbox" :id="data.value">
+						<label :for="data.value">{{ data.label }}</label>
+					</template>
+				</template>
+			</FilterDropdown>
+
+			<!-- sortby -->
+			<FilterDropdown name="sortby">
+				<template #name>
+					<Icon name="Bathroom" />
+					<h5>{{ FilterSortByRef.label }}</h5>
+					<Icon name="Dropdown" />
+				</template>
+				<template #dropdown>
+					<template v-for="(data, index) in DataSortBy">
+						<input :value="data" v-model="FilterSortByRef" type="radio" :id="index.toString">
+						<label :for="index.toString">{{ data.label }}</label>
+					</template>
+				</template>
+			</FilterDropdown>
+
+			<button class="btn m-8 p-8  border-4" @click="refresh()">
+				Filter
+			</button>
+
+		</div>
+		<div class="projects-grid">
+			<template v-if="realty && !pending">
+				<ProjectCard v-for="item in realty.data.stories" :data="item!" />
+			</template>
 		</div>
 	</section>
 </template>
-
 
 <style lang="scss" scoped>
 .section-realty {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	padding: 0 10%;
 
-	.grid {
+	.filters {
+
+		.search-fitler {
+			width: 30rem;
+			display: flex;
+			flex-direction: column;
+
+			position: relative;
+
+			.icon {
+				position: absolute;
+				top: 1rem;
+				left: 1rem;
+			}
+
+			input {
+				height: 56px;
+				padding: 1rem 1rem 1rem 3rem;
+			}
+		}
+
+		.fitler-input {
+			width: 10rem;
+			display: flex;
+			flex-direction: column;
+
+			label {
+				display: flex;
+				align-items: center;
+
+				.icon {
+					margin-right: 0.5rem;
+				}
+			}
+
+			input {
+				height: 56px;
+				padding: 1rem;
+			}
+		}
+
+		.dropdown {
+			&.area {
+				.input-label {
+					width: 10rem;
+					display: flex;
+					justify-content: center;
+				}
+			}
+		}
+	}
+
+	.projects-grid {
 		width: 100%;
 		display: flex;
-		justify-content: space-evenly;
+		justify-content: space-between;
 		flex-wrap: wrap;
 	}
-
-	.swipe-btn {
-	height: 50px;
-	background: linear-gradient(184.4deg, #FCD07D 3.57%, #926D3F 96.43%);
-	border-radius: 16px;
-	padding: 0 20px;
-	display: flex;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 20px;
-	color: white;
-	text-decoration: none;
-	overflow: hidden;
-	width: auto;
-	box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
-	animation: bounce-back 1s cubic-bezier(0.25, 0.5, 0.5, 1.1) forwards;
-	transition: all 1.1s;
-
-	&__content {
-			display: flex;
-			align-items: center;
-			position: relative;
-			height: 100%;
-			width: 100%;
-			justify-content: center;
-			span {
-				margin-left: 10px;
-				transition: .5s all;
-			}
-		}
-
-	@media (min-width:760px) {
-		max-width: 70px;
-		left: 65%;
-		&__content {
-			width: auto;
-			justify-content: unset;
-			span {
-				opacity: 0;
-			}
-		}
-
-		&:hover {
-			animation: bounce 1s cubic-bezier(0.25, 0.5, 0.5, 1.1) forwards;
-			transition: all 1.1s;
-
-			span {
-				opacity: 1;
-			}
-		}
-		@keyframes bounce-back {
-			0% {
-				max-width: 245px;
-			}
-
-			90% {
-				max-width: 55px;
-			}
-
-			100% {
-				max-width: 60px;
-			}
-		}
-
-		@keyframes bounce {
-			80% {
-				// padding-right: 35px;
-			}
-
-			100% {
-				max-width: 245px;
-			}
-		}
-	}
-
-}
 }
 </style>
