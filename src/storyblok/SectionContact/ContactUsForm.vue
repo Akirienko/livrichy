@@ -100,6 +100,7 @@ form {
 		justify-content: center;
 		align-items: center;
 		background-image: url('/success_form.jpg');
+		background-repeat: round;
 
 		.title {
 			line-height: 1.2;
