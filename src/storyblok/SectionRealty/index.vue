@@ -183,6 +183,7 @@ const { data: realty, pending, refresh } = await useAsyncData<Realty>(
 
 const isOpen = ref(false);
 const body = document.body;
+var screenW = window.innerWidth;
 
 const openFilters = () => {
 	isOpen.value = !isOpen.value
@@ -190,7 +191,9 @@ const openFilters = () => {
 }
 
 const update = () => {
-	isOpen.value = !isOpen.value
+	if (screenW<1024) {
+		isOpen.value = !isOpen.value
+	}
 	body.classList.remove('overflow-hidden')
 	console.log(realty.value);
 }
@@ -247,7 +250,7 @@ const update = () => {
 			>
 				<div class="lg:flex items-end gap-5">
 					<!-- size -->
-					<div class="flex justify-between">
+					<div class="flex justify-between mb-5 lg:mb-0">
 						<div class="fitler-input">
 							<label for="minSize">
 								<Icon name="Size" />
@@ -271,7 +274,7 @@ const update = () => {
 					</div>
 				</div>
 
-				<div class="lg:flex lg:flex-wrap gap-5 lg:justify-between">
+				<div class="lg:flex lg:flex-wrap gap-5 lg:justify-between space-y-5 lg:space-y-0">
 					<!-- price -->
 					<div>
 						<FilterDropdown name="price" dropdownClass="flex justify-between">
@@ -299,7 +302,7 @@ const update = () => {
 
 					<!-- area -->
 					<div>
-						<FilterDropdown name="area" dropdownClass="lg:grid-cols-3 lg:gap-5 lg:w-[650px] lg:max-h-[300px] lg:overflow-hidden lg:overflow-y-scroll">
+						<FilterDropdown name="area" dropdownClass="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-5 sm:gap-y-10 lg:w-[650px] lg:max-h-[300px] lg:overflow-hidden lg:overflow-y-scroll">
 							<template #name>
 								<Icon name="Location" class="mr-2.5" />
 								<p>Area</p>
@@ -307,9 +310,17 @@ const update = () => {
 							</template>
 							<template #dropdown>
 								<template v-for="area in DataArea">
-									<div class="input-label lg:!mb-0">
-										<input :value="area" v-model="FilterAreaRef" type="checkbox" :id="area">
-										<label :for="area">{{ area }}</label>
+									<div class="input-label mb-5 sm:mb-0">
+										<div class="checkbox">
+											<input :value="area" v-model="FilterAreaRef" type="checkbox" :id="area">
+											<span class="checkmark">
+												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9"/>
+												</svg>
+											</span>
+											<label :for="area">{{ area }}</label>
+										</div>
+
 									</div>
 								</template>
 							</template>
@@ -318,7 +329,7 @@ const update = () => {
 
 					<!-- bedroom -->
 					<div>
-						<FilterDropdown name="bedroom">
+						<FilterDropdown name="bedroom" dropdownClass="sm:w-[180px]">
 							<template #name>
 								<Icon name="Bedroom" class="fill-black mr-2.5"/>
 								<p>Bedroom</p>
@@ -326,9 +337,17 @@ const update = () => {
 							</template>
 							<template #dropdown>
 								<template v-for="data in DataBedroom">
-									<div class="input-label">
-										<input :value="data.value" v-model="FilterBedroomRef" type="checkbox" :id="data.value">
-										<label :for="data.value">{{ data.label }}</label>
+									<div class="input-label mb-5 last:mb-0">
+										<div class="checkbox">
+											<input :value="data.value" v-model="FilterBedroomRef" type="checkbox" :id="data.value">
+											<span class="checkmark">
+												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9"/>
+												</svg>
+											</span>
+											<label :for="data.value">{{ data.label }}</label>
+										</div>
+
 									</div>
 								</template>
 							</template>
@@ -337,7 +356,7 @@ const update = () => {
 
 					<!-- bathroom -->
 					<div>
-						<FilterDropdown name="bathroom">
+						<FilterDropdown name="bathroom" dropdownClass="sm:w-[180px]">
 							<template #name>
 								<Icon name="Bathroom" class="fill-black mr-2.5" />
 								<p>bathroom</p>
@@ -345,9 +364,17 @@ const update = () => {
 							</template>
 							<template #dropdown>
 								<template v-for="data in DataBathroom">
-									<div class="input-label">
-										<input :value="data.value" v-model="FilterBathroomRef" type="checkbox" :id="data.value">
-										<label :for="data.value">{{ data.label }}</label>
+									<div class="input-label mb-5 last:mb-0">
+										<div class="checkbox">
+											<input :value="data.value" v-model="FilterBathroomRef" type="checkbox" :id="data.value">
+											<span class="checkmark">
+												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9"/>
+												</svg>
+											</span>
+											<label :for="data.value">{{ data.label }}</label>
+										</div>
+
 									</div>
 								</template>
 							</template>
@@ -356,16 +383,24 @@ const update = () => {
 
 					<!-- market -->
 					<div>
-						<FilterDropdown name="market">
+						<FilterDropdown name="market" dropdownClass="sm:w-[180px]">
 							<template #name>
 								<p>Market</p>
 								<Icon name="Dropdown" />
 							</template>
 							<template #dropdown>
 								<template v-for="data in DataMarket" class="justify-start">
-									<div class="input-label">
-										<input :value="data.value" v-model="FilterMarketRef" type="checkbox" :id="data.value">
-										<label :for="data.value">{{ data.label }}</label>
+									<div class="input-label first:mb-5">
+										<div class="checkbox">
+											<input :value="data.value" v-model="FilterMarketRef" type="checkbox" :id="data.value">
+											<span class="checkmark">
+												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9"/>
+												</svg>
+											</span>
+											<label :for="data.value">{{ data.label }}</label>
+										</div>
+
 									</div>
 								</template>
 							</template>
@@ -374,7 +409,7 @@ const update = () => {
 
 					<!-- sortby -->
 					<div>
-						<FilterDropdown name="sortby">
+						<FilterDropdown name="sortby" dropdownClass="sm:w-[227px]">
 							<template #name>
 								<Icon name="Bathroom" class="fill-black mr-2.5" />
 								<p>{{ FilterSortByRef.label }}</p>
@@ -382,9 +417,17 @@ const update = () => {
 							</template>
 							<template #dropdown>
 								<template v-for="(data, index) in DataSortBy">
-									<div class="input-label">
-										<input :value="data" v-model="FilterSortByRef" type="radio" :id="index.toString">
-										<label :for="index.toString">{{ data.label }}</label>
+									<div class="input-label mb-5 last:mb-0">
+										<div class="checkbox">
+											<input :value="data" v-model="FilterSortByRef" type="radio" :id="index.toString">
+											<span class="checkmark">
+												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9"/>
+												</svg>
+											</span>
+											<label :for="index.toString">{{ data.label }}</label>
+										</div>
+
 									</div>
 								</template>
 							</template>
@@ -506,57 +549,65 @@ const update = () => {
 		.dropdown {
 
 			.input-label {
-					width: 10rem;
-					display: flex;
-					justify-content: flex-start;
-					width: 100%;
-					margin-bottom: 16px;
-					align-items: center;
-					&:last-child {
-						margin-bottom: 0;
-					}
-					input[type="checkbox"] {
-						// visibility: hidden;
-						// accent-color: #081621;
-						// font: inherit;
-						// color: white;
-						// width: 1.15em;
-						// height: 1.15em;
-						// border: 1px solid #081621;
-						// border-radius: 50px;
+					.checkbox {
+						display: flex;
+						align-items: center;
+						width: 20px;
+						height: 20px;
+						cursor: pointer;
+						label {
+							padding-left: 30px;
+							min-width: 200px;
+						}
+						input[type="checkbox"], input[type="radio"] {
+							opacity: 0;
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
 
-						////
-						// padding-left: 35px;
-						// margin-bottom: 20px;
-						// cursor: pointer;
-						// -webkit-user-select: none;
-						// -moz-user-select: none;
-						// -ms-user-select: none;
-						// &:before {
-						// 		content: "";
-						// 		display: block;
-						// 		width: 1.4em;
-						// 		height: 1.4em;
-						// 		border: 1px solid #343a3f;
-						// 		border-radius: 1em;
-						// 		position: absolute;
-						// 		left: 0;
-						// 		top: 0;
-						// 		-webkit-transition: all 0.2s, transform 0.3s ease-in-out;
-						// 		transition: all 0.2s, transform 0.3s ease-in-out;
-						// 		background: #f3f3f3;
-						// }
-						// &:checked:before {
-						// 	color: white;
-						// 	background: #081621;
-						// }
+							&:checked + .checkmark {
+								background-color: black;
+
+								&:before {
+									content: "";
+									position: absolute;
+									top: 50%;
+									left: 50%;
+									transform: translate(-50%, -50%);
+									width: 8px;
+									height: 8px;
+									border-radius: 50%;
+								}
+							}
+						}
+
+						.checkmark {
+							position: absolute;
+							top: 0;
+							left: 0;
+							width: 100%;
+							height: 100%;
+							border: 1px solid black;
+							border-radius: 50%;
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							&:before {
+								content: "";
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								transform: translate(-50%, -50%);
+								width: 8px;
+								height: 8px;
+								border-radius: 50%;
+								background-color: transparent;
+							}
+						}
 					}
-					label {
-						font-weight: 400;
-						font-size: 16px;
-						line-height: 20px;
-						margin-left: 8px;
-					}
+
 				}
 		}
 	}

@@ -15,7 +15,7 @@ const isOpen = ref(false)
 		<slot name="name"></slot>
 	</button>
 
-	<div :class="`dropdown ${name} ${dropdownClass} ${isOpen ? 'block lg:grid' : 'hidden'} mb-10`">
+	<div :class="`dropdown ${name} ${dropdownClass} ${isOpen ? 'block sm:grid' : 'hidden'} mb-10`">
 		<slot name="dropdown"></slot>
 	</div>
 </template>
