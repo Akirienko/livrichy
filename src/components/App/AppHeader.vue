@@ -25,7 +25,7 @@ const showMenu = ref(false)
 </script>
 
 <template>
-	<header class="fixed top-0 z-[1000] w-full">
+	<header class="fixed top-0 z-[100] w-full">
 		<div class="header_wrapper flex justify-between backdrop-blur items-center w-full h-20 px-6 lg:h-24">
 			<!-- Logo -->
 			<NuxtLink to="/" class="lg:mr-14">

@@ -1,15 +1,21 @@
 <script lang="ts" setup>
 defineProps<{
 	name: string,
+	dropdownClass: string;
 }>()
+
+const isOpen = ref(false)
+
 </script>
 
 <template>
-	<button class="btn">
+	<button
+		@click="isOpen = !isOpen"
+		class="btn">
 		<slot name="name"></slot>
 	</button>
 
-	<div :class="`dropdown ${name}`">
+	<div :class="`dropdown ${name} ${dropdownClass} ${isOpen ? 'block lg:grid' : 'hidden'} mb-10`">
 		<slot name="dropdown"></slot>
 	</div>
 </template>
@@ -17,44 +23,28 @@ defineProps<{
 
 <style lang="scss" scoped>
 .btn {
-	padding: 0.5rem 1rem;
-	border: 1px solid #102032;
-
+	padding: 0 20px;
+	border: 1.5px solid #081621;
+	border-radius: 4px;
 	display: flex;
 	align-items: center;
-
-	h5 {
-		margin: 0 1rem;
-	}
-
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 20px;
+	height: 56px;
+	width: 100%;
 }
 
 .dropdown {
-	display: flex;
-	flex-wrap: wrap;
-
-	&.price {
-		width: 360px;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: space-between;
-	}
-
-	&.area {
-
-		width: 575px;
-		justify-content: flex-start;
-		display: flex;
-
-		input {
-			width: 1rem;
-			margin-right: 0.5rem;
-		}
-
-		label {
-			width: 160px;
-		}
-
+	margin: 20px 0 40px;
+	@media (min-width: 1024px) {
+		margin: 0;
+		position: absolute;
+    background-color: hsla(39, 83%, 95%, 1);
+    z-index: 1;
+    padding: 20px;
+    border-radius: 4px;
+    border: 1.5px solid #081621;
 	}
 }
 </style>
