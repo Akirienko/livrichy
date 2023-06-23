@@ -1,21 +1,30 @@
 <script lang="ts" setup>
+import { onClickOutside } from '@vueuse/core'
+
 defineProps<{
 	name: string,
-	dropdownClass: string;
+	dropdownClass: string,
 }>()
 
-const isOpen = ref(false)
 
+const isOpen = ref(false)
+const dropdownRef = ref(null)
+
+onClickOutside(
+	dropdownRef,
+	(event) => {
+		console.log(event)
+		isOpen.value = false
+	},
+)
 </script>
 
 <template>
-	<button
-		@click="isOpen = !isOpen"
-		class="btn">
+	<button @click="isOpen = !isOpen" class="btn">
 		<slot name="name"></slot>
 	</button>
 
-	<div :class="`dropdown ${name} ${dropdownClass} ${isOpen ? 'block sm:grid' : 'hidden'} mb-10`">
+	<div ref="dropdownRef" :class="`dropdown ${name} ${dropdownClass} ${isOpen ? 'block sm:grid' : 'hidden'} mb-10`">
 		<slot name="dropdown"></slot>
 	</div>
 </template>
@@ -37,14 +46,15 @@ const isOpen = ref(false)
 
 .dropdown {
 	margin: 20px 0 40px;
+
 	@media (min-width: 1024px) {
 		margin: 0;
 		position: absolute;
-    background-color: hsla(39, 83%, 95%, 1);
-    z-index: 1;
-    padding: 20px;
-    border-radius: 4px;
-    border: 1.5px solid #081621;
+		background-color: hsla(39, 83%, 95%, 1);
+		z-index: 1;
+		padding: 20px;
+		border-radius: 4px;
+		border: 1.5px solid #081621;
 	}
 }
 </style>

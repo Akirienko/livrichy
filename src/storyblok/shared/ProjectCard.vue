@@ -28,7 +28,7 @@ defineProps<{
 					</defs>
 				</svg>
 
-				{{ data.content.area[0] }}
+				{{ data.content.area }}
 			</p>
 
 			<div class="mb-4 flex items-center">
@@ -99,16 +99,17 @@ defineProps<{
 </template>
 
 <style lang="scss" scoped>
-
 .card {
-  box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
-  overflow: hidden;
-  border-radius: 16px;
-  transition: .3s;
-  &:hover {
-    transform: scale(1.05);
-  }
+	box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
+	overflow: hidden;
+	border-radius: 16px;
+	transition: .3s;
+
+	&:hover {
+		transform: scale(1.05);
+	}
 }
+
 .img-card {
 	object-fit: cover;
 	height: 100%;
