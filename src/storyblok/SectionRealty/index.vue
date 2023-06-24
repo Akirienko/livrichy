@@ -192,22 +192,19 @@ function resetFilters() {
 }
 
 ////////////
-// const isOpen = ref(false);
-// const body = document.body;
-// var screenW = window.innerWidth;
+const isOpen = ref(false);
 
-// const openFilters = () => {
-// 	isOpen.value = !isOpen.value
-// 	body.classList.add('overflow-hidden')
-// }
+const openFilters = () => {
+	isOpen.value = !isOpen.value
+	document.body.classList.add('overflow-hidden')
+}
 
-// const update = () => {
-// 	if (screenW < 1024) {
-// 		isOpen.value = !isOpen.value
-// 	}
-// 	body.classList.remove('overflow-hidden')
-// 	console.log(realty.value);
-// }
+const update = () => {
+	if (window.innerWidth<1024) {
+		isOpen.value = !isOpen.value
+	}
+	document.body.classList.remove('overflow-hidden')
+}
 
 </script>
 
