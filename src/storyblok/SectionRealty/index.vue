@@ -200,7 +200,7 @@ const openFilters = () => {
 }
 
 const update = () => {
-	if (window.innerWidth<1024) {
+	if (window.innerWidth < 1024) {
 		isOpen.value = !isOpen.value
 	}
 	document.body.classList.remove('overflow-hidden')
@@ -339,13 +339,13 @@ const update = () => {
 								<template v-for="data in DataBedroom">
 									<div class="input-label mb-5 last:mb-0">
 										<div class="checkbox">
-											<input :value="data.value" v-model="FilterBedroomRef" type="checkbox" :id="data.value">
+											<input :value="data.value" v-model="FilterBedroomRef" type="checkbox" :id="data.value + `bedroom`">
 											<span class="checkmark">
 												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
 												</svg>
 											</span>
-											<label :for="data.value">{{ data.label }}</label>
+											<label :for="data.value + `bedroom`">{{ data.label }}</label>
 										</div>
 
 									</div>
@@ -366,13 +366,13 @@ const update = () => {
 								<template v-for="data in DataBathroom">
 									<div class="input-label mb-5 last:mb-0">
 										<div class="checkbox">
-											<input :value="data.value" v-model="FilterBathroomRef" type="checkbox" :id="data.value">
+											<input :value="data.value" v-model="FilterBathroomRef" type="checkbox" :id="data.value + `bathroom`">
 											<span class="checkmark">
 												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
 												</svg>
 											</span>
-											<label :for="data.value">{{ data.label }}</label>
+											<label :for="data.value + `bathroom`">{{ data.label }}</label>
 										</div>
 
 									</div>
@@ -415,18 +415,17 @@ const update = () => {
 								<Icon name="Dropdown" />
 							</template>
 							<template #dropdown>
-								<template v-for="(data, index) in DataSortBy">
+								<template v-for="data in DataSortBy">
 									<div class="input-label mb-5 last:mb-0">
 										<div class="checkbox">
-											<input :value="data" v-model="FilterSortByRef" type="radio" :id="index.toString">
+											<input :value="data" v-model="FilterSortByRef" type="radio" :id="data.value">
 											<span class="checkmark">
 												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
 												</svg>
 											</span>
-											<label :for="index.toString">{{ data.label }}</label>
+											<label :for="data.value">{{ data.label }}</label>
 										</div>
-
 									</div>
 								</template>
 							</template>
@@ -499,7 +498,7 @@ const update = () => {
 
 .section-realty {
 	padding-left: calc((100vw - 1200px) / 2);
-  padding-right: calc((100vw - 1200px) / 2);
+	padding-right: calc((100vw - 1200px) / 2);
 
 	.filters {
 		.search-fitler {

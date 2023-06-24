@@ -13,7 +13,6 @@ const dropdownRef = ref(null)
 onClickOutside(
 	dropdownRef,
 	(event) => {
-		console.log(event)
 		isOpen.value = false
 	},
 )
