@@ -498,10 +498,8 @@ const update = () => {
 }
 
 .section-realty {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	padding: 0 10%;
+	padding-left: calc((100vw - 1200px) / 2);
+  padding-right: calc((100vw - 1200px) / 2);
 
 	.filters {
 		.search-fitler {
@@ -555,11 +553,11 @@ const update = () => {
 					align-items: center;
 					width: 20px;
 					height: 20px;
-					cursor: pointer;
 
 					label {
 						padding-left: 30px;
 						min-width: 200px;
+						cursor: pointer;
 					}
 
 					input[type="checkbox"],
