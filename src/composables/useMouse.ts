@@ -17,15 +17,25 @@ export function useMouse(e: any) {
 	function update(event: any) {
 		// console.log(event);
 
+		x.value = e.clientX
+		y.value = e.clientY
 	}
 	update(e)
 
-	const leftPropertyCss = (screenWidth - x.value) < cardWidth ? `right: ${Math.abs(screenWidth - x.value)}px;` : `left: ${x.value}px;`
-	const topPropertyCss = (screenHeight - y.value) < cardHeight ? `bottom: ${Math.abs(screenHeight - y.value)}px;` : `top: ${y.value}px;`
-	// console.log(topPropertyCss);
+	// root.style.setProperty('--top-x', e.clientX + "px");
 	// root.style.setProperty('--left-y', e.clientY + "px");
-	// 	root.style.setProperty('--left-y', e.clientY + "px")
+	// root.style.setProperty('--display', "flex");
 
+	// top: var(--mouse-y);
+	// left: var(--mouse-x);
+	// if((screenWidth - x.value) < cardWidth) {
+	// 	root.style.setProperty('--right-y', e.clientY + "px")
+	// } else {
+	// 	root.style.setProperty('--left-y', e.clientY + "px")
+	// }
+
+	// if((screenHeight - y.value) < cardHeight) {
+	// 	root.style.setProperty('--top-x', e.clientX + "px")
 	// } else {
 	// 	root.style.setProperty('--bottom-x', e.clientX + "px")
 	// }
