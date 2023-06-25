@@ -7,28 +7,41 @@ export function useMouse(e: any) {
 	const x = ref(0)
 	const y = ref(0)
 
-	const screenWidth = window.innerWidth;
-	const screenHeight = window.innerHeight;
+
 	// console.log(screenWidth, x.value);
 
 
-	const padding = 24;
-	const cardWidth = 448;
-	const cardHeight = 280;
+	// const root = document.documentElement;
 
 	// a composable can update its managed state over time.
 	function update(event: any) {
 		// console.log(event);
 
-		x.value = event.pageX
-		y.value = event.clientY
 	}
 	update(e)
 
 	const leftPropertyCss = (screenWidth - x.value) < cardWidth ? `right: ${Math.abs(screenWidth - x.value)}px;` : `left: ${x.value}px;`
 	const topPropertyCss = (screenHeight - y.value) < cardHeight ? `bottom: ${Math.abs(screenHeight - y.value)}px;` : `top: ${y.value}px;`
 	// console.log(topPropertyCss);
+	// root.style.setProperty('--left-y', e.clientY + "px");
+	// 	root.style.setProperty('--left-y', e.clientY + "px")
 
+	// } else {
+	// 	root.style.setProperty('--bottom-x', e.clientX + "px")
+	// }
+	// (screenWidth - x.value) < cardWidth ? root.style.setProperty('--right-y', e.clientY + "px") : root.style.setProperty('--left-y', e.clientY + "px");
+	// (screenHeight - y.value) < cardHeight ? root.style.setProperty('--bottom-x', e.clientX + "px") : root.style.setProperty('--top-x', e.clientX + "px");
+	// console.log(topPropertyCss, leftPropertyCss);
+
+	const screenWidth = window.innerWidth;
+	const screenHeight = window.innerHeight;
+
+	const cardWidth = 448;
+	const cardHeight = 280;
+	const leftPropertyCss = (screenWidth - e.clientX) < cardWidth ? `right: ${screenWidth - e.clientX}px;` : `left: ${e.clientX}px;`
+	const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `bottom: ${screenHeight - e.clientY}px;` : `top: ${e.clientY}px;`
+	// const leftPropertyCss = (screenWidth - x.value) < cardWidth ? `right: ${screenWidth - e.clientX}px;` : `left: ${e.clientX}px;`
+	// const topPropertyCss = (screenHeight - y.value) < cardHeight ? `bottom: ${screenHeight - e.clientY}px;` : `top: ${e.clientY}px;`
 	// if()
 
 
@@ -38,4 +51,5 @@ export function useMouse(e: any) {
 
 	// expose managed state as return value
 	return `display:flex;${leftPropertyCss}${topPropertyCss}`
+	// return `${leftPropertyCss}${topPropertyCss}`
 }

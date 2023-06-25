@@ -9,6 +9,7 @@ defineProps<{
 }>()
 
 const cardPosition = ref('')
+const homeIntro = ref<HTMLElement>()
 const title = ref('')
 const description = ref('')
 const numberOfObjects = ref(0)
@@ -24,7 +25,25 @@ interface CardInfo {
 }
 
 const debouncedHandler = debounce((e: any, item: CardInfo )=> {
-  console.log('New value:', e.target.value);
+
+
+		// root.style.setProperty('--mouse-x', e.clientX + "px");
+		// root.style.setProperty('--mouse-y', e.clientY + "px");
+		// root.style.setProperty('--display', "block");
+
+
+		// const screenWidth = homeIntro.value?.offsetHeight ?? 0;
+		// const screenHeight = homeIntro.value?.offsetHeight  ?? 0;
+		// // const screenWidth = window.innerWidth;
+		// // const screenHeight = window.innerHeight;
+
+		// const cardWidth = 500;
+		// const cardHeight = 300;
+		// const leftPropertyCss = (screenWidth - e.clientX) < cardWidth ? `right: ${screenWidth - e.clientX}px;` : `left: ${e.clientX}px;`
+		// const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `bottom: ${screenHeight - e.clientY}px;` : `top: ${e.clientY}px;`
+
+		// console.log('New value:', e, "screen height: " , screenHeight, "screen width: " , screenWidth);
+		// cardPosition.value = `display:flex;${leftPropertyCss}${topPropertyCss}`
 		cardPosition.value = useMouse(e)
 		title.value = item.title
 		description.value = item.description
@@ -43,10 +62,10 @@ const map: CardInfo[] = [
     },
     {
         "name": "bur_dubai",
-				"title": "Card Title",
+				"title": "Bur Dubai",
 				"description": 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus pariatur nesciunt magni at mollitia id quia quas fugiat eveniet hic?',
 				"numberOfObjects": 12,
-				"filter": '',
+				"filter": 'Bur Dubai',
         "path": "M1101.43 397.557C1101.43 397.558 1101.43 397.561 1101.43 397.562L1122.67 433.211C1122.87 433.539 1123.21 433.75 1123.59 433.772L1152.54 435.445C1152.63 435.45 1152.72 435.466 1152.81 435.492L1184.45 444.958C1184.71 445.037 1185 445.019 1185.25 444.908L1196.11 440.108C1196.44 439.962 1196.82 439.98 1197.13 440.157L1238.3 463.181C1238.56 463.325 1238.86 463.365 1239.15 463.294L1251.36 460.253C1251.53 460.213 1251.68 460.134 1251.81 460.025L1266.25 448.175C1266.39 448.061 1266.56 447.98 1266.73 447.941L1293.13 442.052C1293.43 441.986 1293.69 441.803 1293.85 441.546L1301.47 429.598C1301.6 429.39 1301.66 429.145 1301.65 428.899L1300.86 417.423C1300.85 417.261 1300.81 417.105 1300.73 416.962L1291.6 399.727C1291.56 399.654 1291.53 399.575 1291.51 399.495L1283.33 369.903C1283.29 369.767 1283.28 369.627 1283.29 369.488L1286.08 339.941C1286.1 339.789 1286.08 339.636 1286.03 339.49L1276.62 309.318C1276.61 309.291 1276.6 309.263 1276.59 309.234L1269.29 290.912C1269.24 290.785 1269.21 290.652 1269.21 290.515C1269.16 288.585 1268.73 273.55 1266.73 269.281C1259.09 253.022 1238.78 248.502 1234.88 247.775C1234.47 247.698 1234.13 247.408 1234 247.012C1233.21 244.66 1230.83 236.655 1234.61 235.119C1234.65 235.102 1234.7 235.084 1234.74 235.065C1236.05 234.548 1235.47 232.58 1234.09 232.863C1226.02 234.521 1216.64 238.05 1210.33 245.482C1206.65 249.812 1205.15 256.725 1204.79 258.665C1204.73 259 1204.52 259.288 1204.23 259.455L1186.49 269.507C1186.04 269.765 1185.81 270.294 1185.94 270.799L1189.57 284.736L1200.13 318.393C1200.28 318.858 1200.12 319.364 1199.73 319.657L1174.44 338.725C1174.19 338.912 1174.03 339.191 1173.99 339.499L1172.46 351.493C1172.41 351.899 1172.15 352.247 1171.77 352.407L1119.83 374.506C1119.66 374.577 1119.51 374.688 1119.39 374.828L1101.54 396.228C1101.22 396.603 1101.18 397.133 1101.43 397.552C1101.43 397.554 1101.43 397.557 1101.43 397.557V397.557Z"
     },
     {
@@ -66,11 +85,11 @@ const map: CardInfo[] = [
         "path": "M588.508 498.639L576.811 491.372C576.342 491.081 575.732 491.162 575.358 491.568L572.244 494.928C571.893 495.307 571.842 495.865 572.097 496.297C572.166 496.414 572.273 496.501 572.386 496.577L579.103 501.065C579.342 501.225 579.53 501.45 579.645 501.714L591.433 528.83C591.493 528.967 591.494 529.097 591.36 529.163C588.219 530.705 541.912 544.297 532.892 546.977C532.062 547.223 531.178 546.729 530.935 545.898L524.504 523.869C524.262 523.041 523.374 522.587 522.562 522.876L520.023 523.778C519.451 523.984 519.036 525.102 519.206 525.685L527.888 555.831C528.068 556.446 528.714 556.797 529.329 556.612L604.631 533.899C605.183 533.733 605.525 533.185 605.436 532.615L602.719 515.514C602.631 514.961 602.952 514.427 603.481 514.245L637.566 502.513C638.136 502.317 638.458 501.717 638.307 501.134L634.288 485.708C634.121 485.068 633.451 484.7 632.821 484.9L589.473 498.761C589.151 498.865 588.801 498.821 588.513 498.642L588.508 498.639Z"
     },
     {
-        "name": "", // ?
-				"title": "Card Title",
+        "name": "jbr", // ?
+				"title": "JBR",
 				"description": 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus pariatur nesciunt magni at mollitia id quia quas fugiat eveniet hic?',
 				"numberOfObjects": 28,
-				"filter": '',
+				"filter": 'JBR',
         "path": "M528.006 521.112C527.241 521.375 526.822 522.197 527.059 522.97L532.586 541.018C532.83 541.817 533.681 542.262 534.476 542.007L576.278 528.649C576.448 528.595 576.608 528.51 576.748 528.4L581.875 524.367C582.39 523.962 582.583 523.269 582.35 522.657L576.085 506.128C575.798 505.37 574.961 504.977 574.195 505.241L528.006 521.112Z"
     },
     {
@@ -114,11 +133,11 @@ const map: CardInfo[] = [
         "path": "M661.442 728.156C661.442 728.155 661.442 728.155 661.443 728.155L666.432 721.846C666.683 721.529 667.081 721.367 667.481 721.419L703.59 726.023C704.142 726.094 704.564 726.547 704.595 727.103C704.737 729.651 705.076 736.404 704.676 736.511C704.249 736.625 711.981 739.481 714.106 740.261C714.443 740.384 714.702 740.657 714.809 741L716.997 748.021C717.109 748.381 717.039 748.77 716.809 749.069L714.791 751.679C714.563 751.975 714.492 752.364 714.601 752.722L715.299 754.997C715.546 755.799 714.878 756.587 714.046 756.477L711.46 756.132C710.682 756.029 710.032 756.715 710.176 757.485L713.036 772.801C713.086 773.071 713.038 773.35 712.901 773.588L709.711 779.113C709.507 779.466 709.131 779.686 708.722 779.689L667.152 780.031C666.829 780.034 666.52 779.902 666.3 779.667L663.816 777.015C663.629 776.815 663.519 776.555 663.506 776.283L661.194 728.927C661.181 728.649 661.268 728.376 661.441 728.157C661.441 728.157 661.442 728.156 661.442 728.156V728.156Z"
     },
     {
-        "name": "", // ?
-				"title": "Card Title",
+        "name": "arabian_ranches", // ?
+				"title": "Arabian Ranches",
 				"description": 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus pariatur nesciunt magni at mollitia id quia quas fugiat eveniet hic?',
 				"numberOfObjects": 87,
-				"filter": '',
+				"filter": "Arabian Ranches",
         "path": "M798.174 763.65C798.173 763.65 798.172 763.651 798.172 763.651L793.892 781.261C793.854 781.414 793.849 781.574 793.877 781.73L799.478 813.991C799.525 814.259 799.665 814.503 799.873 814.677L803.996 818.137C804.216 818.322 804.496 818.416 804.782 818.406L926.992 813.567C927.673 813.54 928.182 812.93 928.088 812.255L925.856 796.428C925.778 795.876 925.316 795.458 924.761 795.437L904.678 794.634C904.542 794.629 904.411 794.6 904.286 794.549L820.231 760.095C820.044 760.018 819.84 759.992 819.64 760.019L799.14 762.78C798.671 762.843 798.288 763.188 798.175 763.649C798.175 763.649 798.174 763.65 798.174 763.65V763.65Z"
     },
     {
@@ -267,7 +286,7 @@ const map: CardInfo[] = [
     },
     {
         "name": "meydan",
-					"title": "Meydan",
+				"title": "Meydan",
 				"description": 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus pariatur nesciunt magni at mollitia id quia quas fugiat eveniet hic?',
 				"numberOfObjects": 17,
 				"filter": "meydan",
@@ -282,11 +301,11 @@ const map: CardInfo[] = [
         "path": "M1343.24 612.197L1301.99 574.007C1301.67 573.71 1301.23 573.568 1300.8 573.618L1223.69 582.479C1223.56 582.493 1223.44 582.522 1223.32 582.566L1169.76 602.9C1169.59 602.966 1169.43 603.064 1169.29 603.188L1138.23 631.125C1138.08 631.263 1137.96 631.432 1137.87 631.621L1117.92 675.693C1117.67 676.254 1117.78 676.913 1118.21 677.355L1177.45 738.528C1177.76 738.852 1178.21 739.018 1178.66 738.979L1191.01 737.924C1191.09 737.917 1191.17 737.903 1191.25 737.884L1228.58 728.509C1228.7 728.477 1228.83 728.427 1228.95 728.362L1254.11 714.219C1254.2 714.168 1254.29 714.107 1254.37 714.039L1347.95 631.951C1348.38 631.574 1348.55 630.985 1348.41 630.432L1343.67 612.906C1343.6 612.634 1343.45 612.388 1343.24 612.197Z"
     },
     {
-        "name": "", // ?
-				"title": "Card Title",
+        "name": "ras_al_knor", // ?
+				"title": "Ras Al Knor",
 				"description": 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus pariatur nesciunt magni at mollitia id quia quas fugiat eveniet hic?',
 				"numberOfObjects": 17,
-				"filter": '',
+				"filter": "Ras Al Knor",
         "path": "M1127.14 523.55L1038.04 541.1C1037.35 541.237 1036.84 541.838 1036.83 542.544L1036.45 563.165C1036.44 563.3 1036.42 563.434 1036.38 563.564L1024.07 605.115C1023.88 605.764 1024.14 606.461 1024.72 606.817L1087.31 645.516C1087.42 645.581 1087.51 645.659 1087.6 645.748L1111.07 669.978C1111.79 670.721 1113.02 670.53 1113.49 669.604L1134.36 627.775C1134.45 627.593 1134.58 627.432 1134.73 627.301L1167.31 599.664C1167.43 599.555 1167.58 599.469 1167.74 599.408L1221.81 578.573C1221.94 578.524 1222.07 578.493 1222.2 578.48L1292.31 571.459C1293.77 571.314 1294.18 569.385 1292.91 568.663L1200.64 516.216C1199.9 515.795 1198.96 516.075 1198.57 516.833L1194.21 525.28C1194.07 525.55 1194.02 525.855 1194.06 526.155L1195.96 541.282C1196 541.601 1195.94 541.924 1195.78 542.204L1185.8 559.971C1185.39 560.704 1184.45 560.956 1183.73 560.528L1168.36 551.458C1168.07 551.29 1167.85 551.031 1167.73 550.723L1161 533.867C1160.74 533.216 1160.06 532.832 1159.37 532.942L1147.5 534.831C1147.15 534.887 1146.8 534.818 1146.5 534.639L1128.2 523.733C1127.88 523.543 1127.51 523.478 1127.14 523.55Z"
     },
     {
@@ -575,14 +594,16 @@ const map: CardInfo[] = [
 ]
 
 const hideCard = () => {
-	cardPosition.value = `display: none`
+	// const root = document.documentElement;
+	// root.style.setProperty('--display', "none");
+	cardPosition.value = `display:none;`
 }
 
 </script>
 
 
 <template>
-	<section class="home_intro overflow-hidden relative">
+	<section class="home_intro overflow-hidden relative"  ref="homeIntro">
 
 		<div class="main_content absolute top-[23vh] z-[60] sm:block hidden">
 			<h1 class="main_title text-palette-light_beige text-[5rem] uppercase">{{ blok.title }}</h1>
@@ -751,10 +772,10 @@ const hideCard = () => {
 			</div>
 			<!-- boat -->
 
-			<div class="card absolute z-[55] max-w-md p-7 hidden flex-col items-start" :style="cardPosition">
+			<div class="card-item absolute z-[55] p-7 hidden flex-col items-start" :style="cardPosition">
 				<div class="card_wrapper justify-start absolute">
 				</div>
-				<h3 class="card_title text-palette-light_beige uppercase text-3xl">{{ title }}</h3>
+				<h3 class="card_title text-palette-light_beige uppercase text-2xl">{{ title }}</h3>
 				<div class="card_objects my-4 flex-row flex">
 					<span class="text text-palette-light_beige">Objects</span>
 					<div class="count ml-2 text-palette-light_beige">{{ numberOfObjects }}</div>
@@ -767,6 +788,13 @@ const hideCard = () => {
 </template>
 
 <style lang="scss" scoped>
+:root {
+  --top-x: 0px;
+  --left-y: 0px;
+  --bottom-x: 0px;
+  --right-y: 0px;
+	--display: flex;
+}
 .home_intro {
 	overflow: hidden;
 	.main_content {
@@ -877,7 +905,7 @@ const hideCard = () => {
 		}
 	}
 
-	.card {
+	.card-item {
 		border: 5px solid;
 		background: linear-gradient(180deg, rgba(8, 22, 33, 0.7) 0%, rgba(23, 41, 65, 0.7) 100%);
 		backdrop-filter: blur(2px);
@@ -885,6 +913,14 @@ const hideCard = () => {
 		overflow: hidden;
 		box-sizing: border-box;
 		z-index: 100;
+		max-width: 500px;
+		// min-height: 500px;
+		// left: var(--left-x);
+		// top: var(--top-y);
+		// right: var(--right-x);
+		// bottom: var(--botom-y);
+		// display: var(--display);
+		// max-width: 20rem;
 		// .card_wrapper {
 		// }
 							
