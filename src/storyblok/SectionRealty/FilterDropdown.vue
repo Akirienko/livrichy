@@ -6,25 +6,28 @@ defineProps<{
 	dropdownClass: string,
 }>()
 
-
 const isOpen = ref(false)
 const dropdownRef = ref(null)
 
 onClickOutside(
 	dropdownRef,
 	(event) => {
+		console.log('onClickOutside');
 		isOpen.value = false
 	},
 )
+
+
 </script>
 
 <template>
-	<button @click="isOpen = !isOpen" class="btn">
-		<slot name="name"></slot>
-	</button>
-
-	<div ref="dropdownRef" :class="`dropdown ${name} ${dropdownClass} ${isOpen ? 'block sm:grid' : 'hidden'} mb-10`">
-		<slot name="dropdown"></slot>
+	<div ref="dropdownRef">
+		<button @click.stop="isOpen = !isOpen" class="btn">
+			<slot name="name"></slot>
+		</button>
+		<div :class="`dropdown ${name} ${dropdownClass} ${isOpen ? 'block sm:grid' : 'hidden'} mb-10`">
+			<slot name="dropdown"></slot>
+		</div>
 	</div>
 </template>
 

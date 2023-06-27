@@ -36,7 +36,9 @@ const FilterMaxPrice = computed(() => {
 
 // Area
 const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "jumeirah park", "discovery gardens", "springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Villanova", "Silicon Oasis", "International City", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "City Walk / Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim"]
-const FilterAreaRef = ref([])
+const FilterAreaRef = ref<string[]>([])
+const { query } = useRoute()
+if (typeof query.area === 'string') FilterAreaRef.value.push(query.area)
 const FilterArea = computed(() => {
 	if (FilterAreaRef.value.length == 0) return null
 	return FilterAreaRef.value.join()
@@ -193,12 +195,10 @@ function resetFilters() {
 
 ////////////
 const isOpen = ref(false);
-
 const openFilters = () => {
 	isOpen.value = !isOpen.value
 	document.body.classList.add('overflow-hidden')
 }
-
 const update = () => {
 	if (window.innerWidth < 1024) {
 		isOpen.value = !isOpen.value
@@ -275,8 +275,8 @@ const update = () => {
 						<Icon name="Search" size="24px" />
 					</div>
 				</div>
+
 				<div class="lg:flex lg:flex-wrap gap-5 lg:justify-between space-y-5 lg:space-y-0">
-					<!-- price -->
 					<div>
 						<FilterDropdown name="price" dropdownClass="flex justify-between">
 							<template #name>
@@ -300,7 +300,6 @@ const update = () => {
 						</FilterDropdown>
 					</div>
 
-					<!-- area -->
 					<div>
 						<FilterDropdown name="area" dropdownClass="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-5 sm:gap-y-10 lg:w-[650px] lg:max-h-[300px] lg:overflow-hidden lg:overflow-y-scroll">
 							<template #name>
@@ -327,7 +326,6 @@ const update = () => {
 						</FilterDropdown>
 					</div>
 
-					<!-- bedroom -->
 					<div>
 						<FilterDropdown name="bedroom" dropdownClass="sm:w-[180px]">
 							<template #name>
@@ -354,7 +352,6 @@ const update = () => {
 						</FilterDropdown>
 					</div>
 
-					<!-- bathroom -->
 					<div>
 						<FilterDropdown name="bathroom" dropdownClass="sm:w-[180px]">
 							<template #name>
@@ -381,7 +378,6 @@ const update = () => {
 						</FilterDropdown>
 					</div>
 
-					<!-- market -->
 					<div>
 						<FilterDropdown name="market" dropdownClass="sm:w-[180px]">
 							<template #name>
@@ -407,7 +403,6 @@ const update = () => {
 						</FilterDropdown>
 					</div>
 
-					<!-- sortby -->
 					<div>
 						<FilterDropdown name="sortby" dropdownClass="sm:w-[227px]">
 							<template #name>
