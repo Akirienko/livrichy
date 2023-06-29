@@ -37,6 +37,7 @@ export interface RealtyProject {
 
 export interface Realty {
 	data: {
-		stories: [RealtyProject]
-	}
+		stories: [RealtyProject],
+	},
+	total:number,
 }
