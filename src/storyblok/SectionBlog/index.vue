@@ -4,40 +4,25 @@ const articleNumberTest = ref(3);
 
 const number = 2
 const { data: articles, pending } = await useAsyncGql("LatestArticles", { articleNumber })
-// const newArr = ref(articles.value?.ArticleItems?.items)
 const newArr = ref(articles.value?.ArticleItems?.items || []);
 
-console.log(articles.value?.ArticleItems?.total);
 
 async function loadMore() {
 	const newRespons = await useAsyncGql("LatestArticles", { articleNumber: articleNumberTest.value + number });
 	const newItems = newRespons.data.value?.ArticleItems?.items || [];
 	newArr.value = [...newArr.value, ...newItems.slice(articleNumberTest.value)];
 	articleNumberTest.value += number
-	console.log(articleNumberTest);
 }
 
-// const loadMore = () => {
-// 	articleNumber.value += number
-// }
 </script>
 
 <template>
 	<section class="section-blog mb-40 min-h-screen">
 		<div v-if="articles && !pending" class="container m-auto px-5 lg:px-0 max-w-[970px]">
 			<div class="md:grid md:grid-cols-2 md:gap-7 artcle-wrap">
-				<!-- <ArticleCard v-for="item in articles.ArticleItems?.items" :data="item!" /> -->
 				<ArticleCard v-for="item in newArr" :data="item!" />
 			</div>
-			<!-- <div
-        class="md:grid md:grid-cols-2 md:gap-7 artcle-wrap"
-        :class="{ 'transition-opacity': pending }"
-      >
-        <transition-group name="post-list">
-          <ArticleCard v-for="item in newArr" :data="item!" />
-        </transition-group>
-      </div> -->
-			<div class="mt-20" v-if="articles.ArticleItems!!.total!! >= articleNumberTest">
+			<div class="mt-20" v-if="articles.ArticleItems!!.total!! > articleNumberTest">
 				<button @click="loadMore" class="swipe-btn">
 					<div class="swipe-btn__content">
 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
