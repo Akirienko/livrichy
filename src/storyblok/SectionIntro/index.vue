@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { debounce } from 'lodash';
+// import { debounce } from 'lodash';
+import pkg from 'lodash';
+const { debounce } = pkg;
 
 defineProps<{
 	blok: {
