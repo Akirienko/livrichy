@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { Realty } from "~~/src/types"
 
+const { query } = useRoute()
+
 // ### Filters
 
 // Size
@@ -37,7 +39,6 @@ const FilterMaxPrice = computed(() => {
 // Area
 const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "jumeirah park", "discovery gardens", "springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Villanova", "Silicon Oasis", "International City", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "City Walk / Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim"]
 const FilterAreaRef = ref<string[]>([])
-const { query } = useRoute()
 if (typeof query.area === 'string') FilterAreaRef.value.push(query.area)
 const FilterArea = computed(() => {
 	if (FilterAreaRef.value.length == 0) return null
@@ -125,7 +126,9 @@ const DataMarket = [
 		label: "secondary",
 	},
 ]
-const FilterMarketRef = ref([])
+const FilterMarketRef = ref<string[]>([])
+if (typeof query.market === 'string') FilterMarketRef.value.push(query.market)
+
 const FilterMarket = computed(() => {
 	if (FilterMarketRef.value.length == 0) return null
 	return FilterMarketRef.value.join()
