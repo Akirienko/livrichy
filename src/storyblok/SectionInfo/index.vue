@@ -19,7 +19,7 @@ defineProps<{
 </script>
 
 <template>
-	<section class="benefits">
+	<section id="info" class="benefits">
 		<div class="container mx-auto flex flex-wrap tablet:py-20 tablet:px-0 py-12">
 			<h2 class="title w-full md:flex-row flex flex-col tablet:px-0 px-8">Expertise <span class="tablet:ml-2 gold-title">info</span></h2>
 			<h5 class="tablet:mt-12 mt-9 text-xl w-full mb-4 tablet:px-0 px-8">{{ blok.subtitle }}</h5>

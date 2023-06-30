@@ -863,10 +863,10 @@ function FilterRealty(card: CardInfo) {
 			width: 140%;
 			height: 140%;
 			left: 0;
-			transition: transform 20s linear;
+			transition: transform 40s linear;
 			// animation: Sea 10s linear infinite alternate-reverse normal;
 			animation-name: Sea;
-			animation-duration: 8s;
+			animation-duration: 30s;
 			animation-iteration-count: infinite;
 			animation-direction: alternate;
 		}

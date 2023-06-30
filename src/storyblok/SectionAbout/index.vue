@@ -24,7 +24,7 @@ defineProps<{
 					</p>
 				</div>
 				<div class="image md:w-1/2 relative">
-					<div class="arrow absolute tablet:top-1/2 tablet:left-28 tablet:translate-y-[-50%] bottom-[-5rem] left-1/2 translate-x-[-50%] w-40 h-40 rounded-full flex justify-center items-center z-10 bg-gradient-to-b from-[#081621e6] to-[#172940e6]">
+					<a href="#info" class="arrow absolute tablet:top-1/2 tablet:left-28 tablet:translate-y-[-50%] bottom-[-5rem] left-1/2 translate-x-[-50%] w-40 h-40 rounded-full flex justify-center items-center z-10 bg-gradient-to-b from-[#081621e6] to-[#172940e6]">
 						<div class="text absolute top-0 left-0">
 							<svg viewBox="0 0 100 100" class="w-full fill-white h-auto">
 								<defs>
@@ -50,7 +50,7 @@ defineProps<{
 								</linearGradient>
 							</defs>
 						</svg>
-					</div>
+					</a>
 					<div class="image-wrapper overflow-hidden rounded-l-[200px]">
 						<img class="w-full h-full object-cover" :src="blok.image.filename" alt="">
 					</div>

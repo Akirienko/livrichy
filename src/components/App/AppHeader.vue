@@ -159,7 +159,7 @@ const showMenu = ref(false)
 		<!-- Menu -->
 		<div class="nav header_wrapper px-6" :class="showMenu ? 'open' : ''">
 			<div class="flex justify-end lg:justify-start">
-				<button class="close mb-28" @click="showMenu = !showMenu">
+				<button class="close mb-28 2xl:mb-60" @click="showMenu = !showMenu">
 					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M16.5759 23.2L11.9359 16.256L7.35993 23.2H0.12793L8.28793 11.872L0.47993 0.799988H7.61593L12.0959 7.26399L16.5119 0.799988H23.3599L15.5519 11.616L23.8719 23.2H16.5759Z" fill="#FDF6E9" />
 					</svg>
