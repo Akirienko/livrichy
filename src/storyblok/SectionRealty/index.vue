@@ -215,252 +215,254 @@ const update = () => {
 
 <template>
 	<section class="section-realty">
-		<div class="flex flex-col items-start mt-5 mb-14">
-			<button @click="openFilters" class="flex items-center py-2 px-4 rounded border-2 border-[#081621] mb-5 lg:hidden">
-				<svg class="mr-2" width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M5 2.28571H16.4286" stroke="url(#paint0_linear_402_2455)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-					<path d="M1.57129 8H7.28558M10.7141 8H16.4284" stroke="url(#paint1_linear_402_2455)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-					<path d="M12.9999 13.7143H1.57129" stroke="url(#paint2_linear_402_2455)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-					<path d="M3.28557 3.99998C4.23235 3.99998 4.99986 3.23247 4.99986 2.2857C4.99986 1.33892 4.23235 0.571411 3.28557 0.571411C2.3388 0.571411 1.57129 1.33892 1.57129 2.2857C1.57129 3.23247 2.3388 3.99998 3.28557 3.99998Z" fill="#FDF6E9" stroke="url(#paint3_linear_402_2455)" stroke-linecap="round" stroke-linejoin="round" />
-					<path d="M8.99993 9.71422C9.9467 9.71422 10.7142 8.9467 10.7142 7.99993C10.7142 7.05316 9.9467 6.28564 8.99993 6.28564C8.05316 6.28564 7.28564 7.05316 7.28564 7.99993C7.28564 8.9467 8.05316 9.71422 8.99993 9.71422Z" fill="#FDF6E9" stroke="url(#paint4_linear_402_2455)" stroke-linecap="round" stroke-linejoin="round" />
-					<path d="M14.7143 15.4286C15.6611 15.4286 16.4286 14.6611 16.4286 13.7143C16.4286 12.7675 15.6611 12 14.7143 12C13.7675 12 13 12.7675 13 13.7143C13 14.6611 13.7675 15.4286 14.7143 15.4286Z" fill="#FDF6E9" stroke="url(#paint5_linear_402_2455)" stroke-linecap="round" stroke-linejoin="round" />
-					<defs>
-						<linearGradient id="paint0_linear_402_2455" x1="10.7143" y1="2.28571" x2="10.7143" y2="3.28571" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#081621" />
-							<stop offset="1" stop-color="#172941" />
-						</linearGradient>
-						<linearGradient id="paint1_linear_402_2455" x1="8.99986" y1="8" x2="8.99986" y2="9" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#081621" />
-							<stop offset="1" stop-color="#172941" />
-						</linearGradient>
-						<linearGradient id="paint2_linear_402_2455" x1="7.28557" y1="13.7143" x2="7.28557" y2="14.7143" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#081621" />
-							<stop offset="1" stop-color="#172941" />
-						</linearGradient>
-						<linearGradient id="paint3_linear_402_2455" x1="3.28557" y1="0.571411" x2="3.28557" y2="3.99998" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#081621" />
-							<stop offset="1" stop-color="#172941" />
-						</linearGradient>
-						<linearGradient id="paint4_linear_402_2455" x1="8.99993" y1="6.28564" x2="8.99993" y2="9.71422" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#081621" />
-							<stop offset="1" stop-color="#172941" />
-						</linearGradient>
-						<linearGradient id="paint5_linear_402_2455" x1="14.7143" y1="12" x2="14.7143" y2="15.4286" gradientUnits="userSpaceOnUse">
-							<stop stop-color="#081621" />
-							<stop offset="1" stop-color="#172941" />
-						</linearGradient>
-					</defs>
-				</svg>
-				Filters
-			</button>
-			<button class="text text-palette-dark_blue1 opacity-50 text-base font-semibold lg:hidden">Deselect all</button>
-			<div class="filters space-y-5 lg:w-full" :class="isOpen ? 'modal-open' : 'hidden lg:block'">
-				<div class="lg:flex items-end gap-5">
-					<!-- size -->
-					<div class="flex justify-between mb-5 lg:mb-0">
-						<div class="fitler-input">
-							<label for="minSize">
-								<Icon name="Size" />
-								Min
-							</label>
-							<input type="text" v-model="FilterMinSizeRef" name="minSize" id="minSize" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+		<div class="container m-auto px-5 xl:px-0">
+			<div class="flex flex-col items-start mt-5 mb-14">
+				<button @click="openFilters" class="flex items-center py-2 px-4 rounded border-2 border-[#081621] mb-5 lg:hidden">
+					<svg class="mr-2" width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M5 2.28571H16.4286" stroke="url(#paint0_linear_402_2455)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M1.57129 8H7.28558M10.7141 8H16.4284" stroke="url(#paint1_linear_402_2455)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M12.9999 13.7143H1.57129" stroke="url(#paint2_linear_402_2455)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M3.28557 3.99998C4.23235 3.99998 4.99986 3.23247 4.99986 2.2857C4.99986 1.33892 4.23235 0.571411 3.28557 0.571411C2.3388 0.571411 1.57129 1.33892 1.57129 2.2857C1.57129 3.23247 2.3388 3.99998 3.28557 3.99998Z" fill="#FDF6E9" stroke="url(#paint3_linear_402_2455)" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M8.99993 9.71422C9.9467 9.71422 10.7142 8.9467 10.7142 7.99993C10.7142 7.05316 9.9467 6.28564 8.99993 6.28564C8.05316 6.28564 7.28564 7.05316 7.28564 7.99993C7.28564 8.9467 8.05316 9.71422 8.99993 9.71422Z" fill="#FDF6E9" stroke="url(#paint4_linear_402_2455)" stroke-linecap="round" stroke-linejoin="round" />
+						<path d="M14.7143 15.4286C15.6611 15.4286 16.4286 14.6611 16.4286 13.7143C16.4286 12.7675 15.6611 12 14.7143 12C13.7675 12 13 12.7675 13 13.7143C13 14.6611 13.7675 15.4286 14.7143 15.4286Z" fill="#FDF6E9" stroke="url(#paint5_linear_402_2455)" stroke-linecap="round" stroke-linejoin="round" />
+						<defs>
+							<linearGradient id="paint0_linear_402_2455" x1="10.7143" y1="2.28571" x2="10.7143" y2="3.28571" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#081621" />
+								<stop offset="1" stop-color="#172941" />
+							</linearGradient>
+							<linearGradient id="paint1_linear_402_2455" x1="8.99986" y1="8" x2="8.99986" y2="9" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#081621" />
+								<stop offset="1" stop-color="#172941" />
+							</linearGradient>
+							<linearGradient id="paint2_linear_402_2455" x1="7.28557" y1="13.7143" x2="7.28557" y2="14.7143" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#081621" />
+								<stop offset="1" stop-color="#172941" />
+							</linearGradient>
+							<linearGradient id="paint3_linear_402_2455" x1="3.28557" y1="0.571411" x2="3.28557" y2="3.99998" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#081621" />
+								<stop offset="1" stop-color="#172941" />
+							</linearGradient>
+							<linearGradient id="paint4_linear_402_2455" x1="8.99993" y1="6.28564" x2="8.99993" y2="9.71422" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#081621" />
+								<stop offset="1" stop-color="#172941" />
+							</linearGradient>
+							<linearGradient id="paint5_linear_402_2455" x1="14.7143" y1="12" x2="14.7143" y2="15.4286" gradientUnits="userSpaceOnUse">
+								<stop stop-color="#081621" />
+								<stop offset="1" stop-color="#172941" />
+							</linearGradient>
+						</defs>
+					</svg>
+					Filters
+				</button>
+				<button class="text text-palette-dark_blue1 opacity-50 text-base font-semibold lg:hidden">Deselect all</button>
+				<div class="filters space-y-5 lg:w-full" :class="isOpen ? 'modal-open' : 'hidden lg:block'">
+					<div class="lg:flex items-end gap-5">
+						<!-- size -->
+						<div class="flex justify-between mb-5 lg:mb-0">
+							<div class="fitler-input">
+								<label for="minSize">
+									<Icon name="Size" />
+									Min
+								</label>
+								<input type="text" v-model="FilterMinSizeRef" name="minSize" id="minSize" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							</div>
+							<div class="fitler-input">
+								<label for="maxSize">
+									<Icon name="Size" />
+									Max
+								</label>
+								<input type="text" v-model="FilterMaxSizeRef" name="maxSize" id="maxSize" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+							</div>
 						</div>
-						<div class="fitler-input">
-							<label for="maxSize">
-								<Icon name="Size" />
-								Max
-							</label>
-							<input type="text" v-model="FilterMaxSizeRef" name="maxSize" id="maxSize" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+
+						<!-- name -->
+						<div class="search-fitler w-full">
+							<input type="text" name="filterByName" id="filterByName" v-model="FilterNameRef">
+							<Icon name="Search" size="24px" />
 						</div>
 					</div>
 
-					<!-- name -->
-					<div class="search-fitler w-full">
-						<input type="text" name="filterByName" id="filterByName" v-model="FilterNameRef">
-						<Icon name="Search" size="24px" />
-					</div>
-				</div>
-
-				<div class="lg:flex lg:flex-wrap gap-5 lg:justify-between space-y-5 lg:space-y-0">
-					<div>
-						<FilterDropdown name="price" dropdownClass="flex justify-between">
-							<template #name>
-								<p>Price range</p>
-								<Icon name="Dropdown" />
-							</template>
-							<template #dropdown>
-								<div class="fitler-input lg:!w-full lg:mb-5">
-									<label for="minPrice">
-										Min
-									</label>
-									<input type="text" v-model="FilterMinPriceRef" name="minPrice" id="minPrice" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-								</div>
-								<div class="fitler-input lg:!w-full">
-									<label for="minPrice">
-										Max
-									</label>
-									<input type="text" v-model="FilterMaxPriceRef" name="minPrice" id="minPrice" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-								</div>
-							</template>
-						</FilterDropdown>
-					</div>
-
-					<div>
-						<FilterDropdown name="area" dropdownClass="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-5 sm:gap-y-10 lg:w-[650px] lg:max-h-[300px] lg:overflow-hidden lg:overflow-y-scroll">
-							<template #name>
-								<Icon name="Location" class="mr-2.5" />
-								<p>Area</p>
-								<Icon name="Dropdown" />
-							</template>
-							<template #dropdown>
-								<template v-for="area in DataArea">
-									<div class="input-label mb-5 sm:mb-0">
-										<div class="checkbox">
-											<input :value="area" v-model="FilterAreaRef" type="checkbox" :id="area">
-											<span class="checkmark">
-												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
-												</svg>
-											</span>
-											<label :for="area">{{ area }}</label>
-										</div>
-
+					<div class="lg:flex lg:flex-wrap gap-5 lg:justify-between space-y-5 lg:space-y-0">
+						<div>
+							<FilterDropdown name="price" dropdownClass="flex justify-between">
+								<template #name>
+									<p>Price range</p>
+									<Icon name="Dropdown" />
+								</template>
+								<template #dropdown>
+									<div class="fitler-input lg:!w-full lg:mb-5">
+										<label for="minPrice">
+											Min
+										</label>
+										<input type="text" v-model="FilterMinPriceRef" name="minPrice" id="minPrice" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+									</div>
+									<div class="fitler-input lg:!w-full">
+										<label for="minPrice">
+											Max
+										</label>
+										<input type="text" v-model="FilterMaxPriceRef" name="minPrice" id="minPrice" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 									</div>
 								</template>
-							</template>
-						</FilterDropdown>
-					</div>
+							</FilterDropdown>
+						</div>
 
-					<div>
-						<FilterDropdown name="bedroom" dropdownClass="sm:w-[180px]">
-							<template #name>
-								<Icon name="Bedroom" class="fill-black mr-2.5" />
-								<p>Bedroom</p>
-								<Icon name="Dropdown" />
-							</template>
-							<template #dropdown>
-								<template v-for="data in DataBedroom">
-									<div class="input-label mb-5 last:mb-0">
-										<div class="checkbox">
-											<input :value="data.value" v-model="FilterBedroomRef" type="checkbox" :id="data.value + `bedroom`">
-											<span class="checkmark">
-												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
-												</svg>
-											</span>
-											<label :for="data.value + `bedroom`">{{ data.label }}</label>
-										</div>
-
-									</div>
+						<div>
+							<FilterDropdown name="area" dropdownClass="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-5 sm:gap-y-10 lg:w-[650px] lg:max-h-[300px] lg:overflow-hidden lg:overflow-y-scroll">
+								<template #name>
+									<Icon name="Location" class="mr-2.5" />
+									<p>Area</p>
+									<Icon name="Dropdown" />
 								</template>
-							</template>
-						</FilterDropdown>
-					</div>
+								<template #dropdown>
+									<template v-for="area in DataArea">
+										<div class="input-label mb-5 sm:mb-0">
+											<div class="checkbox">
+												<input :value="area" v-model="FilterAreaRef" type="checkbox" :id="area">
+												<span class="checkmark">
+													<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
+													</svg>
+												</span>
+												<label :for="area">{{ area }}</label>
+											</div>
 
-					<div>
-						<FilterDropdown name="bathroom" dropdownClass="sm:w-[180px]">
-							<template #name>
-								<Icon name="Bathroom" class="fill-black mr-2.5" />
-								<p>bathroom</p>
-								<Icon name="Dropdown" />
-							</template>
-							<template #dropdown>
-								<template v-for="data in DataBathroom">
-									<div class="input-label mb-5 last:mb-0">
-										<div class="checkbox">
-											<input :value="data.value" v-model="FilterBathroomRef" type="checkbox" :id="data.value + `bathroom`">
-											<span class="checkmark">
-												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
-												</svg>
-											</span>
-											<label :for="data.value + `bathroom`">{{ data.label }}</label>
 										</div>
-
-									</div>
+									</template>
 								</template>
-							</template>
-						</FilterDropdown>
-					</div>
+							</FilterDropdown>
+						</div>
 
-					<div>
-						<FilterDropdown name="market" dropdownClass="sm:w-[180px]">
-							<template #name>
-								<p>Market</p>
-								<Icon name="Dropdown" />
-							</template>
-							<template #dropdown>
-								<template v-for="data in DataMarket" class="justify-start">
-									<div class="input-label first:mb-5">
-										<div class="checkbox">
-											<input :value="data.value" v-model="FilterMarketRef" type="checkbox" :id="data.value">
-											<span class="checkmark">
-												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
-												</svg>
-											</span>
-											<label :for="data.value">{{ data.label }}</label>
+						<div>
+							<FilterDropdown name="bedroom" dropdownClass="sm:w-[180px]">
+								<template #name>
+									<Icon name="Bedroom" class="fill-black mr-2.5" />
+									<p>Bedroom</p>
+									<Icon name="Dropdown" />
+								</template>
+								<template #dropdown>
+									<template v-for="data in DataBedroom">
+										<div class="input-label mb-5 last:mb-0">
+											<div class="checkbox">
+												<input :value="data.value" v-model="FilterBedroomRef" type="checkbox" :id="data.value + `bedroom`">
+												<span class="checkmark">
+													<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
+													</svg>
+												</span>
+												<label :for="data.value + `bedroom`">{{ data.label }}</label>
+											</div>
+
 										</div>
-
-									</div>
+									</template>
 								</template>
-							</template>
-						</FilterDropdown>
-					</div>
+							</FilterDropdown>
+						</div>
 
-					<div>
-						<FilterDropdown name="sortby" dropdownClass="sm:w-[227px]">
-							<template #name>
-								<p>{{ FilterSortByRef.label }}</p>
-								<Icon name="Dropdown" />
-							</template>
-							<template #dropdown>
-								<template v-for="data in DataSortBy">
-									<div class="input-label mb-5 last:mb-0">
-										<div class="checkbox">
-											<input :value="data" v-model="FilterSortByRef" type="radio" :id="data.value">
-											<span class="checkmark">
-												<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-													<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
-												</svg>
-											</span>
-											<label :for="data.value">{{ data.label }}</label>
+						<div>
+							<FilterDropdown name="bathroom" dropdownClass="sm:w-[180px]">
+								<template #name>
+									<Icon name="Bathroom" class="fill-black mr-2.5" />
+									<p>bathroom</p>
+									<Icon name="Dropdown" />
+								</template>
+								<template #dropdown>
+									<template v-for="data in DataBathroom">
+										<div class="input-label mb-5 last:mb-0">
+											<div class="checkbox">
+												<input :value="data.value" v-model="FilterBathroomRef" type="checkbox" :id="data.value + `bathroom`">
+												<span class="checkmark">
+													<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
+													</svg>
+												</span>
+												<label :for="data.value + `bathroom`">{{ data.label }}</label>
+											</div>
+
 										</div>
-									</div>
+									</template>
 								</template>
-							</template>
-						</FilterDropdown>
+							</FilterDropdown>
+						</div>
+
+						<div>
+							<FilterDropdown name="market" dropdownClass="sm:w-[180px]">
+								<template #name>
+									<p>Market</p>
+									<Icon name="Dropdown" />
+								</template>
+								<template #dropdown>
+									<template v-for="data in DataMarket" class="justify-start">
+										<div class="input-label first:mb-5">
+											<div class="checkbox">
+												<input :value="data.value" v-model="FilterMarketRef" type="checkbox" :id="data.value">
+												<span class="checkmark">
+													<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
+													</svg>
+												</span>
+												<label :for="data.value">{{ data.label }}</label>
+											</div>
+
+										</div>
+									</template>
+								</template>
+							</FilterDropdown>
+						</div>
+
+						<div>
+							<FilterDropdown name="sortby" dropdownClass="sm:w-[227px]">
+								<template #name>
+									<p>{{ FilterSortByRef.label }}</p>
+									<Icon name="Dropdown" />
+								</template>
+								<template #dropdown>
+									<template v-for="data in DataSortBy">
+										<div class="input-label mb-5 last:mb-0">
+											<div class="checkbox">
+												<input :value="data" v-model="FilterSortByRef" type="radio" :id="data.value">
+												<span class="checkmark">
+													<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
+													</svg>
+												</span>
+												<label :for="data.value">{{ data.label }}</label>
+											</div>
+										</div>
+									</template>
+								</template>
+							</FilterDropdown>
+						</div>
 					</div>
-				</div>
-				<div class="flex">
-					<button class="btn-filter" @click="refresh(); update();">
-						Filter
-					</button>
-					<button @click="resetFilters()" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold w-52">
-						Deselect all
-					</button>
+					<div class="flex">
+						<button class="btn-filter" @click="refresh(); update();">
+							Filter
+						</button>
+						<button @click="resetFilters()" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold w-52">
+							Deselect all
+						</button>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="projects-grid lg:grid lg:grid-cols-2 lg:gap-7 macbook-13:grid-cols-3">
-			<template v-if="realty!!.data.stories.length > 0">
-				<ProjectCard v-for="item in realty?.data.stories" :data="item!" />
-			</template>
-			<template v-else>
-				<div class="">
-					No Realty
-				</div>
-			</template>
-		</div>
-		<div class="mt-20 mb-40" v-if="realty!!.total > perPage">
-			<button @click="loadMore()" class="swipe-btn">
-				<div class="swipe-btn__content">
-					<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M15 16C15.2833 16 15.521 15.904 15.713 15.712C15.905 15.52 16.0007 15.2827 16 15V6C16 5.71667 15.904 5.479 15.712 5.287C15.52 5.095 15.2827 4.99934 15 5C14.7167 5 14.479 5.096 14.287 5.288C14.095 5.48 13.9993 5.71734 14 6V14H6C5.71666 14 5.479 14.096 5.287 14.288C5.095 14.48 4.99933 14.7173 5 15C5 15.2833 5.096 15.521 5.288 15.713C5.48 15.905 5.71733 16.0007 6 16H15ZM10 11C10.2833 11 10.521 10.904 10.713 10.712C10.905 10.52 11.0007 10.2827 11 10V1C11 0.71667 10.904 0.479004 10.712 0.287004C10.52 0.0950036 10.2827 -0.000663206 10 3.4602e-06C9.71666 3.4602e-06 9.479 0.0960036 9.287 0.288004C9.095 0.480004 8.99933 0.717337 9 1V9H0.999996C0.716662 9 0.478997 9.096 0.286997 9.288C0.0949965 9.48 -0.000671387 9.71734 -3.8147e-06 10C-3.8147e-06 10.2833 0.0959959 10.521 0.287996 10.713C0.479997 10.905 0.71733 11.0007 0.999996 11H10Z" fill="#FDF6E9" />
-					</svg>
-					<span class="whitespace-nowrap">See more updates</span>
-				</div>
-			</button>
+			<div class="projects-grid lg:grid lg:grid-cols-2 lg:gap-7 macbook-13:grid-cols-3">
+				<template v-if="realty!!.data.stories.length > 0">
+					<ProjectCard v-for="item in realty?.data.stories" :data="item!" />
+				</template>
+				<template v-else>
+					<div class="">
+						No Realty
+					</div>
+				</template>
+			</div>
+			<div class="mt-20 mb-40" v-if="realty!!.total > perPage">
+				<button @click="loadMore()" class="swipe-btn">
+					<div class="swipe-btn__content">
+						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M15 16C15.2833 16 15.521 15.904 15.713 15.712C15.905 15.52 16.0007 15.2827 16 15V6C16 5.71667 15.904 5.479 15.712 5.287C15.52 5.095 15.2827 4.99934 15 5C14.7167 5 14.479 5.096 14.287 5.288C14.095 5.48 13.9993 5.71734 14 6V14H6C5.71666 14 5.479 14.096 5.287 14.288C5.095 14.48 4.99933 14.7173 5 15C5 15.2833 5.096 15.521 5.288 15.713C5.48 15.905 5.71733 16.0007 6 16H15ZM10 11C10.2833 11 10.521 10.904 10.713 10.712C10.905 10.52 11.0007 10.2827 11 10V1C11 0.71667 10.904 0.479004 10.712 0.287004C10.52 0.0950036 10.2827 -0.000663206 10 3.4602e-06C9.71666 3.4602e-06 9.479 0.0960036 9.287 0.288004C9.095 0.480004 8.99933 0.717337 9 1V9H0.999996C0.716662 9 0.478997 9.096 0.286997 9.288C0.0949965 9.48 -0.000671387 9.71734 -3.8147e-06 10C-3.8147e-06 10.2833 0.0959959 10.521 0.287996 10.713C0.479997 10.905 0.71733 11.0007 0.999996 11H10Z" fill="#FDF6E9" />
+						</svg>
+						<span class="whitespace-nowrap">See more updates</span>
+					</div>
+				</button>
+			</div>
 		</div>
 	</section>
 </template>
