@@ -776,7 +776,7 @@ function FilterRealty(card: CardInfo) {
 
 			<!-- sea needs to move left right inifinite  -->
 			<div class="sea relative w-full tablet:min-h-[140vh] h-[100vh] z-[1] overflow-hidden">
-				<img class="w-full h-full min-h-[120vh] min-w-[120vw]" src="sea-min.jpg" alt="">
+				<img class="w-full h-full min-h-[120vh] min-w-[120vw]" src="/sea-min.jpg" alt="">
 			</div>
 
 			<!-- boat -->
