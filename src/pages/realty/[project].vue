@@ -20,7 +20,7 @@ const { data, pending } = await useAsyncGql(
 				</h1>
 				<p class="area">
 					<Icon name="Location" size="16" />
-					{{ data.ProjectItem.content?.area![0] }}
+					{{ data.ProjectItem.content?.area! }}
 				</p>
 				<div class="info">
 					<div class="icon-label">
