@@ -51,7 +51,7 @@ const debouncedHandler = debounce((e: any) => {
 		// console.log(item);
 		
 		window.requestAnimationFrame(() => {
-			if(((screenWidth - e.clientX) < cardWidth) && ((screenHeight - e.clientY) > cardHeight)) {
+			if(((screenWidth - e.clientX) < cardWidth) && ((screenHeight - e.pageY) > cardHeight)) {
 				// cardPosition.value = `display:flex;z-index: 101;right: ${screenWidth - e.clientX}px;top: ${screenHeight - e.clientY}px;`
 				console.log("right: ", (screenWidth - e.clientX) < cardWidth);
 				
@@ -60,20 +60,20 @@ const debouncedHandler = debounce((e: any) => {
 				root.style.setProperty('--left', "initial")
 				root.style.setProperty('--bottom', "initial")
 				// cardPosition.value = `display:flex;z-index: 101;transform: translate3d(${screenWidth - e.clientX}px, ${screenHeight - e.clientY}px, 0);`
-			} else if (((screenHeight - e.screenY) < cardHeight) && ((screenWidth - e.clientX) > cardWidth)) {
+			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) > cardWidth)) {
 				console.log("bottom: ", (screenHeight - e.clientY) < cardHeight);
 				
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--right', "initial")
 				root.style.setProperty('--left', e.clientX + "px")
-				root.style.setProperty('--bottom', (screenHeight - e.screenY) + "px")
-			} else if (((screenHeight - e.screenY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
+				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
+			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
 				console.log("right, bottom");
 				
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--left', "initial")
 				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
-				root.style.setProperty('--bottom', (screenHeight - e.screenY) + "px")
+				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
 			} else { 
 				console.log("top, left");
 				root.style.setProperty('--top', e.layerY + "px")
