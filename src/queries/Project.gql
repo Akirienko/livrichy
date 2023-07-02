@@ -10,6 +10,11 @@ query Project($projectId: ID!) {
                 filename
                 alt
             }
+            mapLink
+            imgMap {
+                filename
+                alt
+            }
             price
             area
             adress

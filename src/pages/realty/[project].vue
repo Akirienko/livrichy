@@ -42,7 +42,10 @@ const { data, pending } = await useAsyncGql(
 			</div>
 			<div class="right">
 				<div class="map">
-					<div class="img"></div>
+					<a :href="data.ProjectItem.content?.mapLink" target="_blank" class="img" >
+						<img v-if="data.ProjectItem.content?.imgMap?.filename" :src="data.ProjectItem.content?.imgMap?.filename" >
+						<img v-else src="@/assets/img/gmap.png" alt="map">
+					</a>
 					<p class="adress">
 						{{ data.ProjectItem.content?.adress }}
 					</p>
@@ -50,14 +53,14 @@ const { data, pending } = await useAsyncGql(
 				<div class="amenities">
 					<h4 class="title">amenities</h4>
 					<span class="icon-label" v-for="item in data.ProjectItem.content?.amenities">
-						<Icon :name="item.icon[0]" size="22" />
+						<Icon v-if="item.icon[0]" :name="item.icon[0]" size="22" />
 						{{ item.label }}
 					</span>
 				</div>
 				<div class="facts">
 					<h4 class="title">facts</h4>
 					<span class="icon-label" v-for="item in data.ProjectItem.content?.facts">
-						<Icon :name="item.icon" size="22" />
+						<Icon v-if="item.icon" :name="item.icon[0]" size="22" />
 						{{ item.label }}
 					</span>
 				</div>
