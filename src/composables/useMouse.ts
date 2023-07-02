@@ -48,8 +48,10 @@ export function useMouse(e: any) {
 
 	const cardWidth = 448;
 	const cardHeight = 280;
-	const leftPropertyCss = (screenWidth - e.clientX) < cardWidth ? `right: ${screenWidth - e.clientX}px;` : `left: ${e.clientX}px;`
-	const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `bottom: ${screenHeight - e.clientY}px;` : `top: ${e.clientY}px;`
+	const leftPropertyCss = (screenWidth - e.clientX) < cardWidth ? `translateY: ${screenWidth - e.clientX}px;` : `translateX: ${e.clientX}px;`
+	const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `translateY: ${screenHeight - e.clientY}px;` : `translateX: ${e.clientY}px;`
+	console.log(leftPropertyCss, topPropertyCss);
+	
 	// const leftPropertyCss = (screenWidth - x.value) < cardWidth ? `right: ${screenWidth - e.clientX}px;` : `left: ${e.clientX}px;`
 	// const topPropertyCss = (screenHeight - y.value) < cardHeight ? `bottom: ${screenHeight - e.clientY}px;` : `top: ${e.clientY}px;`
 	// if()

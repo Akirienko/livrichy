@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 // import { debounce } from 'lodash';
+import { useMouse } from '@vueuse/core';
 import pkg from 'lodash';
+import { InfoCard } from '~~/.nuxt/components';
 const { debounce } = pkg;
 
 defineProps<{
@@ -16,6 +18,7 @@ const title = ref('')
 const description = ref('')
 const numberOfObjects = ref(0)
 const filter = ref<string | string[]>('')
+const svgMap = ref<HTMLElement>()
 
 interface CardInfo {
 	name: string,
@@ -26,31 +29,70 @@ interface CardInfo {
 	filter: string | string[]
 }
 
-const debouncedHandler = debounce((e: any, item: CardInfo) => {
+// useRafFn(() => {
+  
+// })
 
+const debouncedHandler = debounce((e: any) => {
+	const screenWidth = svgMap.value?.offsetWidth ?? 0;
+	const screenHeight = svgMap.value?.offsetHeight ?? 0;
+	
+	const cardWidth = 448;
+	const cardHeight = 380;
+	// const leftPropertyCss = (screenWidth - e.clientX) < cardWidth ? `transform: translateX(${screenWidth - e.clientX}px);` : `transform: translateX(${e.clientX}px);`
+	// const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `transform: translateY(${screenHeight - e.clientY}px);` : `transform: translateY(${e.clientY}px);`
+	
+	const root = document.documentElement;
+	console.log(svgMap.value?.offsetHeight, e.screenY, svgMap.value?.offsetWidth, e.screenX);
+	
+	// console.log(e, e.srcElement.attributes.name);
+	if (e.srcElement.attributes.name !== undefined) {
+		const item:CardInfo = map.filter((el:CardInfo) => el.name === e.srcElement.attributes.name.value)[0]
+		// console.log(item);
+		
+		window.requestAnimationFrame(() => {
+			if(((screenWidth - e.clientX) < cardWidth) && ((screenHeight - e.clientY) > cardHeight)) {
+				// cardPosition.value = `display:flex;z-index: 101;right: ${screenWidth - e.clientX}px;top: ${screenHeight - e.clientY}px;`
+				console.log("right: ", (screenWidth - e.clientX) < cardWidth);
+				
+				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
+				root.style.setProperty('--top', e.offsetY + "px")
+				root.style.setProperty('--left', "initial")
+				root.style.setProperty('--bottom', "initial")
+				// cardPosition.value = `display:flex;z-index: 101;transform: translate3d(${screenWidth - e.clientX}px, ${screenHeight - e.clientY}px, 0);`
+			} else if (((screenHeight - e.screenY) < cardHeight) && ((screenWidth - e.clientX) > cardWidth)) {
+				console.log("bottom: ", (screenHeight - e.clientY) < cardHeight);
+				
+				root.style.setProperty('--top', "initial")
+				root.style.setProperty('--right', "initial")
+				root.style.setProperty('--left', e.clientX + "px")
+				root.style.setProperty('--bottom', (screenHeight - e.screenY) + "px")
+			} else if (((screenHeight - e.screenY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
+				console.log("right, bottom");
+				
+				root.style.setProperty('--top', "initial")
+				root.style.setProperty('--left', "initial")
+				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
+				root.style.setProperty('--bottom', (screenHeight - e.screenY) + "px")
+			} else { 
+				console.log("top, left");
+				root.style.setProperty('--top', e.layerY + "px")
+				root.style.setProperty('--left', e.clientX + "px")
+				root.style.setProperty('--right', "initial")
+				root.style.setProperty('--bottom', "initial")
+			}
+		
+			root.style.setProperty('--display', "flex")
+			title.value = item.title
+			description.value = item.description
+			numberOfObjects.value = item.numberOfObjects
+		})
+		
+	} else {
+		root.style.setProperty('--display', "none")
+	}
 
-	// root.style.setProperty('--mouse-x', e.clientX + "px");
-	// root.style.setProperty('--mouse-y', e.clientY + "px");
-	// root.style.setProperty('--display', "block");
-
-
-	// const screenWidth = homeIntro.value?.offsetHeight ?? 0;
-	// const screenHeight = homeIntro.value?.offsetHeight  ?? 0;
-	// // const screenWidth = window.innerWidth;
-	// // const screenHeight = window.innerHeight;
-
-	// const cardWidth = 500;
-	// const cardHeight = 300;
-	// const leftPropertyCss = (screenWidth - e.clientX) < cardWidth ? `right: ${screenWidth - e.clientX}px;` : `left: ${e.clientX}px;`
-	// const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `bottom: ${screenHeight - e.clientY}px;` : `top: ${e.clientY}px;`
-
-	// console.log('New value:', e, "screen height: " , screenHeight, "screen width: " , screenWidth);
-	// cardPosition.value = `display:flex;${leftPropertyCss}${topPropertyCss}`
-	cardPosition.value = useMouse(e)
-	title.value = item.title
-	description.value = item.description
-	numberOfObjects.value = item.numberOfObjects
-}, 700);
+}, 10);
 
 
 const map: CardInfo[] = [
@@ -595,12 +637,6 @@ const map: CardInfo[] = [
 
 ]
 
-const hideCard = () => {
-	// const root = document.documentElement;
-	// root.style.setProperty('--display', "none");
-	cardPosition.value = `display:none;`
-}
-
 function FilterRealty(card: CardInfo) {
 	const { push } = useRouter()
 	push({
@@ -670,13 +706,13 @@ function FilterRealty(card: CardInfo) {
 			<!-- objects -->
 
 			<!-- svg map -->
-			<div class="hover_map absolute w-full h-full items-end z-[3] sm:flex hidden">
-				<svg class="w-full" viewBox="0 0 1440 940" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<div ref="svgMap" class="hover_map absolute w-full h-full items-end z-[3] sm:flex hidden">
+				<svg @mousemove="debouncedHandler($event)" class="w-full" viewBox="0 0 1440 940" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_7_739)">
 
 						<!-- map areas -->
 						<!-- here print and push route params  -->
-						<path v-for="item in map" @click="FilterRealty(item)" @mouseleave="hideCard()" @mouseover="debouncedHandler($event, item)" class="area" :d="item.path" :key="item.name" :name="item.name" fill="#FFC288" />
+						<path v-for="item in map" @click="FilterRealty(item)" class="area" :d="item.path" :key="item.name" :name="item.name" fill="#FFC288" />
 						<!-- map areas -->
 
 						<!-- places -->
@@ -802,13 +838,13 @@ function FilterRealty(card: CardInfo) {
 	</section>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
 :root {
-	--top-x: 0px;
-	--left-y: 0px;
-	--bottom-x: 0px;
-	--right-y: 0px;
-	--display: flex;
+	--top: initial;
+	--left: initial;
+	--bottom: initial;
+	--right: initial;
+	--display: none;
 }
 
 .home_intro {
@@ -942,14 +978,14 @@ function FilterRealty(card: CardInfo) {
 		border-image: linear-gradient(180deg, #FCD07D, #5B391E) 1;
 		overflow: hidden;
 		box-sizing: border-box;
-		z-index: 100;
+		z-index: 90;
 		max-width: 500px;
 		// min-height: 500px;
-		// left: var(--left-x);
-		// top: var(--top-y);
-		// right: var(--right-x);
-		// bottom: var(--botom-y);
-		// display: var(--display);
+		left: var(--left);
+		top: var(--top);
+		right: var(--right);
+		bottom: var(--bottom);
+		display: var(--display);
 		// max-width: 20rem;
 		// .card_wrapper {
 		// }
