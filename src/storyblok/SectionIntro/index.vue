@@ -2,7 +2,6 @@
 // import { debounce } from 'lodash';
 import { useMouse } from '@vueuse/core';
 import pkg from 'lodash';
-import { InfoCard } from '~~/.nuxt/components';
 const { debounce } = pkg;
 
 defineProps<{
@@ -17,7 +16,7 @@ const homeIntro = ref<HTMLElement>()
 const title = ref('')
 const description = ref('')
 const numberOfObjects = ref(0)
-const filter = ref<string | string[]>('')
+const gap = 10;
 const svgMap = ref<HTMLElement>()
 
 interface CardInfo {
@@ -55,7 +54,7 @@ const debouncedHandler = debounce((e: any) => {
 				// cardPosition.value = `display:flex;z-index: 101;right: ${screenWidth - e.clientX}px;top: ${screenHeight - e.clientY}px;`
 				console.log("right: ", (screenWidth - e.clientX) < cardWidth);
 				
-				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
+				root.style.setProperty('--right', (screenWidth - e.clientX + gap) + "px")
 				root.style.setProperty('--top', e.offsetY + "px")
 				root.style.setProperty('--left', "initial")
 				root.style.setProperty('--bottom', "initial")
@@ -65,19 +64,19 @@ const debouncedHandler = debounce((e: any) => {
 				
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--right', "initial")
-				root.style.setProperty('--left', e.clientX + "px")
+				root.style.setProperty('--left', (e.clientX + gap) + "px")
 				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
 			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
 				console.log("right, bottom");
 				
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--left', "initial")
-				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
+				root.style.setProperty('--right', (screenWidth - e.clientX + gap) + "px")
 				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
 			} else { 
 				console.log("top, left");
 				root.style.setProperty('--top', e.layerY + "px")
-				root.style.setProperty('--left', e.clientX + "px")
+				root.style.setProperty('--left', (e.clientX + gap) + "px")
 				root.style.setProperty('--right', "initial")
 				root.style.setProperty('--bottom', "initial")
 			}
