@@ -825,11 +825,11 @@ function FilterRealty(card: CardInfo) {
 			<div class="card-item absolute z-[55] p-7 hidden flex-col items-start" :style="cardPosition">
 				<div class="card_wrapper justify-start absolute">
 				</div>
-				<h3 class="card_title text-palette-light_beige uppercase text-2xl">{{ title }}</h3>
-				<div class="card_objects my-4 flex-row flex">
+				<h3 class="card_title text-palette-light_beige uppercase text-2xl mb-4">{{ title }}</h3>
+				<!-- <div class="card_objects my-4 flex-row flex">
 					<span class="text text-palette-light_beige">Objects</span>
 					<div class="count ml-2 text-palette-light_beige">{{ numberOfObjects }}</div>
-				</div>
+				</div> -->
 				<p class="card_description text-palette-light_beige">{{ description }}</p>
 			</div>
 
@@ -838,6 +838,10 @@ function FilterRealty(card: CardInfo) {
 </template>
 
 <style lang="scss">
+header {
+	background: rgba(253, 246, 233, 0.40);
+	backdrop-filter: blur(8px);
+}
 :root {
 	--top: initial;
 	--left: initial;
@@ -848,6 +852,8 @@ function FilterRealty(card: CardInfo) {
 
 .home_intro {
 	overflow: hidden;
+	position: relative;
+	top: -130px;
 
 	.main_content {
 		@media (min-width: 1200px) {
@@ -971,10 +977,10 @@ function FilterRealty(card: CardInfo) {
 	}
 
 	.card-item {
-		border: 5px solid;
+		border: 3px solid theme('colors.palette.gold_yellow');
 		background: linear-gradient(180deg, rgba(8, 22, 33, 0.7) 0%, rgba(23, 41, 65, 0.7) 100%);
 		backdrop-filter: blur(2px);
-		border-image: linear-gradient(180deg, #FCD07D, #5B391E) 1;
+		border-radius: 15px;
 		overflow: hidden;
 		box-sizing: border-box;
 		z-index: 90;

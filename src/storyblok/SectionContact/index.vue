@@ -62,7 +62,8 @@ defineProps<{
 	.phone, .phone_shadow {
 		animation: vibrate;
 		animation-duration: 3s;
-		animation-timing-function: cubic-bezier(.36, .07, .19, .97);
+		animation-timing-function: linear;
+		// animation-timing-function: cubic-bezier(.36, .07, .19, .97);
 		animation-iteration-count: infinite;
 		transform: translate3d(0, 0, 0);
 		backface-visibility: hidden;
@@ -92,15 +93,24 @@ defineProps<{
 	$translateY: -20px;
 	$translateX: 3px;
 	@keyframes vibrate {
-		0%, 2%, 4%, 6%, 8%, 10%, 12%, 14%, 16%, 18% {
-			-webkit-transform: translate3d(-$translateX, $translateY, 0);
-							transform: translate3d(-$translateX, $translateY, 0);
+		0%, 10% {
+		// 0%, 10%, 20% {
+			// -webkit-transform: translate3d(-$translateX, $translateY, 0);
+							transform: translate3d(3px, -20px, 0) rotateZ(5deg);
 		}
-		1%, 3%, 5%, 7%, 9%, 11%, 13%, 15%, 17%, 19% {
-			-webkit-transform: translate3d($translateX, $translateY, 0);
-							transform: translate3d($translateX, -15px, 0);
+		5%, 15% {
+			// -webkit-transform: translate3d(3px, $translateY, 0);
+							transform: translate3d(3px, -20px, 0)  rotateZ(-5deg);
 		}
-		20%{
+		// 0%, 2%, 4%, 6%, 8%, 10%, 12%, 14%, 16%, 18% {
+		// 	-webkit-transform: translate3d(-$translateX, $translateY, 0);
+		// 					transform: translate3d(-$translateX, $translateY, 0);
+		// }
+		// 1%, 3%, 5%, 7%, 9%, 11%, 13%, 15%, 17%, 19% {
+		// 	-webkit-transform: translate3d($translateX, $translateY, 0);
+		// 					transform: translate3d($translateX, -15px, 0);
+		// }
+		30%{
 			-webkit-transform: translate3d(0, $translateY, 0);
 							transform: translate3d(0, $translateY, 0);
 		}
