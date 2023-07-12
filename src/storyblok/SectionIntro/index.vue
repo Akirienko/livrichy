@@ -667,11 +667,11 @@ function FilterRealty(card: CardInfo) {
 
 
 <template>
-	<section class="home_intro overflow-hidden relative" ref="homeIntro">
+	<section class="home_intro overflow-hidden relative lg:top-[-130px]" ref="homeIntro">
 
-		<div class="main_content absolute top-[23vh] z-[60] sm:block hidden">
-			<h1 class="main_title text-palette-light_beige text-[5rem] uppercase">{{ blok.title }}</h1>
-			<h4 class="main_subtitle text-palette-light_beige text-[2rem] font-normal">{{ blok.subtitle }}</h4>
+		<div class="main_content absolute z-[60] sm:block hidden sm:top-[6vh] lg:top-[13vw]">
+			<h1 class="main_title text-palette-light_beige xl:text-[5rem] sm:text-[7vw] uppercase">{{ blok.title }}</h1>
+			<h4 class="main_subtitle text-palette-light_beige xl:text-[2rem] sm:text-[2vw] font-normal">{{ blok.subtitle }}</h4>
 		</div>
 
 		<div class="sm:hidden block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-120%] w-[80%] px-4 z-[60]">
@@ -829,12 +829,12 @@ function FilterRealty(card: CardInfo) {
 			<!-- png map -->
 
 			<!-- sea needs to move left right inifinite  -->
-			<div class="sea relative w-full 2k:min-h-[140vh] full-hd:min-h-[130vh] 3xl:min-h-[120vh] 2xl:min-h-[110vh] h-[140vh] z-[1] overflow-hidden">
+			<div class="sea relative w-full z-[1] overflow-hidden sm:min-h-[70vw] min-h-[100vh] xl:min-h-[68.25vw]">
 				<img class="w-full h-full min-h-[120vh] min-w-[120vw]" src="/sea-min.jpg" alt="">
 			</div>
 
 			<!-- boat -->
-			<div class="boat absolute top-[60vh] left-[35vh] z-50">
+			<div class="boat absolute top-[60vh] left-[35vh] z-[1]">
 				<img src="/boat.png" alt="">
 			</div>
 			<!-- boat -->
@@ -870,9 +870,10 @@ header {
 .home_intro {
 	overflow: hidden;
 	position: relative;
-	top: -130px;
+
 
 	.main_content {
+		// top: 10vw;
 		@media (min-width: 1200px) {
 			padding-left: calc((100vw - 1200px) / 2);
 		}
@@ -917,6 +918,14 @@ header {
 
 	.sea {
 		position: relative;
+		// min-height: 68.25vw;
+		// aspect-ratio: 16/9;
+		// @media (aspect-ratio: "16 / 9") {
+		// 	height: 68.25vw;
+		// }
+		@media (aspect-ratio: "16 / 10") {
+			height: 72.50vw;
+		}
 
 		img {
 			position: absolute;
