@@ -42,7 +42,7 @@ const debouncedHandler = debounce((e: any) => {
 	// const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `transform: translateY(${screenHeight - e.clientY}px);` : `transform: translateY(${e.clientY}px);`
 	
 	const root = document.documentElement;
-	console.log(svgMap.value?.offsetHeight, e.screenY, svgMap.value?.offsetWidth, e.screenX);
+	console.log(e, svgMap.value?.offsetHeight, e.layerY, svgMap.value?.offsetWidth, e.screenX);
 	
 	// console.log(e, e.srcElement.attributes.name);
 	if (e.srcElement.attributes.name !== undefined) {
@@ -55,24 +55,24 @@ const debouncedHandler = debounce((e: any) => {
 				console.log("right: ", (screenWidth - e.clientX) < cardWidth);
 				
 				root.style.setProperty('--right', (screenWidth - e.clientX + gap) + "px")
-				root.style.setProperty('--top', e.offsetY + "px")
+				root.style.setProperty('--top', e.layerY + "px")
 				root.style.setProperty('--left', "initial")
 				root.style.setProperty('--bottom', "initial")
 				// cardPosition.value = `display:flex;z-index: 101;transform: translate3d(${screenWidth - e.clientX}px, ${screenHeight - e.clientY}px, 0);`
 			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) > cardWidth)) {
-				console.log("bottom: ", (screenHeight - e.clientY) < cardHeight);
+				console.log("bottom: ", screenHeight - e.layerY  );
 				
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--right', "initial")
 				root.style.setProperty('--left', (e.clientX + gap) + "px")
-				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
+				root.style.setProperty('--bottom', (screenHeight - e.layerY - gap) + "px")
 			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
-				console.log("right, bottom");
+				console.log("right, bottom", screenHeight - e.layerY);
 				
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--left', "initial")
-				root.style.setProperty('--right', (screenWidth - e.clientX + gap) + "px")
-				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
+				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
+				root.style.setProperty('--bottom', (screenHeight - e.layerY - gap) + "px")
 			} else { 
 				console.log("top, left");
 				root.style.setProperty('--top', e.layerY + "px")
@@ -812,7 +812,7 @@ function FilterRealty(card: CardInfo) {
 			<!-- png map -->
 
 			<!-- sea needs to move left right inifinite  -->
-			<div class="sea relative w-full tablet:min-h-[140vh] h-[100vh] z-[1] overflow-hidden">
+			<div class="sea relative w-full 2k:min-h-[140vh] full-hd:min-h-[130vh] 3xl:min-h-[120vh] 2xl:min-h-[110vh] h-[100vh] z-[1] overflow-hidden">
 				<img class="w-full h-full min-h-[120vh] min-w-[120vw]" src="/sea-min.jpg" alt="">
 			</div>
 
