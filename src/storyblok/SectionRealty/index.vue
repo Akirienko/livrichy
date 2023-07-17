@@ -56,7 +56,8 @@ const FilterMaxPrice = computed(() => {
 // Area
 const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "jumeirah park", "discovery gardens", "springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Villanova", "Silicon Oasis", "International City", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "City Walk / Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim"]
 const FilterAreaRef = ref<string[]>([])
-const searchAreaRef = ref("")
+const FilterAreaSearchRef = ref("")
+const selectAllRef = ref<HTMLInputElement>()
 
 if (typeof query.area === 'string') FilterAreaRef.value.push(query.area)
 
@@ -64,6 +65,16 @@ const FilterArea = computed(() => {
 	if (FilterAreaRef.value.length == 0) return null
 	return FilterAreaRef.value.join()
 })
+const FilterAreaSearch = computed(() => {
+	if (FilterAreaSearchRef.value.length == 0) return null
+	return `*${FilterAreaSearchRef.value}*`
+})
+function selectAll(){
+	if( selectAllRef.value?.checked)
+		FilterAreaRef.value = [...DataArea]
+	else 
+		FilterAreaRef.value = []
+}	
 
 
 
@@ -208,7 +219,7 @@ const { data: realty, refresh } = await useAsyncData<Realty>(
 				"lt-int": FilterMaxSize.value,
 			},
 			market: { in: FilterMarket.value },
-			area: { in: FilterArea.value },
+			area: { like: FilterAreaSearch.value, in: FilterArea.value  },
 			bedroom: { in: FilterBedroom.value },
 			bathroom: { in: FilterBathroom.value },
 			name: { like: FilterName.value }
@@ -228,6 +239,7 @@ function resetFilters() {
 	FilterBathroomRef.value = []
 	FilterBedroomRef.value = []
 	FilterAreaRef.value = []
+	FilterAreaSearchRef.value = ""
 	FilterMinPriceRef.value = ""
 	FilterMaxPriceRef.value = ""
 	FilterNameRef.value = ""
@@ -357,12 +369,12 @@ const update = () => {
 								<template #dropdown>
 									<div class="area-filters">
 										<div class="search-fitler w-full">
-											<input type="text" name="searchArea" id="searchArea" v-model="searchAreaRef">
+											<input type="text" name="searchArea" id="searchArea" v-model="FilterAreaSearchRef">
 											<Icon name="Search" size="24px" />
 										</div>
-										<div class="input-label mb-5 sm:mb-0">
-											<div class="checkbox">
-												<input value=""  type="checkbox" id="all">
+										<div @click="selectAll( )" class="input-label mb-5 sm:mb-0">
+											<div class="checkbox" @click="">
+												<input ref="selectAllRef" type="checkbox" id="all">
 												<span class="checkmark">
 													<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
 														<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
