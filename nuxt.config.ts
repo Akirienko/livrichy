@@ -20,6 +20,7 @@ export default defineNuxtConfig({
 		'@pinia/nuxt',
 		'@nuxtjs/tailwindcss',
 		'@storyblok/nuxt',
+		'@pinia/nuxt',
 	],
 	tailwindcss: {
 		cssPath: '~/assets/css/tailwind.css',
@@ -36,6 +37,9 @@ export default defineNuxtConfig({
 					version: 'published',
 				}
 			}
-		}
+		},
+		// codegen:{
+		// 	skipTypename:false
+		// }
 	},
 })

@@ -10,7 +10,8 @@ query LatestProjects($projectNumber: Int!) {
                 }
                 area
                 price
-                size
+                sizeMeter
+								sizeFeet
                 bedroom
                 bathroom
             }

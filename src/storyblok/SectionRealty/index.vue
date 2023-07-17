@@ -1,21 +1,34 @@
 <script lang="ts" setup>
 import type { Realty } from "~~/src/types"
+import { storeToRefs } from 'pinia'
 
 const { query } = useRoute()
 
-// ### Filters
 
 // Size
+const { sizeUnit } = storeToRefs(useProject())
+const { sizeUnitToggle } = useProject()
+
 const FilterMinSizeRef = ref("")
-const FilterMaxSizeRef = ref("")
 const FilterMinSize = computed(() => {
 	if (FilterMinSizeRef.value.length == 0) return null
 	return FilterMinSizeRef.value
 })
+
+const FilterMaxSizeRef = ref("")
 const FilterMaxSize = computed(() => {
 	if (FilterMaxSizeRef.value.length == 0) return null
 	return FilterMaxSizeRef.value
 })
+
+function sizeUnitClick(){
+	sizeUnitToggle()
+	FilterMinSizeRef.value = ""
+	FilterMaxSizeRef.value = ""
+	refresh()
+}
+
+
 
 // Name
 const FilterNameRef = ref("")
@@ -23,6 +36,8 @@ const FilterName = computed(() => {
 	if (FilterNameRef.value.length == 0) return null
 	return `*${FilterNameRef.value}*`
 })
+
+
 
 // Price
 const FilterMinPriceRef = ref("")
@@ -36,14 +51,21 @@ const FilterMaxPrice = computed(() => {
 	return FilterMaxPriceRef.value
 })
 
+
+
 // Area
 const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "jumeirah park", "discovery gardens", "springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Villanova", "Silicon Oasis", "International City", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "City Walk / Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim"]
 const FilterAreaRef = ref<string[]>([])
+const searchAreaRef = ref("")
+
 if (typeof query.area === 'string') FilterAreaRef.value.push(query.area)
+
 const FilterArea = computed(() => {
 	if (FilterAreaRef.value.length == 0) return null
 	return FilterAreaRef.value.join()
 })
+
+
 
 // Bedroom
 const DataBedroom = [
@@ -82,6 +104,8 @@ const FilterBedroom = computed(() => {
 	return FilterBedroomRef.value.join()
 })
 
+
+
 // Bathroom
 const DataBathroom = [
 	{
@@ -115,6 +139,8 @@ const FilterBathroom = computed(() => {
 	return FilterBathroomRef.value.join()
 })
 
+
+
 // Market
 const DataMarket = [
 	{
@@ -133,6 +159,8 @@ const FilterMarket = computed(() => {
 	if (FilterMarketRef.value.length == 0) return null
 	return FilterMarketRef.value.join()
 })
+
+
 
 // SortBy
 const DataSortBy = [
@@ -156,10 +184,12 @@ const DataSortBy = [
 const FilterSortByRef = ref(DataSortBy[0])
 const FilterSortBy = computed(() => FilterSortByRef.value.value)
 
+
+
 // ### Fetch data
 const storyblokApi = useStoryblokApi()
 const perPage = ref(6)
-const { data: realty, pending, refresh } = await useAsyncData<Realty>(
+const { data: realty, refresh } = await useAsyncData<Realty>(
 	async () => await storyblokApi.get(`cdn/stories`, {
 		version: "published",
 		content_type: "project",
@@ -169,7 +199,11 @@ const { data: realty, pending, refresh } = await useAsyncData<Realty>(
 				"gt-int": FilterMinPrice.value,
 				"lt-int": FilterMaxPrice.value,
 			},
-			size: {
+			sizeMeter: {
+				"gt-int": FilterMinSize.value,
+				"lt-int": FilterMaxSize.value,
+			},
+			sizeFeet:{
 				"gt-int": FilterMinSize.value,
 				"lt-int": FilterMaxSize.value,
 			},
@@ -276,6 +310,9 @@ const update = () => {
 								</label>
 								<input type="text" v-model="FilterMaxSizeRef" name="maxSize" id="maxSize" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							</div>
+							<button @click="sizeUnitClick()" class="size-unit">
+								{{ sizeUnit }}
+							</button>
 						</div>
 
 						<!-- name -->
@@ -309,6 +346,7 @@ const update = () => {
 							</FilterDropdown>
 						</div>
 
+						<!-- area -->
 						<div>
 							<FilterDropdown name="area" dropdownClass="sm:grid-cols-2 lg:grid-cols-3 sm:gap-x-5 sm:gap-y-10 lg:w-[650px] lg:max-h-[300px] lg:overflow-hidden lg:overflow-y-scroll">
 								<template #name>
@@ -317,6 +355,23 @@ const update = () => {
 									<Icon name="Dropdown" />
 								</template>
 								<template #dropdown>
+									<div class="area-filters">
+										<div class="search-fitler w-full">
+											<input type="text" name="searchArea" id="searchArea" v-model="searchAreaRef">
+											<Icon name="Search" size="24px" />
+										</div>
+										<div class="input-label mb-5 sm:mb-0">
+											<div class="checkbox">
+												<input value=""  type="checkbox" id="all">
+												<span class="checkmark">
+													<svg width="12" height="10" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M4.04784 7.27029C3.65569 7.67079 3.01098 7.67079 2.61882 7.27029L0.571053 5.17895C0.253743 4.85489 0.253744 4.3366 0.571054 4.01254C0.897954 3.67869 1.43538 3.67869 1.76228 4.01254L2.61882 4.88731C3.01098 5.28781 3.65569 5.28781 4.04784 4.88731L8.23772 0.608285C8.56462 0.27443 9.10205 0.27443 9.42895 0.608285C9.74626 0.932347 9.74626 1.45063 9.42895 1.77469L4.04784 7.27029Z" fill="#FDF6E9" />
+													</svg>
+												</span>
+												<label for="all">Select All</label>
+											</div>
+										</div>
+									</div>
 									<template v-for="area in DataArea">
 										<div class="input-label mb-5 sm:mb-0">
 											<div class="checkbox">
@@ -328,7 +383,6 @@ const update = () => {
 												</span>
 												<label :for="area">{{ area }}</label>
 											</div>
-
 										</div>
 									</template>
 								</template>
@@ -471,6 +525,9 @@ const update = () => {
 </template>
 
 <style lang="scss" scoped>
+.area-filters{
+	width: 100%;
+}
 .modal-open {
 	display: block;
 	position: fixed;

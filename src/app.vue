@@ -4,6 +4,8 @@ import type { AppData } from "~~/src/types"
 const story: Ref<AppData> = await useAsyncStoryblok("app", {
 	version: "published",
 })
+
+useProject()
 </script>
 
 <template>

@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+import type { RealtyProject } from "~~/src/types"
 
 const { params } = useRoute()
 const { data, pending } = await useAsyncGql(
@@ -6,8 +8,17 @@ const { data, pending } = await useAsyncGql(
 	{ projectId: `realty/${params.project}` }
 )
 
+
+
+
+const { sizeUnit } = storeToRefs(useProject())
+enum sizeUnits {
+	sqMeter = "sq. m.",
+	sqFeet = "sq. ft.",
+}
+
 const newPrice = computed(() => {
-  return data.value?.ProjectItem?.content?.price.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  return data.value?.ProjectItem?.content?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 })
 
 </script>
@@ -37,7 +48,10 @@ const newPrice = computed(() => {
 					</div>
 					<div class="icon-label">
 						<Icon name="Size" size="18" />
-						<span>{{ data.ProjectItem.content?.size }} sq. ft.</span>
+						<span>
+							{{ sizeUnit == sizeUnits.sqMeter ? data.ProjectItem.content?.sizeMeter : data.ProjectItem.content?.sizeFeet }}
+							{{ sizeUnit }}
+						</span>
 					</div>
 				</div>
 				<p class="description">
@@ -46,10 +60,10 @@ const newPrice = computed(() => {
 			</div>
 			<div class="right">
 				<div class="map">
-					<a :href="data.ProjectItem.content?.mapLink" target="_blank" class="img" >
+					<NuxtLink :to="data.ProjectItem.content?.mapLink" target="_blank" class="img" >
 						<img v-if="data.ProjectItem.content?.imgMap?.filename" :src="data.ProjectItem.content?.imgMap?.filename" >
 						<img v-else src="@/assets/img/gmap.png" alt="map">
-					</a>
+					</NuxtLink>
 					<p class="adress">
 						{{ data.ProjectItem.content?.adress }}
 					</p>

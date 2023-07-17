@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"@nuxtjs/tailwindcss": "^6.6.6",
-		"@pinia/nuxt": "^0.4.9",
+		"@pinia/nuxt": "^0.4.11",
 		"@vee-validate/zod": "^4.9.3",
 		"@vueuse/core": "^10.1.0",
 		"nuxt": "^3.4.2",
@@ -25,6 +25,7 @@
 		"@storyblok/nuxt": "^5.4.4",
 		"@types/lodash": "^4.14.194",
 		"loadsh": "^0.0.4",
-		"nuxt-graphql-client": "^0.2.27"
+		"nuxt-graphql-client": "^0.2.27",
+		"pinia": "^2.1.4"
 	}
 }

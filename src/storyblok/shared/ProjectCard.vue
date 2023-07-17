@@ -1,11 +1,16 @@
 <script setup lang="ts">
-	import type {
-		RealtyProject
-	} from "~~/src/types"
+import type { RealtyProject } from "~~/src/types"
+import { storeToRefs } from 'pinia'
 
-	defineProps < {
-		data: RealtyProject
-	} > ()
+defineProps<{
+	data: RealtyProject
+}>()
+
+const { sizeUnit } = storeToRefs(useProject())
+enum sizeUnits {
+	sqMeter = "sq. m.",
+	sqFeet = "sq. ft.",
+}
 </script>
 
 <template>
@@ -110,10 +115,10 @@
 								</linearGradient>
 							</defs>
 						</svg>
-
-						{{ data.content?.size }}
+						{{ sizeUnit == sizeUnits.sqMeter ? data.content?.sizeMeter : data.content?.sizeFeet }}
+						{{ sizeUnit }}
 					</p>
-					<p>{{ data.content.price.replace(/\B(?=(\d{3})+(?!\d))/g, ".") }} USD</p>
+					<p>{{ data.content.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") }} USD</p>
 				</div>
 			</div>
 
