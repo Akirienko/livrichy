@@ -9,9 +9,8 @@ const { data, pending } = await useAsyncGql(
 )
 
 
-
-
 const { sizeUnit } = storeToRefs(useProject())
+const { sizeUnitToggle } = useProject()
 enum sizeUnits {
 	sqMeter = "sq. m.",
 	sqFeet = "sq. ft.",
@@ -48,7 +47,7 @@ const newPrice = computed(() => {
 					</div>
 					<div class="icon-label">
 						<Icon name="Size" size="18" />
-						<span>
+						<span @click="sizeUnitToggle()">
 							{{ sizeUnit == sizeUnits.sqMeter ? data.ProjectItem.content?.sizeMeter : data.ProjectItem.content?.sizeFeet }}
 							{{ sizeUnit }}
 						</span>
