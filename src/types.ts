@@ -42,3 +42,8 @@ export interface Realty {
 	},
 	total:number,
 }
+
+export interface Link {
+	name: string,
+	url: string,
+}

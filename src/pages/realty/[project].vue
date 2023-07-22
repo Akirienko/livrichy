@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
-import type { RealtyProject } from "~~/src/types"
+import type { Link } from "~~/src/types"
 
-const { params } = useRoute()
+const { params, fullPath } = useRoute()
 const { data, pending } = await useAsyncGql(
 	"Project",
 	{ projectId: `realty/${params.project}` }
@@ -20,9 +20,24 @@ const newPrice = computed(() => {
   return data.value?.ProjectItem?.content?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 })
 
+const links: Link[] = [
+	{
+		name: 'Home',
+		url: '/',
+	},
+	{
+		name: 'Realty',
+		url: '/realty',
+	},
+	{
+		name: params.project.toString(),
+		url: fullPath,
+	},
+]
 </script>
 
 <template>
+	<AppBreadcrumbs :links="links"/>
 	<section class="realty-project">
 		<template v-if="data?.ProjectItem && !pending">
 			<div class="left">

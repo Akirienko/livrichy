@@ -1,6 +1,7 @@
 <script lang="ts" setup>
+import type { Link } from '~/types'
 
-const { params } = useRoute()
+const { params, fullPath } = useRoute()
 const { data, pending } = await useAsyncGql(
 	"Article",
 	{ articleID: `blog/${params.article}` }
@@ -11,9 +12,24 @@ const renderedRichText = renderRichText(data.value?.ArticleItem?.content?.richte
 const date = new Date(data.value?.ArticleItem?.published_at).toLocaleDateString();
 const formattedDate = date.replace(/\./g, '/')
 
+const links: Link[] = [
+	{
+		name: 'Home',
+		url: '/',
+	},
+	{
+		name: 'Blog',
+		url: '/blog',
+	},
+	{
+		name: params.article.toString(),
+		url: fullPath,
+	},
+]
 </script>
 
 <template>
+	<AppBreadcrumbs :links="links"/>
   <section class="blog pt-12 lg:pt-16 mt-20 lg:mt-24">
     <div v-if="data?.ArticleItem && !pending" class="container mx-auto px-4 xl:px-0">
       <h1 class="text-lg mb-4 uppercase lg:text-[64px] lg:leading-[120%]">{{ data.ArticleItem.name }}</h1>
@@ -42,7 +58,6 @@ const formattedDate = date.replace(/\./g, '/')
 				</div>
 			</NuxtLink>
     </div>
-
   </section>
 </template>
 
