@@ -7,10 +7,13 @@ defineProps<{
 </script>
 
 <template>
-	<ul class="breadcrumbs">
+	<ul class="breadcrumbs container mx-auto my-5">
 		<li v-for="link in links">
-			<NuxtLink :to="link.url">
+			<NuxtLink :to="link.url" class="capitalize breadcrumbs-link">
 				{{ link.name }}
+				<span class="mx-2">
+					>
+				</span>
 			</NuxtLink>
 		</li>
 	</ul>
@@ -19,6 +22,15 @@ defineProps<{
 <style lang="scss" >
 .breadcrumbs{
 	display: flex;
-	gap: 1.5rem;
+	.router-link-active {
+		color: #926D3F;
+	}
+	li {
+		&:last-child {
+			span {
+				display: none;
+			}
+		}
+	}
 }
 </style>
