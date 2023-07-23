@@ -78,8 +78,9 @@ const links: Link[] = [
 						<img v-if="data.ProjectItem.content?.imgMap?.filename" :src="data.ProjectItem.content?.imgMap?.filename" >
 						<img v-else src="@/assets/img/gmap.png" alt="map">
 					</NuxtLink>
-					<p class="adress">
-						{{ data.ProjectItem.content?.adress }}
+					<p class="adress underline font-medium">
+						{{ data.ProjectItem.content?.buildingName }}
+						<span class="block font-light opacity-30">{{ data.ProjectItem.content?.adress }}</span>
 					</p>
 				</div>
 				<div class="amenities">
@@ -99,8 +100,7 @@ const links: Link[] = [
 			</div>
 		</template>
 	</section>
-	<!-- need to to go back btn with filter what was -->
-	<div class="btn">
+	<div class="btn flex justify-start my-20">
 		<NuxtLink to="/realty" class="swipe-btn">
 			<div class="swipe-btn__content">
 				<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -227,7 +227,7 @@ const links: Link[] = [
 }
 .swipe-btn {
 	height: 50px;
-	background: #FDF6E9;
+	background: linear-gradient(184.4deg, #FCD07D 3.57%, #926D3F 96.43%);
 	border-radius: 16px;
 	padding: 0 20px;
 	display: flex;
@@ -236,49 +236,71 @@ const links: Link[] = [
 	line-height: 20px;
 	color: white;
 	text-decoration: none;
-	box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
-	width: 150px;
-	margin: 50px 0;
 	overflow: hidden;
+	width: auto;
+	box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
+	animation: bounce-back 1s cubic-bezier(0.25, 0.5, 0.5, 1.1) forwards;
+	transition: all 1.1s;
+
 	&__content {
 		display: flex;
 		align-items: center;
 		position: relative;
-		svg {
-			transform: rotate(180deg);
-			z-index: 1;
-		}
+		height: 100%;
+		width: 100%;
+		justify-content: center;
+
 		span {
 			margin-left: 10px;
-			z-index: 1;
+			transition: .5s all;
 		}
 	}
-	&::before {
-		content: "";
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		left: 0;
-		background: var(--light-gold, linear-gradient(180deg, #FCD07D 0%, #926D3F 100%));
-		transition: .5s;
-	}
-	&::after {
-		content: "";
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		left: 0;
-		background: var(--light-gold, linear-gradient(180deg, #926D3F 100%, #FCD07D 0%));
-		transition: .5s;
-		opacity: 0;
-		z-index: 0;
-	}
-	&:hover {
-		&::after {
-			opacity: 1;
+
+	@media (min-width:760px) {
+		max-width: 50px;
+		&__content {
+			width: auto;
+			justify-content: unset;
+			svg {
+				transform: rotate(180deg);
+			}
+			span {
+				opacity: 0;
+				white-space: nowrap;
+			}
 		}
-		&::before {
-			opacity: 0;
+
+		&:hover {
+			animation: bounce 1s cubic-bezier(0.25, 0.5, 0.5, 1.1) forwards;
+			transition: all 1.1s;
+
+			span {
+				opacity: 1;
+			}
+		}
+
+		@keyframes bounce-back {
+			0% {
+				max-width: 150px;
+			}
+
+			90% {
+				max-width: 55px;
+			}
+
+			100% {
+				max-width: 60px;
+			}
+		}
+
+		@keyframes bounce {
+			80% {
+				// padding-right: 35px;
+			}
+
+			100% {
+				max-width: 150px;
+			}
 		}
 	}
 }

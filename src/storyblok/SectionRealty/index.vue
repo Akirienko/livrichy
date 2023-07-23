@@ -72,9 +72,9 @@ const FilterAreaSearch = computed(() => {
 function selectAll(){
 	if( selectAllRef.value?.checked)
 		FilterAreaRef.value = [...DataArea]
-	else 
+	else
 		FilterAreaRef.value = []
-}	
+}
 
 
 
@@ -307,22 +307,22 @@ const update = () => {
 				<div class="filters space-y-5 lg:w-full" :class="isOpen ? 'modal-open' : 'hidden lg:block'">
 					<div class="lg:flex items-end gap-5">
 						<!-- size -->
-						<div class="flex justify-between mb-5 lg:mb-0">
-							<div class="fitler-input">
-								<label for="minSize">
+						<div class="md:flex md:justify-between md:gap-5 md:items-end mb-5 lg:mb-0">
+							<div class="fitler-input mb-3 md:mb-0 area">
+								<label for="minSize" >
 									<Icon name="Size" />
 									Min
 								</label>
-								<input type="text" v-model="FilterMinSizeRef" name="minSize" id="minSize" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+								<input type="text"  v-model="FilterMinSizeRef" name="minSize" id="minSize" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							</div>
-							<div class="fitler-input">
+							<div class="fitler-input mb-3 md:mb-0 area">
 								<label for="maxSize">
 									<Icon name="Size" />
 									Max
 								</label>
 								<input type="text" v-model="FilterMaxSizeRef" name="maxSize" id="maxSize" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 							</div>
-							<button @click="sizeUnitClick()" class="size-unit">
+							<button @click="sizeUnitClick()" class="size-unit mb-3 md:mb-0">
 								{{ sizeUnit }}
 							</button>
 						</div>
@@ -557,13 +557,46 @@ const update = () => {
 .btn-filter {
 	border: 1.5px solid #081621;
 	border-radius: 4px;
-	background: transparent;
+	// background: transparent;
 	padding: 10px 20px;
 	width: 100%;
+	color: white;
+	box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
 	font-weight: 600;
 	font-size: 16px;
 	line-height: 20px;
-
+	overflow: hidden;
+	&::before {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		background: var(--light-gold, linear-gradient(180deg, #FCD07D 0%, #926D3F 100%));
+		transition: .5s;
+		z-index: -1;
+		top: 0;
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		left: 0;
+		background: var(--light-gold, linear-gradient(180deg, #926D3F 100%, #FCD07D 0%));
+		transition: .5s;
+		opacity: 0;
+		z-index: -1;
+		top: 0;
+	}
+	&:hover {
+		&::after {
+			opacity: 1;
+		}
+		&::before {
+			opacity: 0;
+		}
+	}
 	@media (min-width:1024px) {
 		width: 220px;
 		height: 56px;
@@ -575,6 +608,16 @@ const update = () => {
 	padding-right: calc((100vw - 1200px) / 2);
 
 	.filters {
+		.size-unit {
+			border: 1.5px solid #081621;
+			border-radius: 4px;
+			height: 56px;
+			width: 100px;
+			background: transparent;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 		.search-fitler {
 			display: flex;
 			flex-direction: column;
@@ -599,7 +642,12 @@ const update = () => {
 			width: 48%;
 			display: flex;
 			flex-direction: column;
-
+			&.area {
+				width: 100%;
+				@media (min-width:760px) {
+					width: 45%;
+				}
+			}
 			label {
 				display: flex;
 				align-items: center;

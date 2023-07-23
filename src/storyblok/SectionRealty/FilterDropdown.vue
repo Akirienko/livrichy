@@ -44,6 +44,9 @@ onClickOutside(
 	line-height: 20px;
 	height: 56px;
 	width: 100%;
+	@media (min-width: 1240px) {
+		padding: 0 30px;
+	}
 }
 
 .dropdown {

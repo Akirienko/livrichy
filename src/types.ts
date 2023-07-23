@@ -25,6 +25,7 @@ export interface RealtyProject {
 		area: string[],
 		market: string[],
 		price: number,
+		buildingName: string,
 		sizeMeter: string,
 		sizeFeet: string,
 		bedroom: string,
