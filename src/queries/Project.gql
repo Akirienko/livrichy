@@ -18,8 +18,9 @@ query Project($projectId: ID!) {
             price
             area
             adress
+            buildingName
             sizeMeter
-						sizeFeet
+			sizeFeet
             bathroom
             bedroom
             description
