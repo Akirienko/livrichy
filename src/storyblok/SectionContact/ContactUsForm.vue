@@ -71,7 +71,7 @@ const data = {
 		</template>
 		<div v-show="successModal" @click="successModal = false" class="success_modal">
 			<h3 class="font-bold md:text-[4.5rem] text-[2rem] text-center uppercase max-w-[70%] title">Thanks for your detatils</h3>
-			<p class="text-xl my-8 md:text-[1.5rem]">Our manager will contact you shortly</p>
+			<p class="text-xl my-8 md:text-[1.5rem]">Our agent is on the way to reach you.</p>
 			<div class="links flex md:w-[50%] w-[80%]">
 				<NuxtLink to="/" class="w-full h-[55px] flex justify-center items-center relative mt-6 uppercase mx-4">
 					<span class="text">Home</span>

@@ -60,7 +60,7 @@ const links: Link[] = [
 						<Icon name="Bathroom" size="22" />
 						<span>{{ data.ProjectItem.content?.bathroom }} bathroom</span>
 					</div>
-					<div class="icon-label">
+					<div class="icon-label cursor-pointer">
 						<Icon name="Size" size="18" />
 						<span @click="sizeUnitToggle()">
 							{{ sizeUnit == sizeUnits.sqMeter ? data.ProjectItem.content?.sizeMeter : data.ProjectItem.content?.sizeFeet }}
