@@ -1,11 +1,12 @@
 <template>
-  <section class="404 h-screen">
+  <section class="404 h-screen flex">
+    <img src="@/assets/img/errorDesk.jpg" alt="" class="absolute top-0 left-0 -z-10">
     <div class="container m-auto pt-24 pb-12 px-6 flex flex-col justify-between h-screen lg:h-auto">
       <div class="text-center lg:mb-20">
         <h1 class="uppercase text-[40px] leading-[120%] mb-7 lg:text-[64px]">
-          Oops! <br> <span class="gold-title">Something goes wrong</span>
+          Oops! <br> <span class="gold-title">HOW DID WE END UP HERE?</span>
         </h1>
-        <p class="text-2xl">Let’s catch up via phone</p>
+        <p class="text-2xl">Give us a call. We will handle this.</p>
       </div>
       <div class="lg:flex lg:items-center lg:justify-center">
         <a href="tel:+971‒58‒571‒8080" class="phone-btn mb-6 lg:mb-0 lg:mr-10 lg:w-[270px]">
