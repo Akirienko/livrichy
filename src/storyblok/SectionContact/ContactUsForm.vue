@@ -63,7 +63,7 @@ const data = {
 		<template v-if="data">
 			<VeeInput :data="data.name" />
 			<VeeInput :data="data.email" />
-			<VeeInput :data="data.phone" />
+			<VeeInput placeholder="Email" :data="data.phone" />
 			<button type="submit" :disabled="isSubmitting" class="w-full h-[55px] flex justify-center items-center relative mt-6">
 				<span class="text">{{ data.button }}</span>
 				<div class="buttonbg"></div>

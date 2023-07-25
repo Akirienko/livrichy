@@ -93,7 +93,7 @@ enum sizeUnits {
 								</linearGradient>
 							</defs>
 						</svg>
-						{{ data.content.bathroom }} bath
+						{{ data.content.bathroom }} Bathroom
 					</p>
 				</div>
 

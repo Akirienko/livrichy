@@ -169,7 +169,7 @@ defineProps<{ data: AppData }>()
 	</footer>
 	<div class="designer px-2.5 py-5">
 		<div class="container mx-auto flex justify-between items-center text-[8px] md:text-sm">
-			<p class="text-white">All Rights Reserved. © Livrichy 2023</p>
+			<p class="text-white text-xs md:text-base">All Rights Reserved. | © Livrichy Real Estate Brokerage L.L.C | 2023</p>
 			<div class="logo_designer relative w-[10rem] h-[1.5rem]">
 				<svg class="front w-full h-full absolute top-0 left-0" viewBox="0 0 130 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M11.7974 23.5445V4.34453H18.7922V0.280293H0V4.34453H6.96009V23.5445H11.7974Z" fill="white" />
