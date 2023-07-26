@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCycleList, onKeyStroke, onClickOutside, useIntervalFn } from '@vueuse/core'
+import { useCycleList, onKeyStroke, onClickOutside } from '@vueuse/core'
 
 const props = defineProps<{
 	data: ({
@@ -11,11 +11,6 @@ const props = defineProps<{
 const isOpen = ref(false) // toggle lightbox
 const { state, next, prev, index } = useCycleList(props.data)
 
-
-// go to img with click on dots
-function goToImage(value: number) {
-	index.value = value
-}
 // close lightbox on click outside
 const lightbox = ref(null)	// lightbox ref
 onClickOutside(lightbox, (event) => {
@@ -37,33 +32,20 @@ onKeyStroke(['Escape', 'ArrowLeft', 'ArrowRight'], (e: KeyboardEvent) => {
 	}
 })
 
-// auto loop
-// const { } = useIntervalFn(() => {
-// 	/* your function */
-// 	index.value++
-// }, 2000)
-
-// TODO
-// add swipe
-// const { isSwiping, direction } = useSwipe(img)
-
-
-// TODO
-// add loading spinner animation
 </script>
 
 <template>
 	<div :class="[`slider`, { lightbox: isOpen }]">
 		<div class="wrapper">
 			<Icon class="prev" @click="prev()" name="GalleryArrow" ref="lightbox" />
-			<div class="image" @click="isOpen = true" ref="lightbox">
+			<div class="image"  ref="lightbox">
 				<img :src="state?.filename">
 			</div>
 			<Icon class="next" @click="next()" name="GalleryArrow" ref="lightbox" />
-			<div class="dots">
-				<span v-for="i in data.length" class="dot" :class="{ active: index == i - 1 }" @click="goToImage(i - 1)"></span>
-			</div>
 		</div>
+		<button class="floor-plan" @click="isOpen = true">
+				Floor Plan
+		</button>
 	</div>
 </template>
 
@@ -72,9 +54,10 @@ $white: rgba(253, 246, 233, 1);
 $white75: rgba(253, 246, 233, 0.75);
 
 .slider {
-	width: 100%;
-	height: 440px;
-	margin-bottom: 2rem;
+	position: absolute;
+	top: -3rem;
+	left: 2rem;
+	width: fit-content;
 
 	display: flex;
 	justify-content: center;
@@ -105,6 +88,7 @@ $white75: rgba(253, 246, 233, 0.75);
 		.image {
 			width: inherit;
 			height: inherit;
+			display: none;
 
 			img {
 				width: 100%;
@@ -122,35 +106,7 @@ $white75: rgba(253, 246, 233, 0.75);
 			display: none;
 		}
 
-		.dots {
-			position: absolute;
-			right: 2rem;
-			bottom: 2rem;
-
-			display: flex;
-			gap: 1rem;
-
-			.dot {
-				width: 0.75rem;
-				height: 0.75rem;
-				border-radius: 50%;
-				background: $white75;
-
-				transition: transform 0.25s ease;
-				will-change: transform;
-
-				&:hover {
-					cursor: pointer;
-					background: $white;
-					transform: scale(1.5);
-				}
-
-				&.active {
-					background: rgba(253, 246, 233, 1);
-					transform: scale(1.5);
-				}
-			}
-		}
+		
 	}
 
 	&.lightbox {
@@ -177,6 +133,7 @@ $white75: rgba(253, 246, 233, 0.75);
 			gap: 2rem;
 
 			.image {
+				display: initial;
 				width: 100%;
 				max-width: 1030px;
 				height: 558px;

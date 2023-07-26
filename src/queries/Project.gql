@@ -10,6 +10,10 @@ query Project($projectId: ID!) {
                 filename
                 alt
             }
+						floorPlan {
+                filename
+                alt
+            }
             mapLink
             imgMap {
                 filename
@@ -20,7 +24,7 @@ query Project($projectId: ID!) {
             adress
             buildingName
             sizeMeter
-			sizeFeet
+						sizeFeet
             bathroom
             bedroom
             description

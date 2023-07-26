@@ -19,7 +19,7 @@ const numberOfObjects = ref(0)
 const gap = 10;
 const svgMap = ref<HTMLElement>()
 
-interface CardInfo {
+interface CardIntro {
 	name: string,
 	path: string,
 	title: string,
@@ -50,7 +50,7 @@ const debouncedHandler = debounce((e: any) => {
 
 	// console.log(e, e.srcElement.attributes.name);
 	if (e.srcElement.attributes.name !== undefined) {
-		const item:CardInfo = map.filter((el:CardInfo) => el.name === e.srcElement.attributes.name.value)[0]
+		const item:CardIntro = map.filter((el:CardIntro) => el.name === e.srcElement.attributes.name.value)[0]
 		// console.log(item);
 
 		window.requestAnimationFrame(() => {
@@ -111,7 +111,7 @@ const debouncedHandler = debounce((e: any) => {
 }, 10);
 
 
-const map: CardInfo[] = [
+const map: CardIntro[] = [
 	{
 		"name": "dubai_international_airport",
 		"title": "Dubai International Airport",
@@ -653,7 +653,7 @@ const map: CardInfo[] = [
 
 ]
 
-function FilterRealty(card: CardInfo) {
+function FilterRealty(card: CardIntro) {
 	const { push } = useRouter()
 	push({
 		path: '/realty',
@@ -664,7 +664,6 @@ function FilterRealty(card: CardInfo) {
 }
 
 </script>
-
 
 <template>
 	<section class="home_intro overflow-hidden relative lg:top-[-130px]" ref="homeIntro">
@@ -843,10 +842,10 @@ function FilterRealty(card: CardInfo) {
 				<div class="card_wrapper justify-start absolute">
 				</div>
 				<h3 class="card_title text-palette-light_beige uppercase text-2xl mb-4">{{ title }}</h3>
-				<!-- <div class="card_objects my-4 flex-row flex">
+				<div class="card_objects my-4 flex-row flex">
 					<span class="text text-palette-light_beige">Objects</span>
 					<div class="count ml-2 text-palette-light_beige">{{ numberOfObjects }}</div>
-				</div> -->
+				</div>
 				<p class="card_description text-palette-light_beige">{{ description }}</p>
 			</div>
 

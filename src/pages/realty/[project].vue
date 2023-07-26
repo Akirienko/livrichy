@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
+import BtnLightbox from '~/components/BtnLightbox.vue';
 import type { Link } from "~~/src/types"
 
 const { params, fullPath } = useRoute()
@@ -42,7 +43,10 @@ const links: Link[] = [
 		<template v-if="data?.ProjectItem && !pending">
 			<div class="left">
 
-				<SliderLightbox :data="data.ProjectItem.content?.gallery!" />
+				<SliderLightbox 
+					:data="data.ProjectItem.content?.gallery!" />
+				<BtnLightbox
+					:data="data.ProjectItem.content?.floorPlan!" />
 				<h1 class="title">
 					{{ data.ProjectItem.name }}
 					<span>{{ newPrice }} usd</span>
