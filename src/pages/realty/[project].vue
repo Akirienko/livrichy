@@ -46,6 +46,7 @@ const links: Link[] = [
 				<SliderLightbox 
 					:data="data.ProjectItem.content?.gallery!" />
 				<BtnLightbox
+					v-if="data.ProjectItem.content?.floorPlan?.length"
 					:data="data.ProjectItem.content?.floorPlan!" />
 				<h1 class="title">
 					{{ data.ProjectItem.name }}
