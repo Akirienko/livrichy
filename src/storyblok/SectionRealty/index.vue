@@ -360,7 +360,7 @@ const update = () => {
 										<label for="minPrice">
 											Max
 										</label>
-										<input type="text" v-model="FilterMaxPriceRef" name="minPrice" id="minPrice" placeholder="99999999" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+										<input type="text" v-model="FilterMaxPriceRef" name="minPrice" id="minPrice" placeholder="99999999 USD" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 									</div>
 								</template>
 							</FilterDropdown>
@@ -563,7 +563,6 @@ const update = () => {
 }
 
 .btn-filter {
-	border: 1.5px solid #081621;
 	border-radius: 4px;
 	// background: transparent;
 	padding: 10px 20px;

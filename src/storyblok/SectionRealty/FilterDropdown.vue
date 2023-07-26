@@ -59,7 +59,7 @@ onClickOutside(
 		z-index: 1;
 		padding: 20px;
 		border-radius: 4px;
-		border: 1.5px solid #081621;
+		// border: 1.5px solid #081621;
 	}
 }
 </style>
