@@ -117,7 +117,7 @@ const links: Link[] = [
 	padding: 0 calc((100vw - 1200px) / 2);
 }
 .realty-project {
-	margin-top: 150px; //header height
+	margin-top: 50px; //header height
 	padding: 0 calc((100vw - 1200px) / 2);
 	width: 100%;
 	height: 100%;
