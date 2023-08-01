@@ -20,13 +20,13 @@ defineProps<{
 
 <template>
 	<section id="info" class="benefits">
-		<div class="container mx-auto flex flex-wrap tablet:py-20 tablet:px-0 py-12">
+		<div class="container mx-auto flex flex-wrap tablet:pb-20 tablet:px-0 pb-12">
 			<h2 class="title w-full md:flex-row flex flex-col tablet:px-0 px-8">Services &  <span class="tablet:ml-2 gold-title">Expertise</span></h2>
-			<h5 class="tablet:mt-12 mt-9 text-xl w-full mb-4 tablet:px-0 px-8">{{ blok.subtitle }}</h5>
+			<h5 class="my-6 text-xl w-full tablet:px-0 px-8">{{ blok.subtitle }}</h5>
 			<div class="wrapper_content flex flex-wrap">
 				<div class="content md:w-1/2 w-full flex flex-col items-center justify-center tablet:px-16 px-8">
 					<ul>
-						<li class="flex items-center tablet:my-0 my-4">
+						<li class="flex items-center tablet:my-0 mb-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">1</span>
 							<p class="text">{{ blok.text1 }}</p>
 						</li>
@@ -50,7 +50,7 @@ defineProps<{
 				</div>
 				<div class="content md:w-1/2 w-full flex flex-col items-center justify-center tablet:px-16 px-8">
 					<ul>
-						<li class="flex items-center tablet:my-0 my-4">
+						<li class="flex items-center tablet:my-0 mb-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">3</span>
 							<p class="text">{{ blok.text3 }}</p>
 						</li>

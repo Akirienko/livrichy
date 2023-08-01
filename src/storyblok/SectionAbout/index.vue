@@ -14,17 +14,17 @@ defineProps<{
 
 <template>
 	<section class="about">
-		<div class="container mx-auto tablet:py-20 tablet:px-0 pt-8 pb-32">
+		<div class="container mx-auto tablet:pb-20 tablet:px-0 pb-20">
 			<h2 class="title w-full md:flex-rowflex flex-col tablet:px-0 px-8">About <span class="tablet:ml-2 gold-title">livrichy</span></h2>
-			<h5 class="tablet:mt-12 mt-9 text-xl tablet:px-0 px-8">{{ blok.subtitle }}</h5>
+			<h5 class="tablet:mt-6 my-6 text-xl tablet:px-0 px-8">{{ blok.subtitle }}</h5>
 			<div class="content flex flex-wrap items-stretch">
-				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center py-9 tablet:py-0  px-8">
+				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center pb-6 tablet:py-0 px-8">
 					<p>
 						{{ blok.description }}
 					</p>
 				</div>
 				<div class="image md:w-1/2 relative">
-					<a href="#info" class="arrow absolute tablet:top-1/2 tablet:left-28 tablet:translate-y-[-50%] bottom-[-5rem] left-1/2 translate-x-[-50%] w-40 h-40 rounded-full flex justify-center items-center z-10 bg-gradient-to-b from-[#081621e6] to-[#172940e6]">
+					<div class="arrow absolute tablet:top-1/2 tablet:left-28 tablet:translate-y-[-50%] bottom-[-5rem] left-1/2 translate-x-[-50%] w-40 h-40 rounded-full flex justify-center items-center z-10 bg-gradient-to-b from-[#081621e6] to-[#172940e6]">
 						<div class="text absolute top-0 left-0">
 							<svg viewBox="0 0 100 100" class="w-full fill-white h-auto">
 								<defs>
@@ -50,7 +50,7 @@ defineProps<{
 								</linearGradient>
 							</defs>
 						</svg>
-					</a>
+					</div>
 					<div class="image-wrapper overflow-hidden rounded-l-[200px]">
 						<img class="w-full h-full object-cover" :src="blok.image.filename" alt="">
 					</div>

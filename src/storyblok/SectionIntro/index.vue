@@ -666,7 +666,7 @@ function FilterRealty(card: CardIntro) {
 </script>
 
 <template>
-	<section class="home_intro overflow-hidden relative lg:top-[-130px]" ref="homeIntro">
+	<section class="home_intro overflow-hidden relative lg:top-[-130px] md:pb-0" ref="homeIntro">
 
 		<div class="main_content absolute z-[60] sm:block hidden sm:top-[6vh] lg:top-[13vw]">
 			<h1 class="main_title text-palette-light_beige xl:text-[5rem] sm:text-[7vw] uppercase">{{ blok.title }}</h1>
@@ -710,7 +710,7 @@ function FilterRealty(card: CardIntro) {
 			</svg>
 		</div>
 
-		<div class="map_wrapper relative flex justify-end overflow-hidden">
+		<div class="map_wrapper relative flex justify-end overflow-hidden h-[calc(100vh-80px)] lg:h-full">
 
 			<!-- objects -->
 
@@ -842,10 +842,10 @@ function FilterRealty(card: CardIntro) {
 				<div class="card_wrapper justify-start absolute">
 				</div>
 				<h3 class="card_title text-palette-light_beige uppercase text-2xl mb-4">{{ title }}</h3>
-				<div class="card_objects my-4 flex-row flex">
+				<!-- <div class="card_objects my-4 flex-row flex">
 					<span class="text text-palette-light_beige">Objects</span>
 					<div class="count ml-2 text-palette-light_beige">{{ numberOfObjects }}</div>
-				</div>
+				</div> -->
 				<p class="card_description text-palette-light_beige">{{ description }}</p>
 			</div>
 

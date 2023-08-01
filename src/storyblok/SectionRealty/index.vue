@@ -241,6 +241,8 @@ function loadMore() {
 	refresh()
 }
 
+const isOpen = ref(false);
+
 function resetFilters() {
 	FilterSortByRef.value = DataSortBy[0]
 	FilterMarketRef.value = []
@@ -256,17 +258,24 @@ function resetFilters() {
 }
 
 ////////////
-const isOpen = ref(false);
+
 const openFilters = () => {
 	isOpen.value = !isOpen.value
 	document.body.classList.add('overflow-hidden')
 }
 const update = () => {
-	if (window.innerWidth < 1024) {
+	if (window.innerWidth < 1024 && isOpen.value) {
 		isOpen.value = !isOpen.value
+		document.body.classList.remove('overflow-hidden')
 	}
-	document.body.classList.remove('overflow-hidden')
 }
+
+// const closeMobFilter = ()=>{
+// 	if (window.innerWidth < 1024) {
+// 		isOpen.value = !isOpen.value
+// 	}
+// 	document.body.classList.remove('overflow-hidden')
+// }
 
 </script>
 
@@ -311,8 +320,11 @@ const update = () => {
 					</svg>
 					Filters
 				</button>
-				<button class="text text-palette-dark_blue1 opacity-50 text-base font-semibold lg:hidden">Deselect all</button>
+				<button @click="resetFilters(); update(); refresh();" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold lg:hidden">Deselect all</button>
 				<div class="filters space-y-5 lg:w-full" :class="isOpen ? 'modal-open' : 'hidden lg:block'">
+					<div class="flex justify-end lg:hidden">
+						<button @click="update()" class="border bg-[#FDF6E9] border-yellow-300 rounded-lg shadow-md py-2 px-3">X</button>
+					</div>
 					<div class="lg:flex items-end gap-5">
 						<!-- size -->
 						<div class="md:flex md:justify-between md:gap-5 md:items-end mb-5 lg:mb-0">
@@ -375,7 +387,7 @@ const update = () => {
 									<Icon name="Dropdown" />
 								</template>
 								<template #dropdown>
-									<div class="area-filters sm:col-span-2 lg:col-span-3">
+									<div class="area-filters sm:col-span-2 lg:col-span-3 mb-5 lg:mb-0">
 										<div class="search-fitler w-full">
 											<input type="text" name="searchArea" id="searchArea" autocomplete="off" v-model="FilterAreaSearchRef">
 											<Icon name="Search" size="24px" />
@@ -514,13 +526,13 @@ const update = () => {
 						<button class="btn-filter" @click="refresh(); update();">
 							Filter
 						</button>
-						<button @click="resetFilters()" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold w-52">
+						<button @click="resetFilters(); update(); refresh();" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold w-52">
 							Deselect all
 						</button>
 					</div>
 				</div>
 			</div>
-			<div class="projects-grid lg:grid lg:grid-cols-2 lg:gap-7 macbook-13:grid-cols-3">
+			<div class="projects-grid grid justify-center lg:grid-cols-2 lg:gap-7 macbook-13:grid-cols-3">
 				<template v-if="realty!!.data.stories.length > 0">
 					<ProjectCard v-for="item in realty?.data.stories" :data="item!" />
 				</template>
