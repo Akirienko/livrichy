@@ -32,7 +32,7 @@ const formattedDate = date.replace(/\./g, '/')
 
 			<div class="md:flex">
 				<p class="text-base line-clamp-2">{{ data.content?.cardInfo }}</p>
-				<p class="text-base text-end">{{ formattedDate }}</p>
+				<p class="text-base text-end mt-4 opacity-60">{{ formattedDate }}</p>
 			</div>
 
 		</div>

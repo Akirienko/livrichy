@@ -71,13 +71,14 @@ const data = {
 		</template>
 		<div v-show="successModal" @click="successModal = false" class="success_modal">
 			<h3 class="font-bold md:text-[4.5rem] text-[2rem] text-center uppercase max-w-[70%] title">Thanks for your detatils</h3>
-			<p class="text-xl my-8 md:text-[1.5rem]">Our agent is on the way to reach you.</p>
-			<div class="links flex md:w-[50%] w-[80%]">
-				<NuxtLink to="/" class="w-full h-[55px] flex justify-center items-center relative mt-6 uppercase mx-4">
+			<p class="text-xl my-8 mx-5 text-center md:text-[1.5rem]">Our agent is on the way to reach you.</p>
+			<div class="links flex md:w-[50%] w-[80%] justify-center">
+				<!-- !!!!! client asked remove btn HONE for now !!!!! -->
+				<!-- <NuxtLink to="/" class="w-full h-[55px] flex justify-center items-center relative mt-6 uppercase mx-4">
 					<span class="text">Home</span>
 					<div class="buttonbg"></div>
-				</NuxtLink>
-				<a @click="successModal = false" class="w-full h-[55px] flex justify-center items-center relative mt-6 uppercase mx-4">
+				</NuxtLink> -->
+				<a @click="successModal = false" class=" max-w-[320px] w-full h-[55px] flex justify-center items-center relative mt-6 uppercase mx-4">
 					<span class="text">Back</span>
 					<div class="buttonbg"></div>
 				</A>
@@ -168,24 +169,25 @@ form {
 	}
 
 	button {
-		background-image: linear-gradient(180deg, theme('colors.palette.gold_yellow') 0%, theme('colors.palette.gold_dark') 100%);
 		border-radius: 1rem;
-
+		background: linear-gradient(184.4deg, #FCD07D 3.57%, #926D3F 96.43%);
+		color: #102032;
+		box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
 		span {
 			position: relative;
 			z-index: 10;
 			transition: all .2s linear;
 
-			background: linear-gradient(180deg, theme('colors.palette.gold_yellow') 0%, theme('colors.palette.gold_dark') 100%);
-			-webkit-background-clip: text;
-			-webkit-text-fill-color: transparent;
-			background-clip: text;
+			// background: linear-gradient(180deg, theme('colors.palette.gold_yellow') 0%, theme('colors.palette.gold_dark') 100%);
+			// -webkit-background-clip: text;
+			// -webkit-text-fill-color: transparent;
+			// background-clip: text;
 		}
 
 		.buttonbg {
-			background-color: theme('colors.palette.body');
+			background: linear-gradient(184.4deg, #926D3F 3.57%, #FCD07D 96.43%);
 			transition: all 0.2s linear;
-
+			opacity: 0;
 			width: 99.4%;
 			height: 96%;
 			left: 1px;
@@ -198,7 +200,7 @@ form {
 
 		&:hover {
 			.buttonbg {
-				opacity: 0;
+				opacity: 1;
 			}
 
 			span {

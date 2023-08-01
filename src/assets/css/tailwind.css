@@ -9,10 +9,7 @@
 
 	section {
 		overflow: hidden;
-		padding-bottom: 120px;
-		@media (min-width:1240px) {
-			padding-bottom: 160px;
-		}
+		padding-bottom: 100px;
 	}
 
 	html {
@@ -34,6 +31,17 @@
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
+	}
+
+	.dots-breadcrumbs {
+		overflow: hidden;
+		white-space: nowrap;
+		word-wrap: break-word;
+		text-overflow: ellipsis;
+		max-width: 150px;
+		@media (min-width:1024px) {
+			max-width: 100%;
+		}
 	}
 
 	img {

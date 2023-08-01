@@ -8,15 +8,15 @@ defineProps<{
 </script>
 
 <template>
-	<section class="section-contact py-8">
+	<section class="section-contact">
 		<div class="container mx-auto px-6 tablet:px-0 flex flex-wrap">
 			<h2 class="title w-full md:text-[3rem] md:flex-row text-[2.3rem] uppercase flex flex-col leading-[2.6rem] tablet:px-0 px-8 text-center whitespace-break-spaces justify-center">Let us <span class="tablet:ml-2 colored tablet:mr-3">contact</span> you</h2>
-			<p class="w-full text-center text-palette-dark_blue2 my-8 md:text-2xl">{{ blok.subtitle }}</p>
-			<div class="form_wrapper sm:w-[50%] sm:px-[5%] w-full flex items-center justify-center">
-				<ContactUsForm />
+			<p class="w-full text-center text-palette-dark_blue2 my-6 md:text-2xl">{{ blok.subtitle }}</p>
+			<div class="form_wrapper lg:w-[50%] lg:px-[5%] w-full flex items-center justify-center">
+				<ContactUsForm class="max-w-[650px] lg:mb-20" />
 			</div>
-			<div class="hidden sm:flex w-1/2 p-8 relative ml-auto justify-center items-center">
-				<img class="w-[60%] phone" src="/i_phone.png" alt="">
+			<div class="hidden lg:flex w-1/2 p-8 relative ml-auto justify-center items-center">
+				<img class="w-[60%] phone h-[450px] object-contain" src="/i_phone.png" alt="">
 				<div class="absolute bottom-[-50px] w-[80%] h-auto mx-auto phone_shadow" >
 					<svg class="w-full h-auto" viewBox="0 0 354 96" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g opacity="0.2" filter="url(#filter0_f_235_188)">
@@ -82,7 +82,7 @@ defineProps<{
 	}
 
 	@keyframes shadow {
-		0% { 
+		0% {
 			transform: scaleX(0.8);
 		}
 		100% {
@@ -105,7 +105,7 @@ defineProps<{
 		// 0%, 2%, 4%, 6%, 8%, 10%, 12%, 14%, 16%, 18% {
 		// 	-webkit-transform: translate3d(-$translateX, $translateY, 0);
 		// 					transform: translate3d(-$translateX, $translateY, 0);
-		// }	
+		// }
 		// 1%, 3%, 5%, 7%, 9%, 11%, 13%, 15%, 17%, 19% {
 		// 	-webkit-transform: translate3d($translateX, $translateY, 0);
 		// 					transform: translate3d($translateX, -15px, 0);

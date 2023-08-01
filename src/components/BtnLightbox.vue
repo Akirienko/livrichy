@@ -91,10 +91,13 @@ $white75: rgba(253, 246, 233, 0.75);
 			display: none;
 
 			img {
-				width: 100%;
-				height: 100%;
+				// width: 100%;
+				// height: 100%;
 				border-radius: 1rem;
-				object-fit: cover;
+				// object-fit: cover;
+				width: auto;
+				height: auto;
+				object-fit: contain;
 			}
 
 			&:hover {
@@ -106,7 +109,7 @@ $white75: rgba(253, 246, 233, 0.75);
 			display: none;
 		}
 
-		
+
 	}
 
 	&.lightbox {
@@ -133,7 +136,10 @@ $white75: rgba(253, 246, 233, 0.75);
 			gap: 2rem;
 
 			.image {
-				display: initial;
+				// display: initial;
+				display: flex;
+				justify-content: center;
+				align-items: center;
 				width: 100%;
 				max-width: 1030px;
 				height: 558px;

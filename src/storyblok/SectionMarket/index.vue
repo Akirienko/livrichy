@@ -46,9 +46,9 @@ function FilterRealty(value: string) {
         </defs>
       </svg>
 
-      <div @click="FilterRealty('primary')" class="primary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px]">
-				<img :src="blok.primaryImage.filename" :alt="blok.primaryImage.alt" class="absolute">
-        <div class="flex flex-col items-end mt-20 md:items-start md:left-[20%] lg:left-[30%] lg:mt-28 macbook-13:left-[22%]">
+      <div @click="FilterRealty('primary')" class="primary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
+				<img :src="blok.primaryImage.filename" :alt="blok.primaryImage.alt" class="absolute ">
+        <div class="flex flex-col z-10 items-end mt-20 md:items-start md:left-[20%] lg:left-[30%] lg:mt-28 macbook-13:left-[22%]">
           <p class="text-palette-beige text-lg lg:text-2xl lg:mb-2 md:ml-[30px]">{{ blok.primarySubtitle }}</p>
           <h2 class="text-[40px] leading-[50px] uppercase mr-10 lg:text-[54px] xl:text-[64px] lg:mb-2">{{ blok.primaryTitle }}</h2>
           <svg class="w-[140px] h-8 mr-[200px] md:mr-10" viewBox="0 0 191 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,9 +56,9 @@ function FilterRealty(value: string) {
           </svg>
         </div>
       </div>
-      <div @click="FilterRealty('secondary')" class="secondary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px]">
+      <div @click="FilterRealty('secondary')" class="secondary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
 				<img :src="blok.secondaryImage.filename" :alt="blok.primaryImage.alt" class="absolute transition-all">
-        <div class="lg:ml-4 mt-20 lg:mt-28">
+        <div class="lg:ml-4 mt-20 lg:mt-28 z-10">
           <p class="text-palette-beige text-lg ml-[72px] lg:text-2xl lg:mb-2 ">{{ blok.secondarySubtitle }}</p>
           <h2 class="text-[40px] leading-[50px] uppercase lg:text-[54px] xl:text-[64px] lg:mb-2">{{ blok.secondaryTitle }}</h2>
           <svg class="w-[140px] mt-2.5" viewBox="0 0 191 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -87,6 +87,19 @@ function FilterRealty(value: string) {
 </template>
 
 <style scoped lang="scss">
+
+.black-bg {
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+}
 .primary {
   border-radius: 800px 0px 0px 0px;
 	img {
