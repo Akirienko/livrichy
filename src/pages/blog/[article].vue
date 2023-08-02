@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { Link } from '~/types'
+import { transformImage } from '../../composables/tranformImage'
 
 const { params, fullPath } = useRoute()
 const { data, pending } = await useAsyncGql(
@@ -39,7 +40,10 @@ const links: Link[] = [
 			</div>
       <div class="">
 				<div class="rounded-2xl overflow-hidden h-[400px] mb-4 lg:hidden">
-					<img :src="data.ArticleItem.content?.poster?.filename" alt="hotel">
+					<picture>
+						<source :srcset="transformImage(data.ArticleItem.content?.poster?.filename as string)" media="(max-width: 600px)">
+						<img :src="data.content?.poster?.filename!" >
+					</picture>
 				</div>
 
 				<div class="richTextArticle text-sm md:columns-2 lg:columns-3" v-html="renderedRichText">

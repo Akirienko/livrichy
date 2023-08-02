@@ -57,7 +57,11 @@ onKeyStroke(['Escape', 'ArrowLeft', 'ArrowRight'], (e: KeyboardEvent) => {
 		<div class="wrapper">
 			<Icon class="prev" @click="prev()" name="GalleryArrow" ref="lightbox" />
 			<div class="image" @click="isOpen = true" ref="lightbox">
-				<img :src="state?.filename">
+				<picture>
+					<source :srcset="transformImage(state?.filename as string)" media="(max-width: 600px)">
+					<img :src="state?.filename" loading="lazy">
+				</picture>
+				<!-- <img :src="state?.filename"> -->
 			</div>
 			<Icon class="next" @click="next()" name="GalleryArrow" ref="lightbox" />
 			<div class="dots">

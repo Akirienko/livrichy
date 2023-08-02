@@ -39,7 +39,11 @@ onKeyStroke(['Escape', 'ArrowLeft', 'ArrowRight'], (e: KeyboardEvent) => {
 		<div class="wrapper">
 			<Icon class="prev" @click="prev()" name="GalleryArrow" ref="lightbox" />
 			<div class="image"  ref="lightbox">
-				<img :src="state?.filename">
+				<!-- <img :src=""> -->
+				<picture>
+					<source :srcset="transformImage(state?.filename as string)" media="(max-width: 600px)">
+					<img :src="state?.filename" >
+				</picture>
 			</div>
 			<Icon class="next" @click="next()" name="GalleryArrow" ref="lightbox" />
 		</div>
