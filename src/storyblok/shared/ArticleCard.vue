@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { transformImage } from '../../composables/tranformImage'
+
 const props = defineProps<{
 	data: {
 		name?: string | null,
@@ -24,7 +26,10 @@ const formattedDate = date.replace(/\./g, '/')
 		class="card block mb-10 max-w-[470px] lg:mb-0 lg:first:mr-[130px] lg:w-[470px]"
 	>
 		<div class="h-60">
-			<img :src="data.content?.poster?.filename!" >
+			<picture>
+				<source :srcset="transformImage(data.content?.poster?.filename!)" media="(max-width: 600px)">
+				<img  :src="data.content?.poster?.filename!" >
+			</picture>
 		</div>
 		<div class="px-4 pt-5 pb-6">
 

@@ -27,7 +27,7 @@ const { errorMessage, value } = useField(nameRef)
 			<Icon :name="data.icon" />
 		</div>
 
-		<input v-if="data.name === 'phone'" v-model="value" type="number" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
+		<input v-if="data.name === 'Phone'" v-model="value" type="number" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
 		<input v-else v-model="value" type="text" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
 	</div>
 </template>
@@ -89,6 +89,14 @@ const { errorMessage, value } = useField(nameRef)
 		}
 
 		transition: all 0.2s ease;
+
+		&[type="number"] {
+			&::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+		}
 
 		&:focus {
 			border-color: theme("colors.palette.gold_yellow");

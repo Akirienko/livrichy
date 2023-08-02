@@ -4,11 +4,25 @@ import { toTypedSchema } from '@vee-validate/zod';
 import { z } from 'zod';
 import emailjs from '@emailjs/browser';
 
+const customErrorMap: z.ZodErrorMap = (issue, ctx) => {
+  if (issue.code === z.ZodIssueCode.invalid_type) {
+    if (issue.expected === "number") {
+      return { message: "Required" };
+    }
+  }
+  return { message: ctx.defaultError };
+};
+
+z.setErrorMap(customErrorMap);
+
 const validationSchema = toTypedSchema(
 	z.object({
 		Name: z.string().min(1, 'Required'),
 		Email: z.string().min(1, { message: "Required" }).email("This is not a valid email."),
-		Phone: z.string().min(1, 'Required'),
+		// Phone: z.string().min(1, 'Required'),
+		Phone: z.number().refine((val) => !Number.isNaN(parseInt(String(val), 10)), {
+			message: "Required"
+		}),
 	})
 )
 const { handleSubmit, isSubmitting, } = useForm({ validationSchema })
@@ -63,7 +77,7 @@ const data = {
 		<template v-if="data">
 			<VeeInput :data="data.name" />
 			<VeeInput :data="data.email" />
-			<VeeInput placeholder="Email" :data="data.phone" />
+			<VeeInput :data="data.phone" />
 			<button type="submit" :disabled="isSubmitting" class="w-full h-[55px] flex justify-center items-center relative mt-6">
 				<span class="text">{{ data.button }}</span>
 				<div class="buttonbg"></div>

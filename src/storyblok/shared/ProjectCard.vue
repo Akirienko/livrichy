@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { RealtyProject } from "~~/src/types"
 import { storeToRefs } from 'pinia'
-
+import { transformImage } from '../../composables/tranformImage'
 defineProps<{
 	data: RealtyProject
 }>()
@@ -16,7 +16,10 @@ enum sizeUnits {
 <template>
 	<NuxtLink :to="`/${data.full_slug}`" class="card mb-10 max-w-[570px] flex flex-col">
 		<div class="h-60">
-			<img :src="data.content.poster.filename" />
+			<picture>
+				<source :srcset="transformImage(data.content.poster.filename)" media="(max-width: 600px)">
+				<img  :src="data.content.poster.filename" >
+			</picture>
 		</div>
 		<div class="px-4 pt-5 pb-6 flex flex-col justify-between h-full">
 
