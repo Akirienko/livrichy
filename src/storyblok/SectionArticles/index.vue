@@ -18,7 +18,7 @@ const { data: articles, pending } = await useAsyncGql("LatestArticles", { articl
 			<div class="lg:flex lg:items-stretch lg:justify-center">
 				<ArticleCard v-for="item in articles.ArticleItems?.items" :data="item!" />
 			</div>
-			<div class="">
+			<div class="mt-10">
 				<NuxtLink to="/blog" class="swipe-btn">
 					<div class="swipe-btn__content">
 						<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

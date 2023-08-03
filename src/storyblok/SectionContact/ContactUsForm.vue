@@ -84,6 +84,7 @@ const data = {
 			</button>
 		</template>
 		<div v-show="successModal" @click="successModal = false" class="success_modal">
+			<img src="@/public/success_form.jpg" class="absolute -z-10 w-screen h-screen" alt="sucsess modal">
 			<h3 class="font-bold md:text-[4.5rem] text-[2rem] text-center uppercase max-w-[70%] title">Thanks for your detatils</h3>
 			<p class="text-xl my-8 mx-5 text-center md:text-[1.5rem]">Our agent is on the way to reach you.</p>
 			<div class="links flex md:w-[50%] w-[80%] justify-center">
@@ -114,8 +115,8 @@ form {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		background-image: url('/success_form.jpg');
-		background-repeat: round;
+		// background-image: url('/success_form.jpg');
+		// background-repeat: round;
 
 		.title {
 			line-height: 1.2;

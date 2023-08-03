@@ -9,7 +9,10 @@
 
 	section {
 		overflow: hidden;
-		padding-bottom: 100px;
+		padding-bottom: 50px;
+		@media (min-width:1024px) {
+			padding-bottom: 100px;
+		}
 	}
 
 	html {
@@ -43,6 +46,8 @@
 			max-width: 100%;
 		}
 	}
+	
+	input {outline:none;}
 
 	img {
 		width: 100%;
