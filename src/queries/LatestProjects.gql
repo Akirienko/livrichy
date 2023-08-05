@@ -9,7 +9,8 @@ query LatestProjects($projectNumber: Int!) {
                     filename
                 }
                 area
-                price
+                priceUSD
+								priceAED
                 sizeMeter
 								sizeFeet
                 bedroom

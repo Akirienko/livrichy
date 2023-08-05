@@ -10,15 +10,14 @@ const { data, pending } = await useAsyncGql(
 )
 
 
-const { sizeUnit } = storeToRefs(useProject())
-const { sizeUnitToggle } = useProject()
-enum sizeUnits {
-	sqMeter = "sq. m.",
-	sqFeet = "sq. ft.",
-}
+const { sizeUnit, activeCurency } = storeToRefs(useProject())
+const { sizeUnitToggle,priceCurrencyToggle } = useProject()
 
 const newPrice = computed(() => {
-  return data.value?.ProjectItem?.content?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+	if ( activeCurency.value == "USD") 
+		return data.value?.ProjectItem?.content?.priceUSD?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  else
+		return data.value?.ProjectItem?.content?.priceAED?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 })
 
 const links: Link[] = [
@@ -52,7 +51,10 @@ const links: Link[] = [
 					<h1 class="">
 						{{ data.ProjectItem.name }}
 					</h1>
-					<span>{{ newPrice }} usd</span>
+					<span @click="priceCurrencyToggle()" class="cursor-pointer">
+						{{ newPrice }} 
+						{{  activeCurency }}
+					</span>
 				</div>
 				<p class="area">
 					<Icon name="Location" size="16" />
@@ -70,7 +72,7 @@ const links: Link[] = [
 					<div class="icon-label cursor-pointer">
 						<Icon name="Size" size="18" />
 						<span @click="sizeUnitToggle()">
-							{{ sizeUnit == sizeUnits.sqMeter ? data.ProjectItem.content?.sizeMeter : data.ProjectItem.content?.sizeFeet }}
+							{{ sizeUnit == "sq. m." ? data.ProjectItem.content?.sizeMeter : data.ProjectItem.content?.sizeFeet }}
 							{{ sizeUnit }}
 						</span>
 					</div>
@@ -87,7 +89,7 @@ const links: Link[] = [
 					</NuxtLink>
 					<p class="adress underline font-medium">
 						{{ data.ProjectItem.content?.buildingName }}
-						<a :href="data.ProjectItem.content?.mapLink" target="_blank" class="block font-light opacity-30">{{ data.ProjectItem.content?.adress }}</a>
+						<a :href="data.ProjectItem.content?.mapLink!" target="_blank" class="block font-light opacity-30">{{ data.ProjectItem.content?.adress }}</a>
 					</p>
 				</div>
 				<div class="amenities">

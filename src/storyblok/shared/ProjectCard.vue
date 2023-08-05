@@ -2,15 +2,19 @@
 import type { RealtyProject } from "~~/src/types"
 import { storeToRefs } from 'pinia'
 import { transformImage } from '../../composables/tranformImage'
-defineProps<{
+const props = defineProps<{
 	data: RealtyProject
 }>()
 
-const { sizeUnit } = storeToRefs(useProject())
-enum sizeUnits {
-	sqMeter = "sq. m.",
-	sqFeet = "sq. ft.",
-}
+const { sizeUnit, activeCurency  } = storeToRefs(useProject())
+
+const newPrice = computed(() => {
+	if ( activeCurency.value == "USD") 
+		return props.data.content.priceUSD?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+  else
+		return props.data.content.priceAED?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+})
+
 </script>
 
 <template>
@@ -118,13 +122,15 @@ enum sizeUnits {
 								</linearGradient>
 							</defs>
 						</svg>
-						{{ sizeUnit == sizeUnits.sqMeter ? data.content?.sizeMeter : data.content?.sizeFeet }}
+						{{ sizeUnit == "sq. m." ? data.content?.sizeMeter : data.content?.sizeFeet }}
 						{{ sizeUnit }}
 					</p>
-					<p>{{ data.content.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") }} USD</p>
+					<p>
+						{{ newPrice }}
+						{{ activeCurency }}
+					</p>
 				</div>
 			</div>
-
 		</div>
 	</NuxtLink>
 </template>
