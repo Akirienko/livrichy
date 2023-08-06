@@ -126,37 +126,37 @@ const FilterBedroom = computed(() => {
 
 
 // Bathroom
-const DataBathroom = [
-	{
-		value: "1,2,3,4,5,6,7,8,9,10",
-		label: "any",
-	},
-	{
-		value: "1",
-		label: "1 bathroom",
-	},
-	{
-		value: "2",
-		label: "2 bathrooms",
-	},
-	{
-		value: "3",
-		label: "3 bathrooms",
-	},
-	{
-		value: "4",
-		label: "4 bathrooms",
-	},
-	{
-		value: "5,6,7,8,9,10",
-		label: "5+ bathrooms",
-	},
-]
-const FilterBathroomRef = ref([])
-const FilterBathroom = computed(() => {
-	if (FilterBathroomRef.value.length == 0) return null
-	return FilterBathroomRef.value.join()
-})
+// const DataBathroom = [
+// 	{
+// 		value: "1,2,3,4,5,6,7,8,9,10",
+// 		label: "any",
+// 	},
+// 	{
+// 		value: "1",
+// 		label: "1 bathroom",
+// 	},
+// 	{
+// 		value: "2",
+// 		label: "2 bathrooms",
+// 	},
+// 	{
+// 		value: "3",
+// 		label: "3 bathrooms",
+// 	},
+// 	{
+// 		value: "4",
+// 		label: "4 bathrooms",
+// 	},
+// 	{
+// 		value: "5,6,7,8,9,10",
+// 		label: "5+ bathrooms",
+// 	},
+// ]
+// const FilterBathroomRef = ref([])
+// const FilterBathroom = computed(() => {
+// 	if (FilterBathroomRef.value.length == 0) return null
+// 	return FilterBathroomRef.value.join()
+// })
 
 
 
@@ -229,7 +229,7 @@ const { data: realty, refresh } = await useAsyncData<Realty>(
 			market: { in: FilterMarket.value },
 			area: { like: FilterAreaSearch.value, in: FilterArea.value },
 			bedroom: { in: FilterBedroom.value },
-			bathroom: { in: FilterBathroom.value },
+			// bathroom: { in: FilterBathroom.value },
 			name: { like: FilterName.value }
 		},
 		sort_by: FilterSortBy.value,
@@ -246,7 +246,7 @@ const isOpen = ref(false);
 function resetFilters() {
 	FilterSortByRef.value = DataSortBy[0]
 	FilterMarketRef.value = []
-	FilterBathroomRef.value = []
+	// FilterBathroomRef.value = []
 	FilterBedroomRef.value = []
 	FilterAreaRefCheck.value = []
 	FilterAreaSearchRef.value = ""
@@ -447,7 +447,7 @@ const update = () => {
 							</FilterDropdown>
 						</div>
 
-						<div>
+						<!-- <div>
 							<FilterDropdown name="bathroom" dropdownClass="sm:w-[180px]">
 								<template #name>
 									<Icon name="Bathroom" class="fill-black mr-2.5" />
@@ -471,7 +471,7 @@ const update = () => {
 									</template>
 								</template>
 							</FilterDropdown>
-						</div>
+						</div> -->
 
 						<div>
 							<FilterDropdown name="market" dropdownClass="sm:w-[180px]">
@@ -521,12 +521,13 @@ const update = () => {
 								</template>
 							</FilterDropdown>
 						</div>
-					</div>
-					<div class="flex">
-						<button class="btn-filter" @click="refresh(); update();">
+						<button class="btn-filter max-w-[320px]" @click="refresh(); update();">
 							Filter
 						</button>
-						<button @click="resetFilters(); update(); refresh();" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold w-52">
+					</div>
+					<div class="flex">
+
+						<button @click="resetFilters(); update(); refresh();" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold ">
 							Deselect all
 						</button>
 					</div>
