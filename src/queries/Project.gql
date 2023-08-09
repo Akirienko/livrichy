@@ -20,7 +20,6 @@ query Project($projectId: ID!) {
                 alt
             }
             priceUSD
-						priceAED
             area
             adress
             buildingName
