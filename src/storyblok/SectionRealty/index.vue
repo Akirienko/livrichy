@@ -6,8 +6,8 @@ const { query } = useRoute()
 
 
 // Size
-const { sizeUnit } = storeToRefs(useProject())
-const { sizeUnitToggle } = useProject()
+const { sizeUnit, activeCurency } = storeToRefs(useProject())
+const { sizeUnitToggle, priceCurrencyToggle } = useProject()
 
 const FilterMinSizeRef = ref("")
 const FilterMinSize = computed(() => {
@@ -346,7 +346,6 @@ const update = () => {
 								{{ sizeUnit }}
 							</button>
 						</div>
-
 						<!-- name -->
 						<div class="search-fitler w-full">
 							<input type="text" name="filterByName" id="filterByName" v-model="FilterNameRef">
@@ -355,6 +354,7 @@ const update = () => {
 					</div>
 
 					<div class="lg:flex lg:flex-wrap gap-5 lg:justify-between space-y-5 lg:space-y-0">
+						<!-- price -->
 						<div>
 							<FilterDropdown name="price" dropdownClass="flex justify-between">
 								<template #name>
@@ -362,18 +362,28 @@ const update = () => {
 									<Icon name="Dropdown" />
 								</template>
 								<template #dropdown>
-									<div class="fitler-input lg:!w-full lg:mb-5">
+									<div class="fitler-input lg:!w-full">
 										<label for="minPrice">
 											Min
 										</label>
 										<input type="text" v-model="FilterMinPriceRef" name="minPrice" id="minPrice" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
 									</div>
-									<div class="fitler-input lg:!w-full">
+									<div class="fitler-input lg:!w-full my-5">
 										<label for="minPrice">
 											Max
 										</label>
-										<input type="text" v-model="FilterMaxPriceRef" name="minPrice" id="minPrice" placeholder="99999999 USD" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+										<input 
+											type="text" 
+											v-model="FilterMaxPriceRef" 
+											name="minPrice" 
+											id="minPrice" 
+											placeholder="99999999" 
+											oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+										>
 									</div>
+									<button @click="priceCurrencyToggle()" class="active-currency mb-3 md:mb-0">
+										{{ activeCurency }}
+									</button>
 								</template>
 							</FilterDropdown>
 						</div>
@@ -420,7 +430,7 @@ const update = () => {
 								</template>
 							</FilterDropdown>
 						</div>
-
+						<!-- bedroom -->
 						<div>
 							<FilterDropdown name="bedroom" dropdownClass="sm:w-[180px]">
 								<template #name>
@@ -526,7 +536,6 @@ const update = () => {
 						</button>
 					</div>
 					<div class="flex">
-
 						<button @click="resetFilters(); update(); refresh();" class="text text-palette-dark_blue1 opacity-50 text-base font-semibold ">
 							Deselect all
 						</button>
@@ -561,6 +570,7 @@ const update = () => {
 .area-filters{
 	width: 100%;
 }
+
 .modal-open {
 	display: block;
 	position: fixed;
@@ -628,7 +638,19 @@ const update = () => {
 	padding-right: calc((100vw - 1200px) / 2);
 
 	.filters {
+		gap: 2rem;
 		.size-unit {
+			border: 1.5px solid #081621;
+			border-radius: 4px;
+			height: 56px;
+			width: 100px;
+			background: transparent;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.active-currency {
 			border: 1.5px solid #081621;
 			border-radius: 4px;
 			height: 56px;

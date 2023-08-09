@@ -11,13 +11,14 @@ const { data, pending } = await useAsyncGql(
 
 
 const { sizeUnit, activeCurency } = storeToRefs(useProject())
-const { sizeUnitToggle,priceCurrencyToggle } = useProject()
+const { sizeUnitToggle, priceCurrencyToggle } = useProject()
+
 
 const newPrice = computed(() => {
-	if ( activeCurency.value == "USD") 
-		return data.value?.ProjectItem?.content?.priceUSD?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
-  else
-		return data.value?.ProjectItem?.content?.priceAED?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+	const price = ref(Number(data.value?.ProjectItem?.content?.priceUSD!))
+	if ( activeCurency.value == "AED") 
+	 price.value *= 3.65
+	return price.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 })
 
 const links: Link[] = [

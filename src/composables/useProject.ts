@@ -7,7 +7,7 @@ enum sizeUnits {
 
 enum priceCurrency {
 	usd = "USD",
-	aet = "AED",
+	aed = "AED",
 }
 
 export default defineStore('ProjectStore', () => {
@@ -25,7 +25,7 @@ export default defineStore('ProjectStore', () => {
 	}
 	function priceCurrencyToggle(){
 		if( activeCurency.value == priceCurrency.usd) 
-			activeCurency.value = priceCurrency.aet
+			activeCurency.value = priceCurrency.aed
 		else
 			activeCurency.value = priceCurrency.usd
 	}
