@@ -16,7 +16,7 @@ const { sizeUnitToggle, priceCurrencyToggle } = useProject()
 
 const newPrice = computed(() => {
 	const price = ref(Number(data.value?.ProjectItem?.content?.priceUSD!))
-	if ( activeCurency.value == "AED") 
+	if ( activeCurency.value == "AED")
 	 price.value *= 3.65
 	return price.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 })
@@ -52,10 +52,10 @@ const links: Link[] = [
 					<h1 class="">
 						{{ data.ProjectItem.name }}
 					</h1>
-					<span @click="priceCurrencyToggle()" class="cursor-pointer">
-						{{ newPrice }} 
-						{{  activeCurency }}
-					</span>
+					<p @click="priceCurrencyToggle()" class="cursor-pointer font-normal flex items-center">
+						{{ newPrice }}
+						<span class="rounded-xl border border-black w-fit py-1 px-2 ml-3">{{  activeCurency }}</span>
+					</p>
 				</div>
 				<p class="area">
 					<Icon name="Location" size="16" />
@@ -72,10 +72,10 @@ const links: Link[] = [
 					</div>
 					<div class="icon-label cursor-pointer">
 						<Icon name="Size" size="18" />
-						<span @click="sizeUnitToggle()">
+						<p @click="sizeUnitToggle()">
 							{{ sizeUnit == "sq. m." ? data.ProjectItem.content?.sizeMeter : data.ProjectItem.content?.sizeFeet }}
-							{{ sizeUnit }}
-						</span>
+							<span class="rounded-xl border border-black w-fit p-2 ml-1">{{ sizeUnit }}</span>
+						</p>
 					</div>
 				</div>
 				<p class="description">
@@ -245,11 +245,11 @@ const links: Link[] = [
 		font-weight: 600;
 		line-height: 2rem;
 
-		span {
-			display: block;
-			margin-top: 15px;
-			font-weight: normal;
-		}
+		// span {
+		// 	display: block;
+		// 	margin-top: 15px;
+		// 	font-weight: normal;
+		// }
 	}
 
 	.left {
@@ -431,9 +431,6 @@ const links: Link[] = [
 				flex-direction: column;
 				margin-bottom: 1.5rem;
 
-				span {
-					margin-top: 1.5rem;
-				}
 			}
 
 			.info {
