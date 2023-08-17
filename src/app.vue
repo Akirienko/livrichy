@@ -11,7 +11,9 @@ useProject()
 <template>
 	<div class="app mt-20 lg:mt-24">
 		<AppHeader :data="story" />
-		<NuxtPage />
+		<!-- <NuxtLayout> -->
+			<NuxtPage />
+		<!-- </NuxtLayout> -->
 		<AppFooter :data="story" />
 	</div>
 </template>
