@@ -110,7 +110,7 @@ const links: Link[] = [
 			</div>
 		</template>
 	</section>
-	<div class="px-5 my-20">
+	<div class="container px-5 my-20 flex justify-end">
 		<NuxtLink to="/realty" class="swipe-btn">
 			<div class="swipe-btn__content">
 				<svg width="25" height="24" class="rotate-180" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
