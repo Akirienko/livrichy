@@ -49,7 +49,7 @@ function FilterRealty(value: string) {
       <div @click="FilterRealty('primary')" class="primary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
 				<picture class="absolute h-full">
 						<source :srcset="transformImage(blok.primaryImage.filename as string, 500)" media="(max-width: 600px)">
-						<img :src="transformImage(blok.primaryImage.filename as string, 900)" >
+						<img loading="lazy" :src="transformImage(blok.primaryImage.filename as string, 900)" >
 					</picture>
         <div class="flex flex-col z-10 items-end mt-20 md:items-start md:left-[20%] lg:left-[30%] lg:mt-28 macbook-13:left-[22%]">
           <p class="text-palette-gradient_blue text-lg lg:text-2xl lg:mb-2 md:ml-[30px]">{{ blok.primarySubtitle }}</p>
@@ -62,7 +62,7 @@ function FilterRealty(value: string) {
       <div @click="FilterRealty('secondary')" class="secondary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
 				<picture class="absolute h-full">
 						<source :srcset="transformImage(blok.secondaryImage.filename as string, 500)" media="(max-width: 600px)">
-						<img :src="transformImage(blok.secondaryImage.filename as string, 900)" >
+						<img loading="lazy" :src="transformImage(blok.secondaryImage.filename as string, 900)" >
 					</picture>
         <div class="lg:ml-4 mt-20 lg:mt-28 z-10">
           <p class="text-palette-gradient_blue text-lg ml-[72px] lg:text-2xl lg:mb-2 ">{{ blok.secondarySubtitle }}</p>

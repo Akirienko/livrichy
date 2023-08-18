@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-// import { debounce } from 'lodash';
-import { useMouse } from '@vueuse/core';
 import pkg from 'lodash';
 const { debounce } = pkg;
 
@@ -28,56 +26,41 @@ interface CardIntro {
 	filter: string | string[]
 }
 
-// useRafFn(() => {
 
-// })
 
 const debouncedHandler = debounce((e: any) => {
 	const screenWidth = svgMap.value?.offsetWidth ?? 0;
 	const screenHeight = svgMap.value?.offsetHeight ?? 0;
 
-	// const cardWidth = 448;
 	const cardWidth = 500;
 
-	// const cardHeight = 380;
 	const cardHeight = 200;
 
-	// const leftPropertyCss = (screenWidth - e.clientX) < cardWidth ? `transform: translateX(${screenWidth - e.clientX}px);` : `transform: translateX(${e.clientX}px);`
-	// const topPropertyCss = (screenHeight - e.clientY) < cardHeight ? `transform: translateY(${screenHeight - e.clientY}px);` : `transform: translateY(${e.clientY}px);`
 
 	const root = document.documentElement;
 	console.log(e,'height', svgMap.value?.offsetHeight,'clientY', e.clientY, svgMap.value?.offsetWidth,'clientX', e.clientX);
 
-	// console.log(e, e.srcElement.attributes.name);
 	if (e.srcElement.attributes.name !== undefined) {
 		const item:CardIntro = map.filter((el:CardIntro) => el.name === e.srcElement.attributes.name.value)[0]
-		// console.log(item);
 
 		window.requestAnimationFrame(() => {
 			if(((screenWidth - e.clientX) < cardWidth) && ((screenHeight - e.pageY) > cardHeight)) {
-				// cardPosition.value = `display:flex;z-index: 101;right: ${screenWidth - e.clientX}px;top: ${screenHeight - e.clientY}px;`
 				console.log("right: ", (screenWidth - e.clientX) < cardWidth);
 
 				root.style.setProperty('--right', (screenWidth - e.clientX + gap) + "px")
-				// root.style.setProperty('--top', e.layerY + "px")
 				root.style.setProperty('--top', e.pageY + "px")
 
 				root.style.setProperty('--left', "initial")
 				root.style.setProperty('--bottom', "initial")
-				// cardPosition.value = `display:flex;z-index: 101;transform: translate3d(${screenWidth - e.clientX}px, ${screenHeight - e.clientY}px, 0);`
 				/// windows ->
-			// } else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) > cardWidth)) {
 			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) > cardWidth)) {
-				// console.log("bottom: ", screenHeight - e.layerY  );
 				console.log("bottom: ", screenHeight - e.clientY  );
 
 
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--right', "initial")
 				root.style.setProperty('--left', (e.clientX + gap) + "px")
-				// root.style.setProperty('--bottom', (screenHeight - e.layerY - gap) + "px")
 				root.style.setProperty('--bottom', (screenHeight - e.pageY - gap) + "px")
-			// } else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
 			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
 
 				console.log("right, bottom", screenHeight - e.layerY);
@@ -85,12 +68,10 @@ const debouncedHandler = debounce((e: any) => {
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--left', "initial")
 				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
-				// root.style.setProperty('--bottom', (screenHeight - e.layerY - gap) + "px")
 				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
 
 			} else {
 				console.log("top, left");
-				// root.style.setProperty('--top', e.layerY + "px")
 				root.style.setProperty('--top', e.pageY + "px")
 
 				root.style.setProperty('--left', (e.clientX + gap) + "px")

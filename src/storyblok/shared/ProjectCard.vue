@@ -22,7 +22,7 @@ const newPrice = computed(() => {
 		<div class="h-60">
 			<picture>
 				<source :srcset="transformImage(data.content.poster.filename, 500)" media="(max-width: 600px)">
-				<img  :src="transformImage(data.content.poster.filename)" >
+				<img  :src="transformImage(data.content.poster.filename)" loading="lazy">
 			</picture>
 		</div>
 		<div class="px-4 pt-5 pb-6 flex flex-col justify-between h-full">
