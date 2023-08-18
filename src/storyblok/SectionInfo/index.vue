@@ -21,8 +21,8 @@ defineProps<{
 <template>
 	<section id="info" class="benefits">
 		<div class="container mx-auto flex flex-wrap tablet:px-0">
-			<h2 class="title w-full md:flex-row flex flex-col tablet:px-0 px-8">Services &  <span class="tablet:ml-2 gold-title">Expertise</span></h2>
-			<h5 class="my-6 text-xl w-full tablet:px-0 px-8">{{ blok.subtitle }}</h5>
+			<h2 class="title w-full md:flex-row flex flex-col text-palette-gradient_blue tablet:px-0 px-8">Services &  <span class="tablet:ml-2 gold-title">Expertise</span></h2>
+			<h5 class="my-6 text-palette-gradient_blue text-xl w-full tablet:px-0 px-8">{{ blok.subtitle }}</h5>
 			<div class="wrapper_content flex flex-wrap">
 				<div class="content md:w-1/2 w-full flex flex-col items-center justify-center tablet:px-16 px-8">
 					<ul>
