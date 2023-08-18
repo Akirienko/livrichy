@@ -27,8 +27,8 @@ const formattedDate = date.replace(/\./g, '/')
 	>
 		<div class="h-60">
 			<picture>
-				<source :srcset="transformImage(data.content?.poster?.filename!)" media="(max-width: 600px)">
-				<img  :src="data.content?.poster?.filename!" >
+				<source :srcset="transformImage(data.content?.poster?.filename!, 500)" media="(max-width: 600px)">
+				<img  :src="transformImage(data.content?.poster?.filename!)" >
 			</picture>
 		</div>
 		<div class="px-4 pt-5 pb-6">

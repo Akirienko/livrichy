@@ -47,7 +47,10 @@ function FilterRealty(value: string) {
       </svg>
 
       <div @click="FilterRealty('primary')" class="primary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
-				<img :src="blok.primaryImage.filename" :alt="blok.primaryImage.alt" class="absolute ">
+				<picture class="absolute h-full">
+						<source :srcset="transformImage(blok.primaryImage.filename as string, 500)" media="(max-width: 600px)">
+						<img :src="transformImage(blok.primaryImage.filename as string, 900)" >
+					</picture>
         <div class="flex flex-col z-10 items-end mt-20 md:items-start md:left-[20%] lg:left-[30%] lg:mt-28 macbook-13:left-[22%]">
           <p class="text-palette-gradient_blue text-lg lg:text-2xl lg:mb-2 md:ml-[30px]">{{ blok.primarySubtitle }}</p>
           <h2 class="text-[40px] text-palette-gradient_blue leading-[50px] uppercase mr-10 lg:text-[54px] xl:text-[64px] lg:mb-2">{{ blok.primaryTitle }}</h2>
@@ -57,7 +60,10 @@ function FilterRealty(value: string) {
         </div>
       </div>
       <div @click="FilterRealty('secondary')" class="secondary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
-				<img :src="blok.secondaryImage.filename" :alt="blok.primaryImage.alt" class="absolute transition-all">
+				<picture class="absolute h-full">
+						<source :srcset="transformImage(blok.secondaryImage.filename as string, 500)" media="(max-width: 600px)">
+						<img :src="transformImage(blok.secondaryImage.filename as string, 900)" >
+					</picture>
         <div class="lg:ml-4 mt-20 lg:mt-28 z-10">
           <p class="text-palette-gradient_blue text-lg ml-[72px] lg:text-2xl lg:mb-2 ">{{ blok.secondarySubtitle }}</p>
           <h2 class="text-[40px] text-palette-gradient_blue leading-[50px] uppercase lg:text-[54px] xl:text-[64px] lg:mb-2">{{ blok.secondaryTitle }}</h2>
@@ -102,12 +108,12 @@ function FilterRealty(value: string) {
 // }
 .primary {
   border-radius: 800px 0px 0px 0px;
-	img {
+	picture img{
 		transition: transform 0.5s linear;
     object-position: bottom;
 	}
 	&:hover {
-		img {
+		picture img {
 			transform: scale(1.1);
 		}
 	}

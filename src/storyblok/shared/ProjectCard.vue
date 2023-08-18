@@ -21,8 +21,8 @@ const newPrice = computed(() => {
 	<NuxtLink :to="`/${data.full_slug}`" class="card mb-10 max-w-[570px] flex flex-col">
 		<div class="h-60">
 			<picture>
-				<source :srcset="transformImage(data.content.poster.filename)" media="(max-width: 600px)">
-				<img  :src="data.content.poster.filename" >
+				<source :srcset="transformImage(data.content.poster.filename, 500)" media="(max-width: 600px)">
+				<img  :src="transformImage(data.content.poster.filename)" >
 			</picture>
 		</div>
 		<div class="px-4 pt-5 pb-6 flex flex-col justify-between h-full">
