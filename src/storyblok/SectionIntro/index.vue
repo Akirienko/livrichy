@@ -879,7 +879,7 @@ function FilterRealty(card: CardIntro) {
 								<stop offset="30%" stop-color="var(--color-stop)" />
 								<stop offset="100%" stop-color="var(--color-bot)" />
 							</linearGradient>
-					
+
 					</defs>
 						<!-- places -->
 				</svg>
