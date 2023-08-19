@@ -557,7 +557,7 @@ function FilterRealty(card: CardIntro) {
 </script>
 
 <template>
-	<section class="home_intro overflow-hidden relative lg:top-[-130px] md:pb-0" ref="homeIntro">
+	<section class="home_intro overflow-hidden relative -top-20 md:top-0 md:pb-0" ref="homeIntro">
 
 		<div class="main_content absolute z-[60] sm:block hidden sm:top-[6vh] lg:top-[13vw]">
 			<h1 class="main_title text-palette-light_beige xl:text-[5rem] sm:text-[7vw] uppercase">{{ blok.title }}</h1>
