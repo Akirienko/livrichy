@@ -38,19 +38,28 @@ const FilterName = computed(() => {
 })
 
 
-
 // Price
-const FilterMinPriceRef = ref("")
-const FilterMaxPriceRef = ref("")
-const FilterMinPrice = computed(() => {
-	if (FilterMinPriceRef.value.length == 0) return null
-	return FilterMinPriceRef.value
+const FilterMinPriceUSDRef = ref("")
+const FilterMaxPriceUSDRef = ref("")
+const FilterMinPriceUSD = computed(() => {
+	if (FilterMinPriceUSDRef.value.length == 0) return null
+	return FilterMaxPriceUSDRef.value 
 })
-const FilterMaxPrice = computed(() => {
-	if (FilterMaxPriceRef.value.length == 0) return null
-	return FilterMaxPriceRef.value
+const FilterMaxPriceUSD = computed(() => {
+	if (FilterMaxPriceUSDRef.value.length == 0) return null
+	return FilterMaxPriceUSDRef.value
 })
 
+const FilterMinPriceAEDRef = ref("")
+const FilterMaxPriceAEDRef = ref("")
+const FilterMinPriceAED = computed(() => {
+	if (FilterMinPriceAEDRef.value.length == 0) return null
+	return FilterMinPriceAEDRef.value 
+})
+const FilterMaxPriceAED = computed(() => {
+	if (FilterMaxPriceAEDRef.value.length == 0) return null
+	return FilterMaxPriceAEDRef.value
+})
 
 
 // Area
@@ -59,7 +68,7 @@ const FilterAreaRef = ref<string[]>([])
 const FilterAreaRefCheck = ref<string[]>([])
 
 const FilterAreaSearchRef = ref("")
-const selectAllRef = ref<HTMLInputElement>()
+// const selectAllRef = ref<HTMLInputElement>()
 
 if (typeof query.area === 'string') FilterAreaRefCheck.value.push(query.area)
 
@@ -180,7 +189,6 @@ const FilterMarket = computed(() => {
 })
 
 
-
 // SortBy
 const DataSortBy = [
 	{
@@ -214,9 +222,13 @@ const { data: realty, refresh } = await useAsyncData<Realty>(
 		content_type: "project",
 		per_page: perPage.value,
 		filter_query: {
-			price: {
-				"gt-int": FilterMinPrice.value,
-				"lt-int": FilterMaxPrice.value,
+			priceUSD: {
+				"gt-int": FilterMinPriceUSD.value,
+				"lt-int": FilterMaxPriceUSD.value,
+			},
+			priceAED: {
+				"gt-int": FilterMinPriceAED.value,
+				"lt-int": FilterMaxPriceAED.value,
 			},
 			sizeMeter: {
 				"gt-int": FilterMinSize.value,
@@ -229,7 +241,6 @@ const { data: realty, refresh } = await useAsyncData<Realty>(
 			market: { in: FilterMarket.value },
 			area: { like: FilterAreaSearch.value, in: FilterArea.value },
 			bedroom: { in: FilterBedroom.value },
-			// bathroom: { in: FilterBathroom.value },
 			name: { like: FilterName.value }
 		},
 		sort_by: FilterSortBy.value,
@@ -250,15 +261,22 @@ function resetFilters() {
 	FilterBedroomRef.value = []
 	FilterAreaRefCheck.value = []
 	FilterAreaSearchRef.value = ""
-	FilterMinPriceRef.value = ""
-	FilterMaxPriceRef.value = ""
+	FilterMinPriceUSDRef.value = ""
+	FilterMaxPriceUSDRef.value = ""
+	FilterMinPriceAEDRef.value = ""
+	FilterMaxPriceAEDRef.value = ""
 	FilterNameRef.value = ""
 	FilterMinSizeRef.value = ""
 	FilterMaxSizeRef.value = ""
 }
+function resetPrice(){
+	FilterMinPriceUSDRef.value = ""
+	FilterMaxPriceUSDRef.value = ""
+	FilterMinPriceAEDRef.value = ""
+	FilterMaxPriceAEDRef.value = ""
+}
 
 ////////////
-
 const openFilters = () => {
 	isOpen.value = !isOpen.value
 	document.body.classList.add('overflow-hidden')
@@ -354,7 +372,7 @@ const update = () => {
 					</div>
 
 					<div class="lg:flex lg:flex-wrap gap-5 lg:justify-between space-y-5 lg:space-y-0">
-						<!-- price -->
+						<!-- priceUSD -->
 						<div>
 							<FilterDropdown name="price" dropdownClass="flex justify-between">
 								<template #name>
@@ -362,31 +380,62 @@ const update = () => {
 									<Icon name="Dropdown" />
 								</template>
 								<template #dropdown>
-									<div class="fitler-input lg:!w-full">
+									<template v-if="activeCurency == 'USD'">
+										<div class="fitler-input lg:!w-full">
 										<label for="minPrice">
 											Min
 										</label>
-										<input type="text" v-model="FilterMinPriceRef" name="minPrice" id="minPrice" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
-									</div>
-									<div class="fitler-input lg:!w-full my-5">
-										<label for="minPrice">
-											Max
-										</label>
-										<input
-											type="text"
-											v-model="FilterMaxPriceRef"
-											name="minPrice"
-											id="minPrice"
-											placeholder="99999999"
-											oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-										>
-									</div>
-									<button @click="priceCurrencyToggle()" class="active-currency mb-3 md:mb-0">
+										<input type="text" v-model="FilterMinPriceUSDRef" name="minPrice" id="minPrice" placeholder="any" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');">
+										</div>
+										<div class="fitler-input lg:!w-full my-5">
+											<label for="minPrice">
+												Max
+											</label>
+											<input
+												type="text"
+												v-model="FilterMaxPriceUSDRef"
+												name="minPrice"
+												id="minPrice"
+												placeholder="99999999 USD"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+											>
+										</div>
+									</template>
+									<template v-else>
+										<div class="fitler-input lg:!w-full">
+											<label for="minPriceAED">
+												Min
+											</label>
+											<input 
+												type="text" 
+												v-model="FilterMinPriceAEDRef" 
+												name="minPriceAED" 
+												id="minPriceAED" 
+												placeholder="any" 
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+											/>
+										</div>
+										<div class="fitler-input lg:!w-full my-5">
+											<label for="minPrice">
+												Max
+											</label>
+											<input
+												type="text"
+												v-model="FilterMaxPriceAEDRef"
+												name="minPriceAED"
+												id="minPriceAED"
+												placeholder="99999999 AED"
+												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+											/>
+										</div>
+									</template>
+									<button @click="priceCurrencyToggle(), resetPrice()" class="active-currency mb-3 md:mb-0">
 										{{ activeCurency }}
 									</button>
 								</template>
 							</FilterDropdown>
 						</div>
+
 
 						<!-- area -->
 						<div>

@@ -3,6 +3,7 @@ import { storeToRefs } from 'pinia'
 import BtnLightbox from '~/components/BtnLightbox.vue';
 import type { Link } from "~~/src/types"
 
+
 const { params, fullPath } = useRoute()
 const { data, pending } = await useAsyncGql(
 	"Project",
@@ -15,10 +16,10 @@ const { sizeUnitToggle, priceCurrencyToggle } = useProject()
 
 
 const newPrice = computed(() => {
-	const price = ref(Number(data.value?.ProjectItem?.content?.priceUSD!))
 	if ( activeCurency.value == "AED")
-	 price.value *= 3.65
-	return price.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+		return data.value?.ProjectItem?.content?.priceAED!.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+	else
+		return data.value?.ProjectItem?.content?.priceUSD!.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 })
 
 const links: Link[] = [
@@ -54,7 +55,9 @@ const links: Link[] = [
 					</h1>
 					<p @click="priceCurrencyToggle()" class="cursor-pointer font-normal flex items-center">
 						{{ newPrice }}
-						<span class="rounded-xl border border-black w-fit py-1 px-2 ml-3">{{  activeCurency }}</span>
+						<span class="rounded-xl border border-black w-fit py-1 px-2 ml-3">
+							{{  activeCurency }}
+						</span>
 					</p>
 				</div>
 				<p class="area">
@@ -100,10 +103,10 @@ const links: Link[] = [
 						{{ item.label }}
 					</span>
 				</div>
-				<div class="facts">
+				<div class="facts" v-if="data.ProjectItem.content?.facts.length > 0">
 					<h4 class="title">BENEFITS</h4>
 					<span class="icon-label" v-for="item in data.ProjectItem.content?.facts">
-						<Icon v-if="item.icon" :name="item.icon[0]" size="22" />
+						<!-- <Icon v-if="item.icon[0]" :name="item.icon[0]" size="22" /> -->
 						{{ item.label }}
 					</span>
 				</div>
@@ -120,6 +123,12 @@ const links: Link[] = [
 			</div>
 		</NuxtLink>
 	</div>
+	<SectionContact
+		:blok="{ 
+			title: 'test', 
+			subtitle: 'Request a call-back, and we will reach you.'
+		}"
+	/>
 </template>
 
 <style lang="scss" scoped>

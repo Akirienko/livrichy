@@ -9,12 +9,11 @@ const props = defineProps<{
 const { sizeUnit, activeCurency  } = storeToRefs(useProject())
 
 const newPrice = computed(() => {
-	const price = ref(props.data.content.priceUSD)
-	if ( activeCurency.value == "AED") 
-	 price.value *= 3.65
-	return price.value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+	if ( activeCurency.value == "AED")
+		return props.data.content.priceAED.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+	else
+		return props.data.content.priceUSD.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
 })
-
 </script>
 
 <template>
