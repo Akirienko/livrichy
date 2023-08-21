@@ -15,7 +15,7 @@ const title = ref('')
 const description = ref('')
 const numberOfObjects = ref(0)
 const gap = 10;
-const svgMap = ref<HTMLElement>()
+const svgMap = ref<SVGSVGElement>()
 
 interface CardIntro {
 	name: string,
@@ -26,55 +26,72 @@ interface CardIntro {
 	filter: string | string[]
 }
 
+const swidth = ref(0)
 
+const handleResize = () => {
+	swidth.value = window.innerWidth
+}
+
+onMounted(() => {
+	swidth.value = window.innerWidth
+	console.log(swidth.value);
+  window.addEventListener('resize', handleResize)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', handleResize)
+	window.removeEventListener('mousemove', debouncedHandler)
+})
 
 const debouncedHandler = debounce((e: any) => {
-	const screenWidth = svgMap.value?.offsetWidth ?? 0;
-	const screenHeight = svgMap.value?.offsetHeight ?? 0;
-
+	const screenWidth = Number(svgMap.value?.width.animVal.value.toFixed(0)) ?? 0;
+	const screenHeight = Number(svgMap.value?.height.animVal.value.toFixed(0)) ?? 0;
 	const cardWidth = 500;
-
-	const cardHeight = 200;
-
-
+	const cardHeight = 600;
+	
 	const root = document.documentElement;
-	console.log(e,'height', svgMap.value?.offsetHeight,'clientY', e.clientY, svgMap.value?.offsetWidth,'clientX', e.clientX);
+	console.log(e,'height', screenHeight,'clientY', e.clientY,'screenWidth', screenWidth,'clientX', e.clientX);
 
 	if (e.srcElement.attributes.name !== undefined) {
 		const item:CardIntro = map.filter((el:CardIntro) => el.name === e.srcElement.attributes.name.value)[0]
 
 		window.requestAnimationFrame(() => {
-			if(((screenWidth - e.clientX) < cardWidth) && ((screenHeight - e.pageY) > cardHeight)) {
-				console.log("right: ", (screenWidth - e.clientX) < cardWidth);
+			
+			let xCoordinate = e.clientX
+			let yCoordinate = e.layerY
+			let xCoordinateDiff = screenWidth - xCoordinate
+			let yCoordinateDiff = screenHeight - yCoordinate
 
-				root.style.setProperty('--right', (screenWidth - e.clientX + gap) + "px")
-				root.style.setProperty('--top', e.pageY + "px")
+			if((xCoordinateDiff < cardWidth) && (yCoordinateDiff > cardHeight)) {
+				console.log("right: ", xCoordinateDiff < cardWidth);
+				root.style.setProperty('--right', (screenWidth - xCoordinate + gap) + "px")
+				root.style.setProperty('--top', yCoordinate + "px")
 
 				root.style.setProperty('--left', "initial")
 				root.style.setProperty('--bottom', "initial")
 				/// windows ->
-			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) > cardWidth)) {
-				console.log("bottom: ", screenHeight - e.clientY  );
+			} else if ((yCoordinateDiff < cardHeight || yCoordinateDiff < 0) && (xCoordinateDiff > cardWidth)) {
+				console.log("bottom: ", screenHeight - yCoordinate, "screenHeight", screenHeight, "x coordinate", xCoordinate, "y coordinate", yCoordinate );
 
 
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--right', "initial")
-				root.style.setProperty('--left', (e.clientX + gap) + "px")
-				root.style.setProperty('--bottom', (screenHeight - e.pageY - gap) + "px")
-			} else if (((screenHeight - e.pageY) < cardHeight) && ((screenWidth - e.clientX) < cardWidth)) {
+				root.style.setProperty('--left', (xCoordinate + gap) + "px")
+				root.style.setProperty('--bottom', (Math.abs(screenHeight - yCoordinate - gap)) + "px")
+			} else if ((yCoordinateDiff < cardHeight) && (xCoordinateDiff < cardWidth)) {
 
-				console.log("right, bottom", screenHeight - e.layerY);
+				console.log("right, bottom", screenHeight - yCoordinate);
 
 				root.style.setProperty('--top', "initial")
 				root.style.setProperty('--left', "initial")
-				root.style.setProperty('--right', (screenWidth - e.clientX) + "px")
-				root.style.setProperty('--bottom', (screenHeight - e.pageY) + "px")
+				root.style.setProperty('--right', (screenWidth - xCoordinate) + "px")
+				root.style.setProperty('--bottom', (Math.abs(screenHeight - yCoordinate)) + "px")
 
 			} else {
 				console.log("top, left");
-				root.style.setProperty('--top', e.pageY + "px")
+				root.style.setProperty('--top', yCoordinate + "px")
 
-				root.style.setProperty('--left', (e.clientX + gap) + "px")
+				root.style.setProperty('--left', (xCoordinate + gap) + "px")
 				root.style.setProperty('--right', "initial")
 				root.style.setProperty('--bottom', "initial")
 			}
@@ -89,7 +106,7 @@ const debouncedHandler = debounce((e: any) => {
 		root.style.setProperty('--display', "none")
 	}
 
-}, 10);
+}, 50);
 
 
 const map: CardIntro[] = [
@@ -565,7 +582,7 @@ function FilterRealty(card: CardIntro) {
 		</div>
 
 		<!-- mobile logo -->
-		<div class="sm:hidden block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-120%] w-[80%] px-4 z-[60]">
+		<div v-if="swidth < 640" class="sm:hidden block absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-120%] w-[80%] px-4 z-[60]">
 			<svg class="w-full" viewBox="0 0 327 103" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M132.35 33.2179L125.525 33.2179L125.525 44.9197L113.012 44.9197L113.012 0.880778L133.235 0.880778C137.237 0.880778 140.713 1.55185 143.662 2.89399C146.611 4.19419 148.887 6.08157 150.488 8.55614C152.089 10.9888 152.889 13.8618 152.889 17.1752C152.889 20.3628 152.131 23.1519 150.614 25.5426C149.139 27.8913 147.012 29.7368 144.231 31.0789L153.774 44.9197L140.376 44.9197L132.35 33.2179ZM140.25 17.1752C140.25 15.12 139.597 13.5262 138.291 12.3938C136.984 11.2614 135.046 10.6952 132.476 10.6952L125.525 10.6952L125.525 23.5923L132.476 23.5923C135.046 23.5923 136.984 23.047 138.291 21.9566C139.597 20.8241 140.25 19.2303 140.25 17.1752Z" fill="#FDF6E9" />
 				<path d="M207.055 45.8005C202.421 45.8005 198.25 44.8358 194.542 42.9065C190.877 40.9352 187.991 38.209 185.884 34.7279C183.778 31.2467 182.725 27.3041 182.725 22.9003C182.725 18.4964 183.778 14.5538 185.884 11.0726C187.991 7.59148 190.877 4.88622 194.542 2.9569C198.25 0.985633 202.421 0 207.055 0C211.1 0 214.744 0.713011 217.988 2.13904C221.233 3.56506 223.929 5.62021 226.078 8.30449L218.115 15.4765C215.25 12.0373 211.774 10.3177 207.687 10.3177C205.286 10.3177 203.137 10.842 201.241 11.8905C199.387 12.9391 197.934 14.428 196.881 16.3573C195.87 18.2447 195.364 20.4257 195.364 22.9003C195.364 25.3748 195.87 27.5768 196.881 29.5061C197.934 31.3935 199.387 32.8614 201.241 33.91C203.137 34.9585 205.286 35.4828 207.687 35.4828C211.774 35.4828 215.25 33.7632 218.115 30.324L226.078 37.496C223.929 40.1803 221.233 42.2354 217.988 43.6615C214.744 45.0875 211.1 45.8005 207.055 45.8005Z" fill="#FDF6E9" />
@@ -614,8 +631,8 @@ function FilterRealty(card: CardIntro) {
 			<!-- objects -->
 
 			<!-- svg map -->
-			<div ref="svgMap" class="hover_map absolute w-full h-full items-end z-[3] sm:flex hidden">
-				<svg @mousemove="debouncedHandler($event)" class="w-full" viewBox="0 0 1440 940" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<div v-if="swidth > 640" class="hover_map absolute w-full h-full items-end z-[3] sm:flex hidden">
+				<svg ref="svgMap" @mousemove="debouncedHandler($event)" class="w-full" viewBox="0 0 1440 940" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<g clip-path="url(#clip0_209_379)">
 						<path v-for="item in map" @click="FilterRealty(item)" class="area" :d="item.path" :key="item.name" :name="item.name" fill="#FFC288" />
 						<path class="palm_jebel_ali" d="M94.4536 612.929C94.4528 612.927 94.4524 612.926 94.4527 612.924C95.3667 606.683 96.6183 571.158 96.9165 562.387C96.9501 561.4 97.9171 560.699 98.8906 560.865C100.757 561.183 103.463 561.331 104.483 559.81C106.102 557.398 105.741 554.61 107.312 553.219C108.891 551.825 112.471 549.997 110.77 548.904C109.085 547.834 100.319 548.395 99.8527 547.386C99.3979 546.344 100.032 543.663 96.9718 540.26C93.8739 536.848 91.6102 537.23 90.9891 534.699C90.5723 532.976 89.411 532.044 88.713 531.624C88.3964 531.433 88.1732 531.093 88.1908 530.724V530.724C88.2167 530.18 88.7403 529.8 89.2606 529.96C110.569 536.518 125.841 562.991 125.997 563.285C126.81 564.717 128.65 565.236 130.065 564.405C131.499 563.619 132.017 561.775 131.183 560.339C130.702 559.449 122.316 544.933 108.898 534.142C107.457 532.982 108.941 529.513 110.632 530.263C130.688 539.167 141.255 553.624 141.398 553.818C142.365 555.172 144.241 555.477 145.575 554.514C146.905 553.57 147.235 551.686 146.267 550.362C145.465 549.175 126.126 522.633 88.8322 518.094C88.8158 518.092 88.8033 518.078 88.8041 518.061V518.061C88.8048 518.045 88.8171 518.033 88.8326 518.031C129.09 513.72 155.901 541.08 156.144 541.378C157.288 542.573 159.196 542.624 160.39 541.478C161.594 540.315 161.631 538.429 160.488 537.225C159.302 536.022 131.862 507.878 89.2418 511.962C89.1767 511.968 89.1195 511.915 89.1224 511.85V511.85C89.1244 511.806 89.154 511.767 89.1957 511.753C130.563 497.497 164.564 524.732 164.894 524.995C166.198 526.043 168.069 525.868 169.1 524.6C170.147 523.319 169.94 521.444 168.679 520.386C167.537 519.427 146.233 502.285 116.082 501.562C114.24 501.518 113.561 498.205 115.354 497.779C129.608 494.395 147.456 492.75 163.009 499.149C164.547 499.782 166.276 499.05 166.909 497.514C167.544 495.973 166.809 494.241 165.275 493.61C136.613 481.83 102.286 494.555 90.5472 499.7C90.4999 499.721 90.4636 499.626 90.5067 499.597V499.597C90.5086 499.596 90.5085 499.596 90.5102 499.595C90.7911 499.338 115.833 477.071 147.087 479.473C148.734 479.597 150.19 478.363 150.309 476.726C150.432 475.086 149.195 473.63 147.534 473.529C128.03 472.028 111.135 479.081 100.086 485.541C98.6512 486.38 97.0826 484.729 98.1513 483.456C103.801 476.725 112.796 468.309 124.293 465.123C125.9 464.709 126.817 463.042 126.38 461.446C125.917 459.852 124.289 458.915 122.699 459.373C114.411 461.656 107.389 466.212 101.783 471.118C100.473 472.264 98.4226 470.783 99.3642 469.32C101.781 465.564 104.426 462.414 106.862 461.284C108.357 460.589 109.029 458.821 108.308 457.319C107.618 455.806 105.848 455.162 104.354 455.866C100.637 457.58 97.2312 461.58 94.4229 465.888C93.5472 467.232 91.2735 466.576 91.3507 464.974L91.6253 459.282C91.6358 459.063 91.5983 458.844 91.5153 458.642L90.0755 455.123C90.0294 455.01 89.9223 454.934 89.8007 454.928V454.928C89.6795 454.922 89.5656 454.986 89.5081 455.093L87.701 458.449C87.595 458.646 87.5343 458.865 87.5236 459.088L87.2535 464.694C87.1762 466.299 84.8315 466.734 84.0874 465.309C81.7196 460.776 78.7213 456.497 75.2049 454.441C73.7857 453.616 71.9481 454.062 71.1115 455.502C70.2802 456.948 70.7751 458.775 72.1843 459.598C74.5085 460.951 76.8379 464.339 78.8794 468.306C79.6757 469.853 77.4897 471.131 76.2969 469.864C71.196 464.445 64.6578 459.235 56.6485 456.158C55.0933 455.546 53.3509 456.33 52.7612 457.873C52.1735 459.406 52.9578 461.146 54.4773 461.713C65.5659 465.99 73.6712 475.173 78.6651 482.406C79.6127 483.778 77.877 485.294 76.524 484.318C66.1374 476.831 50.0364 468.236 30.5335 467.844C28.8899 467.763 27.5283 469.092 27.4894 470.749C27.4573 472.379 28.7782 473.756 30.4134 473.796C61.751 474.441 84.5583 499.076 84.8005 499.32V499.32C84.8415 499.369 84.7968 499.458 84.7417 499.427C73.5904 493.173 40.6612 477.161 10.9944 486.122C9.40046 486.594 8.50486 488.255 8.98951 489.841C9.45867 491.431 11.1404 492.329 12.7031 491.846C28.7812 486.992 46.3543 490.345 60.205 495.084C61.9488 495.681 60.9488 498.928 59.1107 498.795C29.0564 496.623 6.22019 511.596 5.0086 512.42C3.63381 513.351 3.2681 515.198 4.18147 516.576C5.08184 517.94 6.97064 518.298 8.31809 517.376C8.6957 517.146 45.1378 493.332 84.9328 511.55C84.9725 511.568 84.9981 511.609 84.9962 511.653V511.653C84.9932 511.718 84.9311 511.766 84.8667 511.753C42.8616 503.551 12.8344 528.873 11.5375 529.977C10.2985 531.074 10.1437 532.935 11.2122 534.241C12.2951 535.464 14.1798 535.6 15.4252 534.553C15.733 534.279 45.0444 509.632 84.6639 517.846C84.6815 517.849 84.6943 517.865 84.6937 517.883V517.883C84.6929 517.903 84.6767 517.918 84.6572 517.919C47.1121 518.807 25.3106 543.366 24.3788 544.436C23.3092 545.661 23.4403 547.567 24.681 548.637C25.9176 549.726 27.8127 549.604 28.8979 548.349C29.0548 548.169 40.9672 534.812 61.7799 527.898C63.5354 527.315 64.6771 530.915 63.1303 531.93C48.7479 541.363 39.0272 554.983 38.4399 555.828C37.484 557.176 37.823 559.062 39.1611 559.982C40.5103 560.948 42.3733 560.609 43.3168 559.263C43.5155 558.996 61.2886 534.136 83.0923 529.665C83.6256 529.556 84.1103 529.984 84.0839 530.528V530.528C84.066 530.896 83.8117 531.214 83.4789 531.374C82.7482 531.724 81.5108 532.54 80.9161 534.211C80.0498 536.693 77.837 536.089 74.436 539.166C71.0569 542.254 71.4181 544.983 70.877 545.978C70.3315 546.939 61.6617 545.53 59.8841 546.43C58.0807 547.349 61.4608 549.498 62.8918 551.061C64.3179 552.631 63.672 555.369 65.0678 557.896C65.9279 559.522 68.679 559.627 70.5772 559.487C71.5514 559.414 72.4382 560.189 72.3912 561.164L70.0247 610.271C69.9854 611.087 70.5954 611.783 71.4097 611.838C76.6641 612.193 94.3492 613.356 94.4546 612.933C94.455 612.931 94.4544 612.931 94.4536 612.929V612.929ZM-4.906 512.771C-4.96578 511.926 -5.6934 511.278 -6.53776 511.342L-19.7149 512.333C-20.5319 512.394 -21.1501 513.101 -21.0836 513.918C-19.0394 539.052 -3.09545 561.66 20.9909 576.823C21.9502 577.427 23.1925 576.765 23.2471 575.633L23.8628 562.864C23.8865 562.372 23.6658 561.9 23.2777 561.597C6.91293 548.833 -3.57296 531.608 -4.906 512.771ZM91.9941 437.545C141.117 439.936 179.962 471.442 181.939 509.218C181.976 509.929 182.494 510.531 183.196 510.652L196.541 512.959C197.451 513.117 198.287 512.416 198.273 511.492C197.583 466.08 151.376 427.709 92.6059 424.849C33.8709 421.988 -15.8104 455.669 -20.8874 500.801C-20.9907 501.719 -20.2267 502.496 -19.3055 502.428L-5.80183 501.429C-5.09102 501.376 -4.51706 500.828 -4.41137 500.123C1.19392 462.739 42.886 435.155 91.9941 437.545ZM148.482 567.694C148.067 567.958 147.802 568.406 147.778 568.898L147.163 581.669C147.108 582.801 148.28 583.58 149.293 583.072C174.717 570.322 192.766 549.368 197.227 524.571C197.372 523.764 196.825 523.001 196.017 522.861L182.978 520.6C182.144 520.456 181.357 521.031 181.216 521.866C178.075 540.476 165.968 556.58 148.482 567.694Z" />
@@ -825,15 +842,15 @@ function FilterRealty(card: CardIntro) {
 								M780.868 160.774C780.161 160.343 779.938 159.42 780.37 158.713L780.596 158.342C780.804 158.002 781.137 157.759 781.524 157.665L783.83 157.107C784.217 157.014 784.625 157.078 784.965 157.285L785.335 157.511C786.042 157.942 786.265 158.865 785.833 159.572L785.467 160.172C785.346 160.371 785.18 160.539 784.982 160.662L783.646 161.498C783.164 161.799 782.553 161.803 782.068 161.507L780.868 160.774Z" />
 					</g>
 						<!-- places -->
-						<rect width="26" height="26" transform="translate(1376 369)" fill="url(#pattern0)"/>
-						<rect width="35" height="33" transform="translate(940 782)" fill="url(#pattern1)"/>
-						<rect width="36.8205" height="43.775" transform="translate(1239.89 289)" fill="url(#pattern2)"/>
-						<rect width="61.2853" height="74.854" transform="translate(786.427 349)" fill="url(#pattern3)"/>
-						<rect width="69.7846" height="96.8705" transform="translate(1081.44 315)" fill="url(#pattern4)"/>
-						<rect width="26" height="26" transform="translate(322 479)" fill="url(#pattern5)"/>
-						<rect width="33" height="16.7797" transform="translate(1163.18 325.112)" fill="url(#pattern6)"/>
-						<rect width="34" height="28.5102" transform="translate(1164 377)" fill="url(#pattern7)"/>
-						<rect width="64" height="37.7905" transform="translate(550.373 337.229)" fill="url(#pattern8)"/>
+						<rect class="relative z-20" width="26" height="26" transform="translate(1376 369)" fill="url(#pattern0)"/>
+						<rect class="relative z-20" width="35" height="33" transform="translate(940 782)" fill="url(#pattern1)"/>
+						<rect class="relative z-20" width="36.8205" height="43.775" transform="translate(1239.89 289)" fill="url(#pattern2)"/>
+						<rect class="relative z-20" width="61.2853" height="74.854" transform="translate(786.427 349)" fill="url(#pattern3)"/>
+						<rect class="relative z-20" width="69.7846" height="96.8705" transform="translate(1081.44 315)" fill="url(#pattern4)"/>
+						<rect class="relative z-20" width="26" height="26" transform="translate(322 479)" fill="url(#pattern5)"/>
+						<rect class="relative z-20" width="33" height="16.7797" transform="translate(1163.18 325.112)" fill="url(#pattern6)"/>
+						<rect class="relative z-20" width="34" height="28.5102" transform="translate(1164 377)" fill="url(#pattern7)"/>
+						<rect class="relative z-20" width="64" height="37.7905" transform="translate(550.373 337.229)" fill="url(#pattern8)"/>
 						<defs>
 							<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
 							<use xlink:href="#image0_209_379" transform="scale(0.0192308)"/>
@@ -906,15 +923,15 @@ function FilterRealty(card: CardIntro) {
 			</div>
 			<!-- boat -->
 
-			<div class="card-item absolute z-[55] p-7 hidden flex-col items-start" :style="cardPosition">
+			<div v-if="swidth > 640" class="card-item absolute z-[55] p-5 hidden flex-col items-start" :style="cardPosition">
 				<div class="card_wrapper justify-start absolute">
 				</div>
-				<h3 class="card_title text-palette-light_beige uppercase text-2xl mb-4">{{ title }}</h3>
+				<h3 class="card_title text-palette-light_beige uppercase text-lg mb-2">{{ title }}</h3>
 				<!-- <div class="card_objects my-4 flex-row flex">
 					<span class="text text-palette-light_beige">Objects</span>
 					<div class="count ml-2 text-palette-light_beige">{{ numberOfObjects }}</div>
 				</div> -->
-				<p class="card_description text-palette-light_beige">{{ description }}</p>
+				<p class="card_description text-palette-light_beige text-sm">{{ description }}</p>
 			</div>
 
 		</div>
@@ -1108,8 +1125,8 @@ header {
 		overflow: hidden;
 		box-sizing: border-box;
 		z-index: 90;
-		max-width: 500px;
-		// min-height: 500px;
+		width: 300px;
+		// min-height: 200px;
 		left: var(--left);
 		top: var(--top);
 		right: var(--right);

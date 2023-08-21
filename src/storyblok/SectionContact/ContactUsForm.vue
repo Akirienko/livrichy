@@ -20,8 +20,11 @@ const validationSchema = toTypedSchema(
 		Name: z.string().min(1, 'Required'),
 		Email: z.string().min(1, { message: "Required" }).email("This is not a valid email."),
 		// Phone: z.string().min(1, 'Required'),
-		Phone: z.number().refine((val) => !Number.isNaN(parseInt(String(val), 10)), {
-			message: "Required"
+		// Phone: z.number().refine((val) => !Number.isNaN(parseInt(String(val), 10)), {
+		// 	message: "Required"
+		// }),
+		Phone:  z.string().refine(val => /^(?:\+)?\d{7,12}$/.test(val), {
+			message: "Please enter valid phone. Only '+' allowed"
 		}),
 	})
 )

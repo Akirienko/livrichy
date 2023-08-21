@@ -27,8 +27,8 @@ const { errorMessage, value } = useField(nameRef)
 			<Icon :name="data.icon" />
 		</div>
 
-		<input v-if="data.name === 'Phone'" v-model="value" type="number" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
-		<input v-else v-model="value" type="text" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
+		<!-- <input v-if="data.name === 'Phone'" v-model="value" type="number" :id="data.name" :name="data.name" :placeholder="data.placeholder" /> -->
+		<input v-model="value" type="text" :id="data.name" :name="data.name" :placeholder="data.placeholder" />
 	</div>
 </template>
 
