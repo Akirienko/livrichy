@@ -40,22 +40,25 @@ const FilterName = computed(() => {
 
 // Price
 const FilterMinPriceUSDRef = ref("")
-const FilterMaxPriceUSDRef = ref("")
 const FilterMinPriceUSD = computed(() => {
 	if (FilterMinPriceUSDRef.value.length == 0) return null
-	return FilterMaxPriceUSDRef.value 
+	return FilterMinPriceUSDRef.value 
 })
+
+const FilterMaxPriceUSDRef = ref("")
+
 const FilterMaxPriceUSD = computed(() => {
 	if (FilterMaxPriceUSDRef.value.length == 0) return null
 	return FilterMaxPriceUSDRef.value
 })
 
 const FilterMinPriceAEDRef = ref("")
-const FilterMaxPriceAEDRef = ref("")
 const FilterMinPriceAED = computed(() => {
 	if (FilterMinPriceAEDRef.value.length == 0) return null
 	return FilterMinPriceAEDRef.value 
 })
+
+const FilterMaxPriceAEDRef = ref("")
 const FilterMaxPriceAED = computed(() => {
 	if (FilterMaxPriceAEDRef.value.length == 0) return null
 	return FilterMaxPriceAEDRef.value
