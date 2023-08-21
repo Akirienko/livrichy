@@ -137,88 +137,7 @@ const links: Link[] = [
 		padding: 0 calc((100vw - 1200px) / 2);
 	}
 }
-.swipe-btn {
-	height: 50px;
-	background: linear-gradient(184.4deg, #FCD07D 3.57%, #926D3F 96.43%);
-	border-radius: 16px;
-	padding: 0 20px;
-	display: flex;
-	font-weight: 500;
-	font-size: 16px;
-	line-height: 20px;
-	color: white;
-	text-decoration: none;
-	overflow: hidden;
-	width: auto;
-	box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
-	animation: bounce-back 1s cubic-bezier(0.25, 0.5, 0.5, 1.1) forwards;
-	transition: all 1.1s;
 
-	&__content {
-		display: flex;
-		align-items: center;
-		position: relative;
-		height: 100%;
-		width: 100%;
-		justify-content: center;
-
-		span {
-			margin-left: 10px;
-			transition: .5s all;
-		}
-	}
-
-	@media (min-width:760px) {
-		max-width: 50px;
-		&__content {
-			width: auto;
-			justify-content: unset;
-			svg {
-				transform: rotate(180deg);
-			}
-			span {
-				opacity: 0;
-				white-space: nowrap;
-			}
-		}
-
-		&:hover {
-			animation: bounce 1s cubic-bezier(0.25, 0.5, 0.5, 1.1) forwards;
-			transition: all 1.1s;
-
-			span {
-				opacity: 1;
-			}
-		}
-
-		@keyframes bounce-back {
-			0% {
-				max-width: 150px;
-			}
-
-			90% {
-				max-width: 55px;
-			}
-
-			100% {
-				max-width: 60px;
-			}
-		}
-
-		@keyframes bounce {
-			80% {
-				// padding-right: 35px;
-			}
-
-			100% {
-				max-width: 150px;
-			}
-		}
-	}
-	@media (min-width:1240px) {
-		padding: 0 calc((100vw - 1200px) / 2);
-	}
-}
 .realty-project {
 	margin-top: 24px; //header height
 	padding: 0 calc((100vw - 1200px) / 2);
@@ -350,6 +269,7 @@ const links: Link[] = [
 	box-shadow: 0px 4px 16px rgba(146, 119, 95, 0.16);
 	animation: bounce-back 1s cubic-bezier(0.25, 0.5, 0.5, 1.1) forwards;
 	transition: all 1.1s;
+	width: 100%;
 
 	&__content {
 		display: flex;
