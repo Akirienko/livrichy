@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-defineProps<{
+const props = defineProps<{
   blok: {
     subtitle: string,
     imageTop: {
@@ -10,12 +10,24 @@ defineProps<{
 			filename: string,
 			alt: string
 		},
-    text1: string,
-    text2: string,
-    text3: string,
-    text4: string,
+    text1: any,
+    text2: any,
+    text3: any,
+    text4: any,
   }
 }>()
+const text1 = computed(() =>
+	renderRichText(props.blok.text1)
+);
+const text2 = computed(() =>
+	renderRichText(props.blok.text2)
+);
+const text3 = computed(() =>
+	renderRichText(props.blok.text3)
+);
+const text4 = computed(() =>
+	renderRichText(props.blok.text4)
+);
 </script>
 
 <template>
@@ -28,11 +40,11 @@ defineProps<{
 					<ul>
 						<li class="flex items-center mb-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">1</span>
-							<p class="text">{{ blok.text1 }}</p>
+							<div v-html="text1" class="text"></div>
 						</li>
 						<li class="flex items-center my-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">2</span>
-							<p class="text">{{ blok.text2 }}</p>
+							<div v-html="text2" class="text"></div>
 						</li>
 					</ul>
 				</div>
@@ -52,11 +64,11 @@ defineProps<{
 					<ul>
 						<li class="flex items-center tablet:my-0 mb-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">3</span>
-							<p class="text">{{ blok.text3 }}</p>
+							<div v-html="text3" class="text"></div>
 						</li>
 						<li class="flex items-center tablet:my-0 my-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">4</span>
-							<p class="text">{{ blok.text4 }}</p>
+							<div v-html="text4" class="text"></div>
 						</li>
 					</ul>
 				</div>

@@ -1,27 +1,29 @@
 <script lang="ts" setup>
-defineProps<{
+const props = defineProps<{
 	blok: {
 		title: string,
 		subtitle: string,
-		description: string,
+		description: any,
 		image: {
 			filename: string
 		}
 	}
 }>()
+
+const text = computed(() =>
+	renderRichText(props.blok.description)
+);
 </script>
 
 
 <template>
 	<section class="about md:pt-[50px]">
 		<div class="container mx-auto tablet:pb-20 tablet:pt-10 pb-20">
-			<h2 class="title w-full text-palette-gradient_blue md:flex-rowflex flex-col tablet:px-0 px-8">About <span class="tablet:ml-2 gold-title">livrichy</span></h2>
+			<h2 class="title w-full text-palette-gradient_blue md:flex-rowflex flex-col tablet:px-0 px-8"><span class="tablet:ml-2 gold-title">Liv</span>richy is</h2>
 			<h5 class="tablet:mt-6 my-6 text-xl text-palette-gradient_blue tablet:px-0 px-8">{{ blok.subtitle }}</h5>
 			<div class="content flex flex-wrap items-stretch">
 				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center pb-6 tablet:py-0 px-8">
-					<p>
-						{{ blok.description }}
-					</p>
+					<div v-html="text"></div>
 				</div>
 				<div class="image md:w-1/2 relative">
 					<div class="arrow absolute tablet:top-1/2 tablet:left-28 tablet:translate-y-[-50%] bottom-[-5rem] left-1/2 translate-x-[-50%] w-40 h-40 rounded-full flex justify-center items-center z-10 bg-gradient-to-b from-[#081621e6] to-[#172940e6]">
