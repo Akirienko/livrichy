@@ -26,11 +26,11 @@ defineProps<{
 			<div class="wrapper_content flex flex-wrap">
 				<div class="content md:w-1/2 w-full flex flex-col items-center justify-center tablet:px-16 px-8">
 					<ul>
-						<li class="flex items-center tablet:my-0 mb-4">
+						<li class="flex items-center mb-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">1</span>
 							<p class="text">{{ blok.text1 }}</p>
 						</li>
-						<li class="flex items-center tablet:my-0 my-4">
+						<li class="flex items-center my-4">
 							<span class="number text-[4rem] font-[Unbounded] px-[3px]">2</span>
 							<p class="text">{{ blok.text2 }}</p>
 						</li>

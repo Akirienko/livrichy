@@ -99,7 +99,7 @@ const newPrice = computed(() => {
 								</linearGradient>
 							</defs>
 						</svg>
-						{{ data.content.bathroom }} Bathroom
+						{{ data.content.bathroom }} bathroom
 					</p>
 				</div>
 
