@@ -101,7 +101,7 @@ const { data: realty, pending } = await useAsyncData<Realty>(
 		}
 		@keyframes bounce-back {
 			0% {
-				max-width: 245px;
+				max-width: 145px;
 			}
 
 			90% {
@@ -119,7 +119,7 @@ const { data: realty, pending } = await useAsyncData<Realty>(
 			}
 
 			100% {
-				max-width: 245px;
+				max-width: 145px;
 			}
 		}
 	}

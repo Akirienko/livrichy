@@ -47,7 +47,7 @@ function FilterRealty(value: string) {
       </svg>
 
       <div @click="FilterRealty('primary')" class="primary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
-				<picture class="absolute h-full">
+				<picture class="absolute h-full w-full">
 						<source :srcset="transformImage(blok.primaryImage.filename as string, 500)" media="(max-width: 600px)">
 						<img loading="lazy" :src="transformImage(blok.primaryImage.filename as string, 900)" >
 					</picture>
@@ -60,7 +60,7 @@ function FilterRealty(value: string) {
         </div>
       </div>
       <div @click="FilterRealty('secondary')" class="secondary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
-				<picture class="absolute h-full">
+				<picture class="absolute h-full w-full">
 						<source :srcset="transformImage(blok.secondaryImage.filename as string, 500)" media="(max-width: 600px)">
 						<img loading="lazy" :src="transformImage(blok.secondaryImage.filename as string, 900)" >
 					</picture>

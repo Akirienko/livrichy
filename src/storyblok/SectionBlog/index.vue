@@ -17,7 +17,7 @@ async function loadMore() {
 </script>
 
 <template>
-	<section class="section-blog mb-40 min-h-screen">
+	<section class="section-news mb-40 min-h-screen">
 		<div v-if="articles && !pending" class="container m-auto px-5 lg:px-0 max-w-[970px]">
 			<div class="md:grid md:grid-cols-2 md:gap-7 artcle-wrap">
 				<ArticleCard v-for="item in newArr" :data="item!" />
@@ -53,7 +53,7 @@ async function loadMore() {
 	transform: translateY(30px);
 }
 
-.section-blog {
+.section-news {
 	padding: 20px 0;
 }
 

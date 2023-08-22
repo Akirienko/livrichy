@@ -97,14 +97,14 @@ const links: Link[] = [
 					</p>
 				</div>
 				<div class="amenities">
-					<h4 class="title">FEATURES</h4>
+					<h4 class="title">BENEFITS</h4>
 					<span class="icon-label" v-for="item in data.ProjectItem.content?.amenities">
 						<Icon v-if="item.icon[0]" :name="item.icon[0]" size="22" />
 						{{ item.label }}
 					</span>
 				</div>
 				<div class="facts" v-if="data.ProjectItem.content?.facts.length > 0">
-					<h4 class="title">BENEFITS</h4>
+					<h4 class="title">AMENITIES</h4>
 					<span class="icon-label" v-for="item in data.ProjectItem.content?.facts">
 						<!-- <Icon v-if="item.icon[0]" :name="item.icon[0]" size="22" /> -->
 						{{ item.label }}
@@ -124,8 +124,8 @@ const links: Link[] = [
 		</NuxtLink>
 	</div>
 	<SectionContact
-		:blok="{ 
-			title: 'test', 
+		:blok="{
+			title: 'test',
 			subtitle: 'Request a call-back, and we will reach you.'
 		}"
 	/>
