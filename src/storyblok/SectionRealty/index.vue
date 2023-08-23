@@ -46,7 +46,6 @@ const FilterMinPriceUSD = computed(() => {
 })
 
 const FilterMaxPriceUSDRef = ref("")
-
 const FilterMaxPriceUSD = computed(() => {
 	if (FilterMaxPriceUSDRef.value.length == 0) return null
 	return FilterMaxPriceUSDRef.value
