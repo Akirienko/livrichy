@@ -19,7 +19,7 @@ const text = computed(() =>
 <template>
 	<section class="about md:pt-[50px]">
 		<div class="container mx-auto tablet:pb-20 tablet:pt-10 pb-20">
-			<h2 class="title w-full text-palette-gradient_blue md:flex-rowflex flex-col tablet:px-0 px-8"><span class="tablet:ml-2 gold-title">Liv</span>richy is</h2>
+			<h2 class="title w-full text-palette-gradient_blue md:flex-rowflex flex-col tablet:px-0 px-8"><span class="gold-title">Liv</span>richy is</h2>
 			<h5 class="tablet:mt-6 my-6 text-xl text-palette-gradient_blue tablet:px-0 px-8">{{ blok.subtitle }}</h5>
 			<div class="content flex flex-wrap items-stretch">
 				<div class="text md:w-1/2 tablet:pl-[5vw] tablet:pr-[6vw] flex items-center justify-center pb-6 tablet:py-0 px-8">

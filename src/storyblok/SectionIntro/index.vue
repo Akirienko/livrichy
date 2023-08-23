@@ -50,7 +50,7 @@ const debouncedHandler = debounce((e: any) => {
 	const screenHeight = Number(svgMap.value?.height.animVal.value.toFixed(0)) ?? 0;
 	const cardWidth = 500;
 	const cardHeight = 600;
-	
+
 	const root = document.documentElement;
 	// console.log(e,'height', screenHeight,'clientY', e.clientY,'screenWidth', screenWidth,'clientX', e.clientX);
 
@@ -58,7 +58,7 @@ const debouncedHandler = debounce((e: any) => {
 		const item:CardIntro = props.blok.cards.filter((el:CardIntro) => el.name === e.srcElement.attributes.name.value)[0]
 
 		window.requestAnimationFrame(() => {
-			
+
 			let xCoordinate = e.clientX
 			let yCoordinate = e.layerY
 			let xCoordinateDiff = screenWidth - xCoordinate
@@ -124,7 +124,7 @@ function FilterRealty(card: CardIntro) {
 </script>
 
 <template>
-	<section class="home_intro overflow-hidden relative -top-20 md:top-0 md:pb-0" ref="homeIntro">
+	<section class="home_intro overflow-hidden relative -top-20 md:-top-[100px] md:pb-0" ref="homeIntro">
 
 		<div class="main_content absolute z-[60] sm:block hidden sm:top-[6vh] lg:top-[13vw]">
 			<h1 class="main_title text-palette-light_beige xl:text-[5rem] sm:text-[7vw] uppercase">{{ blok.title }}</h1>
@@ -645,7 +645,7 @@ function FilterRealty(card: CardIntro) {
 			<!-- png map -->
 
 			<!-- sea needs to move left right inifinite  -->
-			<div class="sea relative w-full z-[1] overflow-hidden sm:min-h-[70vw] min-h-[100vh] xl:min-h-[68.25vw]">
+			<div class="sea relative w-full z-[1] overflow-hidden sm:min-h-[70vw] min-h-[100vh] xl:min-h-[74.25vw]">
 				<img class="w-full h-full min-h-[120vh] min-w-[120vw]" src="/sea-min.jpg" alt="">
 			</div>
 
