@@ -65,7 +65,7 @@ const FilterMaxPriceAED = computed(() => {
 
 
 // Area
-const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "jumeirah park", "discovery gardens", "springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Villanova", "Silicon Oasis", "International City", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "City Walk / Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim"]
+const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "jumeirah park", "discovery gardens", "springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Falconcity of Wonders", "Silicon Oasis", "Design District", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim", "International City", "International City PHASE 2", "Expo City", "Sports City"]
 const FilterAreaRef = ref<string[]>([])
 const FilterAreaRefCheck = ref<string[]>([])
 
@@ -408,12 +408,12 @@ const update = () => {
 											<label for="minPriceAED">
 												Min
 											</label>
-											<input 
-												type="text" 
-												v-model="FilterMinPriceAEDRef" 
-												name="minPriceAED" 
-												id="minPriceAED" 
-												placeholder="any" 
+											<input
+												type="text"
+												v-model="FilterMinPriceAEDRef"
+												name="minPriceAED"
+												id="minPriceAED"
+												placeholder="any"
 												oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
 											/>
 										</div>
