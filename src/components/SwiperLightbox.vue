@@ -32,15 +32,18 @@ onClickOutside(lightbox, (event) => {
 			:height="558"
 			:slides-per-view="1"
 			:loop="true"
+			:modules="[SwiperPagination]"
 			ref="lightbox"
 		>
 			<SwiperControls/>
-
 			<SwiperSlide
 				v-for="(slide, index) in data"
 				:key="index"
 			>
-				<img :src="slide?.filename">
+				<picture>
+					<source :srcset="transformImage(slide?.filename as string)" media="(max-width: 600px)">
+					<img :src="slide?.filename" >
+				</picture>
 			</SwiperSlide>
 		</Swiper>
 	</div>

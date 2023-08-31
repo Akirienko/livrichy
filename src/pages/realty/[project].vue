@@ -47,12 +47,19 @@ const links: Link[] = [
 							class="main-img"
 							@click.native="openLightbox()"
 						>
-							<img :src="data.ProjectItem.content?.gallery![0]?.filename">
+							<!-- <img :src="data.ProjectItem.content?.gallery![0]?.filename"> -->
+							<picture>
+								<source :srcset="transformImage(data.ProjectItem.content?.gallery![0]?.filename as string)" media="(max-width: 600px)">
+								<img :src="data.ProjectItem.content?.gallery![0]?.filename" >
+							</picture>
 						</div>
       		</template>
 				</SwiperLightbox>
 
-				<SwiperLightbox :data="data.ProjectItem.content?.floorPlan">
+				<SwiperLightbox
+					v-if="data.ProjectItem.content?.floorPlan?.length! > 0"
+					:data="data.ProjectItem.content?.floorPlan"
+				>
 					<template v-slot="{ openLightbox }">
 						<button 
 							class="floor-plan"
