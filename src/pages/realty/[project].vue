@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { storeToRefs } from 'pinia'
-import BtnLightbox from '~/components/BtnLightbox.vue';
 import type { Link } from "~~/src/types"
 
 
@@ -10,10 +9,8 @@ const { data, pending } = await useAsyncGql(
 	{ projectId: `realty/${params.project}` }
 )
 
-
 const { sizeUnit, activeCurency } = storeToRefs(useProject())
 const { sizeUnitToggle, priceCurrencyToggle } = useProject()
-
 
 const newPrice = computed(() => {
 	if ( activeCurency.value == "AED")
@@ -44,11 +41,29 @@ const links: Link[] = [
 		<template v-if="data?.ProjectItem && !pending">
 			<div class="left">
 
-				<SliderLightbox
-					:data="data.ProjectItem.content?.gallery!" />
-				<BtnLightbox
-					v-if="data.ProjectItem.content?.floorPlan?.length"
-					:data="data.ProjectItem.content?.floorPlan!" />
+				<SwiperLightbox :data="data.ProjectItem.content?.gallery!">
+					<template v-slot="{ openLightbox }">
+						<div 
+							class="main-img"
+							@click.native="openLightbox()"
+						>
+							<img :src="data.ProjectItem.content?.gallery![0]?.filename">
+						</div>
+      		</template>
+				</SwiperLightbox>
+
+				<SwiperLightbox :data="data.ProjectItem.content?.floorPlan">
+					<template v-slot="{ openLightbox }">
+						<button 
+							class="floor-plan"
+							@click.native="openLightbox()"
+						>
+							Floor Plan
+						</button>
+      		</template>
+				</SwiperLightbox>
+
+
 				<div class="title">
 					<h1 class="">
 						{{ data.ProjectItem.name }}
@@ -132,6 +147,10 @@ const links: Link[] = [
 </template>
 
 <style lang="scss" scoped>
+
+
+
+
 .btn {
 	@media (min-width:1240px) {
 		padding: 0 calc((100vw - 1200px) / 2);
@@ -185,6 +204,34 @@ const links: Link[] = [
 		flex-direction: column;
 		width: 100%;
 		max-width: 812px;
+		position: relative;
+		.main-img{
+			width: 100%;
+			max-width: 812px;
+			height: 440px;
+			margin-bottom: 2rem;
+			&:hover{
+				cursor: pointer;
+			}
+		}
+		position: relative;
+		.floor-plan{
+			position: absolute;
+			z-index: 2;
+			top: 22rem;
+			left: 2rem;
+			display: flex;
+			width: 160px;
+			height: 56px;
+			padding: 8px;
+			justify-content: center;
+			align-items: center;
+			flex-shrink: 0;
+
+			border-radius: 4px;
+			background: rgba(253, 246, 233, 0.70);
+		}
+
 
 		.title {
 			display: block;

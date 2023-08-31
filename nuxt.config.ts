@@ -21,6 +21,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/tailwindcss',
 		'@storyblok/nuxt',
 		'@pinia/nuxt',
+		'nuxt-swiper',
 	],
 	tailwindcss: {
 		cssPath: '~/assets/css/tailwind.css',
