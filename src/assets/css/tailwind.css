@@ -51,7 +51,7 @@
 			max-width: 100%;
 		}
 	}
-	
+
 	input {outline:none;}
 
 	img {
@@ -104,6 +104,13 @@
 		border-radius: 16px;
 		height: 290px;
 		overflow: hidden;
+	}
+
+	.project-rich-text p  {
+		margin-bottom: 16px;
+	}
+	.project-rich-text p a {
+		text-decoration: underline;
 	}
 
 	.gold-title {

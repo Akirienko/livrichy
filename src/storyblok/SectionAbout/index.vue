@@ -53,7 +53,7 @@ const text = computed(() =>
 							</defs>
 						</svg>
 					</div>
-					<div class="image-wrapper overflow-hidden rounded-l-[200px]">
+					<div class="image-wrapper overflow-hidden rounded-[800px_0px_0px_800px]">
 						<img class="w-full h-full object-cover" :src="blok.image.filename" alt="">
 					</div>
 				</div>

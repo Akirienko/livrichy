@@ -48,14 +48,14 @@ const text4 = computed(() =>
 						</li>
 					</ul>
 				</div>
-				<div class="image_wrapper md:w-1/2 w-full">
+				<div class="image_wrapper md:w-1/2 w-full rounded-[800px_0px_0px_800px]">
 					<div class="image-wrapper overflow-hidden rounded-l-[300px] md:my-0 my-4">
 						<img :src="blok.imageTop.filename" alt="" class="w-full h-full object-cover" />
 					</div>
 				</div>
 			</div>
 			<div class="wrapper_content reverse flex flex-wrap">
-				<div class="image_wrapper md:w-1/2 w-full md:my-0 my-4">
+				<div class="image_wrapper md:w-1/2 w-full md:my-0 my-4 rounded-[0px_800px_800px_0px]">
 					<div class="image-wrapper overflow-hidden rounded-r-[300px]">
 						<img :src="blok.imageBottom.filename" alt="" class="w-full h-full object-cover" />
 					</div>
