@@ -20,6 +20,11 @@
 		scroll-behavior: smooth;
 	}
 
+
+	body.scroll-lock {
+		overflow: hidden;
+	}
+
 	h1,
 	h2,
 	h3,
@@ -56,9 +61,7 @@
 		object-position: top;
 	}
 
-	a,
-	p,
-	span {}
+
 
 	body {
 		margin: 0;
@@ -108,7 +111,7 @@
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
-		text-fill-color: transparent;
+		/* text-fill-color: transparent; */
 	}
 
 	svg path {

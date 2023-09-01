@@ -47,7 +47,6 @@ const links: Link[] = [
 							class="main-img"
 							@click.native="openLightbox()"
 						>
-							<!-- <img :src="data.ProjectItem.content?.gallery![0]?.filename"> -->
 							<picture>
 								<source :srcset="transformImage(data.ProjectItem.content?.gallery![0]?.filename as string)" media="(max-width: 600px)">
 								<img :src="data.ProjectItem.content?.gallery![0]?.filename" >
@@ -69,7 +68,6 @@ const links: Link[] = [
 						</button>
       		</template>
 				</SwiperLightbox>
-
 
 				<div class="title">
 					<h1 class="">
@@ -154,10 +152,6 @@ const links: Link[] = [
 </template>
 
 <style lang="scss" scoped>
-
-
-
-
 .btn {
 	@media (min-width:1240px) {
 		padding: 0 calc((100vw - 1200px) / 2);
@@ -217,11 +211,14 @@ const links: Link[] = [
 			max-width: 812px;
 			height: 440px;
 			margin-bottom: 2rem;
+			picture img{
+				border-radius: 1rem;
+			}
+
 			&:hover{
 				cursor: pointer;
 			}
 		}
-		position: relative;
 		.floor-plan{
 			position: absolute;
 			z-index: 2;
@@ -238,7 +235,6 @@ const links: Link[] = [
 			border-radius: 4px;
 			background: rgba(253, 246, 233, 0.70);
 		}
-
 
 		.title {
 			display: block;
@@ -410,6 +406,12 @@ const links: Link[] = [
 
 
 		.left {
+
+			.main-img{
+				width: initial;
+				max-width: initial;
+				height: 12rem;
+			}
 			.title {
 				flex-direction: column;
 				margin-bottom: 1.5rem;

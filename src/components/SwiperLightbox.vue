@@ -9,15 +9,18 @@ defineProps<{
 }>()
 
 const isOpen = ref(false)
-function openLightbox(){
-	isOpen.value = true
-	console.log('openLightbox');
-	
-}
+function openLightbox(){ isOpen.value = true }
 
-// close lightbox on click outside
+useHead({
+  bodyAttrs: {
+    class: computed(() => {		// lock scroll
+			return isOpen.value ? 'scroll-lock' : "scroll-unlock"
+		}),
+  },
+})
+
 const lightbox = ref(null)	// lightbox ref
-onClickOutside(lightbox, (event) => {
+onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 	isOpen.value = false
 })
 </script>
@@ -40,10 +43,12 @@ onClickOutside(lightbox, (event) => {
 				v-for="(slide, index) in data"
 				:key="index"
 			>
+			<div class="image">
 				<picture>
 					<source :srcset="transformImage(slide?.filename as string)" media="(max-width: 600px)">
 					<img :src="slide?.filename" >
 				</picture>
+			</div>
 			</SwiperSlide>
 		</Swiper>
 	</div>
@@ -75,6 +80,14 @@ onClickOutside(lightbox, (event) => {
 		justify-content: center;
 		align-items: center;
 		height: 35rem;
+
+		.image{
+			width: 100%;
+			height: 35rem;
+			picture img{
+				border-radius: 1rem;
+			}
+		}
 	}
 }
 
@@ -85,7 +98,8 @@ onClickOutside(lightbox, (event) => {
 			height: initial;
 		}
 		.swiper-slide {
-			height: initial;
+			height: 100%;
+			max-height: 600px;
 		}
 	}
 }
