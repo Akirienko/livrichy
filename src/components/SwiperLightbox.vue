@@ -99,7 +99,7 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 		}
 		.swiper-slide {
 			height: 100%;
-			max-height: 600px;
+			max-height: 300px;
 		}
 	}
 }
