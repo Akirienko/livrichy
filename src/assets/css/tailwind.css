@@ -58,7 +58,7 @@
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
-		object-position: top;
+		object-position: bottom;
 	}
 
 
@@ -108,6 +108,9 @@
 
 	.project-rich-text p  {
 		margin-bottom: 16px;
+	}
+	.project-rich-text h5  {
+		font-size: 22px;
 	}
 	.project-rich-text p a {
 		text-decoration: underline;

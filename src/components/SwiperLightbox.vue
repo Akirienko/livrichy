@@ -27,9 +27,9 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 
 <template>
 	<slot :openLightbox="openLightbox" />
-	<div 
+	<div
 		v-if="isOpen"
-		class="lightbox" 
+		class="lightbox"
 	>
 		<Swiper
 			:height="558"
@@ -44,10 +44,7 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 				:key="index"
 			>
 			<div class="image">
-				<picture>
-					<source :srcset="transformImage(slide?.filename as string)" media="(max-width: 600px)">
-					<img :src="slide?.filename" >
-				</picture>
+				<img :src="slide?.filename" >
 			</div>
 			</SwiperSlide>
 		</Swiper>
@@ -69,23 +66,45 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 	justify-content: center;
 	align-items: center;
 
+	.swiper {
+		button {
+			z-index: 5;
+		}
+	}
+
 	.swiper-wrapper {
 		width: 100%;
 		max-width: 64rem;
-		height: 35rem;
+		height: 650px;
 		margin-bottom: 2rem;
 	}
 	.swiper-slide {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 35rem;
-
+		height: 450px;
+		background: rgba(0, 0, 0, 0.8);
+		border-radius: 16px;
+		@media (min-width:1024px) {
+			height: 650px;
+		}
 		.image{
 			width: 100%;
-			height: 35rem;
-			picture img{
+			height: 450px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			img{
 				border-radius: 1rem;
+				object-fit: contain;
+				width: auto;
+				height: auto;
+			}
+			@media (min-width:1024px) {
+				height: 650px;
+				img {
+					height: 100%;
+				}
 			}
 		}
 	}
@@ -99,7 +118,7 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 		}
 		.swiper-slide {
 			height: 100%;
-			max-height: 300px;
+			max-height: 450px;
 		}
 	}
 }

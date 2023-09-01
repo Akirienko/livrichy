@@ -51,10 +51,13 @@ const text = computed(() =>
 							class="main-img"
 							@click.native="openLightbox()"
 						>
-							<picture>
-								<source :srcset="transformImage(data.ProjectItem.content?.gallery![0]?.filename as string)" media="(max-width: 600px)">
-								<img :src="data.ProjectItem.content?.gallery![0]?.filename" >
-							</picture>
+							<img :src="data.ProjectItem.content?.gallery![0]?.filename" :alt="data.ProjectItem.content?.gallery![0]?.alt">
+							<svg class="absolute right-5 bottom-4" width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="8" cy="8" r="8" fill="#FDF6E9"/>
+								<circle cx="36" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
+								<circle cx="60" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
+								<circle cx="84" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
+							</svg>
 						</div>
       		</template>
 				</SwiperLightbox>
@@ -213,6 +216,8 @@ const text = computed(() =>
 			max-width: 812px;
 			height: 440px;
 			margin-bottom: 2rem;
+			border-radius: 16px;
+			overflow: hidden;
 			picture img{
 				border-radius: 1rem;
 			}
@@ -224,7 +229,7 @@ const text = computed(() =>
 		.floor-plan{
 			position: absolute;
 			z-index: 2;
-			top: 22rem;
+			top: 17rem;
 			left: 2rem;
 			display: flex;
 			width: 160px;
@@ -236,6 +241,9 @@ const text = computed(() =>
 
 			border-radius: 4px;
 			background: rgba(253, 246, 233, 0.70);
+			@media (min-width: 760px) {
+				top: 22rem;
+			}
 		}
 
 		.title {
@@ -412,7 +420,7 @@ const text = computed(() =>
 			.main-img{
 				width: initial;
 				max-width: initial;
-				height: 12rem;
+				height: 340px;
 			}
 			.title {
 				flex-direction: column;
