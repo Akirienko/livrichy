@@ -33,6 +33,10 @@ const links: Link[] = [
 		url: fullPath,
 	},
 ]
+
+const text = computed(() =>
+	renderRichText(data.value?.ProjectItem?.content?.description)
+);
 </script>
 
 <template>
@@ -43,14 +47,17 @@ const links: Link[] = [
 
 				<SwiperLightbox :data="data.ProjectItem.content?.gallery!">
 					<template v-slot="{ openLightbox }">
-						<div 
+						<div
 							class="main-img"
 							@click.native="openLightbox()"
 						>
-							<picture>
-								<source :srcset="transformImage(data.ProjectItem.content?.gallery![0]?.filename as string)" media="(max-width: 600px)">
-								<img :src="data.ProjectItem.content?.gallery![0]?.filename" >
-							</picture>
+							<img :src="data.ProjectItem.content?.gallery![0]?.filename" :alt="data.ProjectItem.content?.gallery![0]?.alt">
+							<svg class="absolute right-5 bottom-4" width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="8" cy="8" r="8" fill="#FDF6E9"/>
+								<circle cx="36" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
+								<circle cx="60" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
+								<circle cx="84" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
+							</svg>
 						</div>
       		</template>
 				</SwiperLightbox>
@@ -60,7 +67,7 @@ const links: Link[] = [
 					:data="data.ProjectItem.content?.floorPlan"
 				>
 					<template v-slot="{ openLightbox }">
-						<button 
+						<button
 							class="floor-plan"
 							@click.native="openLightbox()"
 						>
@@ -74,7 +81,7 @@ const links: Link[] = [
 						{{ data.ProjectItem.name }}
 					</h1>
 					<p @click="priceCurrencyToggle()" class="cursor-pointer font-normal flex items-center">
-						{{ newPrice }}
+						{{ newPrice }} <span class="">*</span>
 						<span class="rounded-xl border border-black w-fit py-1 px-2 ml-3">
 							{{  activeCurency }}
 						</span>
@@ -89,7 +96,7 @@ const links: Link[] = [
 						<Icon name="Bedroom" size="22" />
 						<span>{{ data.ProjectItem.content?.bedroom }} bedroom</span>
 					</div>
-					<div class="icon-label">
+					<div class="icon-label" v-if="data.ProjectItem.content?.bathroom">
 						<Icon name="Bathroom" size="22" />
 						<span>{{ data.ProjectItem.content?.bathroom }} bathroom</span>
 					</div>
@@ -101,9 +108,7 @@ const links: Link[] = [
 						</p>
 					</div>
 				</div>
-				<p class="description">
-					{{ data.ProjectItem.content?.description }}
-				</p>
+				<div v-html="text" class="description project-rich-text"></div>
 			</div>
 			<div class="right">
 				<div class="map">
@@ -211,6 +216,8 @@ const links: Link[] = [
 			max-width: 812px;
 			height: 440px;
 			margin-bottom: 2rem;
+			border-radius: 16px;
+			overflow: hidden;
 			picture img{
 				border-radius: 1rem;
 			}
@@ -222,7 +229,7 @@ const links: Link[] = [
 		.floor-plan{
 			position: absolute;
 			z-index: 2;
-			top: 22rem;
+			top: 17rem;
 			left: 2rem;
 			display: flex;
 			width: 160px;
@@ -234,6 +241,9 @@ const links: Link[] = [
 
 			border-radius: 4px;
 			background: rgba(253, 246, 233, 0.70);
+			@media (min-width: 760px) {
+				top: 22rem;
+			}
 		}
 
 		.title {
@@ -410,7 +420,7 @@ const links: Link[] = [
 			.main-img{
 				width: initial;
 				max-width: initial;
-				height: 12rem;
+				height: 340px;
 			}
 			.title {
 				flex-direction: column;
