@@ -27,6 +27,11 @@ const links: Link[] = [
 		url: fullPath,
 	},
 ]
+
+if(data) {
+	const meta = data.value?.ArticleItem?.content?.meta
+	useMetaTags(meta)
+}
 </script>
 
 <template>
@@ -42,7 +47,7 @@ const links: Link[] = [
 				<div class="rounded-2xl overflow-hidden h-[400px] mb-4 lg:hidden">
 					<picture>
 						<source :srcset="transformImage(data.ArticleItem.content?.poster?.filename as string)" media="(max-width: 600px)">
-						<img :src="data.content?.poster?.filename!" >
+						<img :src="data.ArticleItem.content?.poster?.filename!" >
 					</picture>
 				</div>
 

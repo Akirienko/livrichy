@@ -16,6 +16,11 @@ const links: Link[] = [
 		url: fullPath,
 	},
 ]
+
+if(data) {
+	const meta = data.value?.PageItem?.content?.SEO
+	useMetaTags(meta)
+}
 </script>
 
 <template>

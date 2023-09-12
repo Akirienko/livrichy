@@ -9,6 +9,7 @@ query Article($articleID: ID!) {
 				filename
 			}
 			richtext,
+			meta,
     }
   }
 }

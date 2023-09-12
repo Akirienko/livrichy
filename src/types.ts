@@ -49,3 +49,23 @@ export interface Link {
 	name: string,
 	url: string,
 }
+
+export interface MetaTags {
+	_uid: string
+	description: string
+	og_description: string
+	og_image: string
+	og_title: string
+	plugin: string
+	title: string
+	twitter_description: string
+	twitter_image: string
+	twitter_title: string
+}
+
+export interface Sitemap {
+	url: string,
+	changefreq: string,
+	priority: number,
+	lastmod: string,
+}

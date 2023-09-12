@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 
 const { data, pending } = await useAsyncGql('HomePage')
-
+if(data) {
+	const meta = data.value?.PageItem?.content?.SEO
+	useMetaTags(meta)
+}
 </script>
 
 <template>

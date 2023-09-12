@@ -2,7 +2,8 @@ query HomePage {
 	PageItem(id: "home") {
 		name
 		content {
-			body
+			body,
+			SEO
 		}
 	}
 }

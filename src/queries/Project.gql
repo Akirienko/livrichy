@@ -30,7 +30,8 @@ query Project($projectId: ID!) {
             bedroom
             description
             amenities
-            facts
+            facts,
+						meta
         }
     }
 }

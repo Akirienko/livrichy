@@ -37,6 +37,11 @@ const links: Link[] = [
 const text = computed(() =>
 	renderRichText(data.value?.ProjectItem?.content?.description)
 );
+
+if(data) {
+	const meta = data.value?.ProjectItem?.content?.meta
+	useMetaTags(meta)
+}
 </script>
 
 <template>
