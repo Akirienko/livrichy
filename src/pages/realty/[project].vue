@@ -57,11 +57,14 @@ if(data) {
 							@click.native="openLightbox()"
 						>
 							<img :src="data.ProjectItem.content?.gallery![0]?.filename" :alt="data.ProjectItem.content?.gallery![0]?.alt">
-							<svg class="absolute right-5 bottom-4" width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<!-- <svg class="absolute right-5 bottom-4" width="88" height="16" viewBox="0 0 88 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="8" cy="8" r="8" fill="#FDF6E9"/>
 								<circle cx="36" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
 								<circle cx="60" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
 								<circle cx="84" cy="8" r="4" fill="#FDF6E9" fill-opacity="0.7"/>
+							</svg> -->
+							<svg class="absolute right-5 bottom-4 z-30" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24" fill="#fff">
+								<path d="M120-120v-320h80v184l504-504H520v-80h320v320h-80v-184L256-200h184v80H120Z"/>
 							</svg>
 						</div>
       		</template>

@@ -43,4 +43,10 @@ export default defineNuxtConfig({
 		// 	skipTypename:false
 		// }
 	},
+	nitro: {
+		prerender: {
+			crawlLinks: true,
+			routes: ['/sitemap.xml']
+		}
+	},
 })
