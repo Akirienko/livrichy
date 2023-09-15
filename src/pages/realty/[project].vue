@@ -121,7 +121,7 @@ if(data) {
 			<div class="right">
 				<div class="map">
 					<NuxtLink :to="data.ProjectItem.content?.mapLink" target="_blank" class="img mb-5" >
-						<img v-if="data.ProjectItem.content?.imgMap?.filename" :src="data.ProjectItem.content?.imgMap?.filename" >
+						<img v-if="data.ProjectItem.content?.imgMap?.filename" :src="data.ProjectItem.content?.imgMap?.filename" alt="map">
 						<img v-else src="@/assets/img/gmap.png" alt="map">
 					</NuxtLink>
 					<p class="adress underline font-medium">

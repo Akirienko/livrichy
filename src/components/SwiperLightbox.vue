@@ -35,18 +35,19 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 			:height="558"
 			:slides-per-view="1"
 			:loop="true"
-			:modules="[SwiperPagination]"
+			:modules="[SwiperPagination, SwiperMousewheel]"
 			ref="lightbox"
 		>
-			<SwiperControls/>
+
 			<SwiperSlide
 				v-for="(slide, index) in data"
 				:key="index"
 			>
 			<div class="image">
-				<img :src="slide?.filename" >
+				<img :src="slide?.filename" :alt="slide?.alt">
 			</div>
 			</SwiperSlide>
+			<SwiperControls/>
 		</Swiper>
 	</div>
 </template>
@@ -69,6 +70,9 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 	.swiper {
 		button {
 			z-index: 5;
+			@media (min-width:1220px) {
+				position: fixed;
+			}
 		}
 	}
 
@@ -83,7 +87,7 @@ onClickOutside(lightbox, (event) => {		// close lightbox on click outside
 		justify-content: center;
 		align-items: center;
 		height: 450px;
-		background: rgba(0, 0, 0, 0.8);
+		background: rgba(0, 0, 0, 0.4);
 		border-radius: 16px;
 		@media (min-width:1024px) {
 			height: 650px;
