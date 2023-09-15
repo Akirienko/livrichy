@@ -175,7 +175,7 @@ function FilterRealty(card: CardIntro) {
 			<!-- objects -->
 
 			<!-- plane -->
-			<img class="plane" src="/plane.png" alt="">
+			<img class="plane" src="/plane.png" alt="plane">
 			<!-- plane -->
 
 			<!-- objects -->

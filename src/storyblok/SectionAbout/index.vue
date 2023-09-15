@@ -6,6 +6,7 @@ const props = defineProps<{
 		description: any,
 		image: {
 			filename: string
+			alt: string
 		}
 	}
 }>()
@@ -54,7 +55,7 @@ const text = computed(() =>
 						</svg>
 					</div>
 					<div class="image-wrapper overflow-hidden rounded-[800px_0px_0px_800px]">
-						<img class="w-full h-full object-cover" :src="blok.image.filename" alt="">
+						<img class="w-full h-full object-cover" :src="blok.image.filename" :alt="blok.image?.alt">
 					</div>
 				</div>
 			</div>

@@ -1,6 +1,6 @@
 <template>
   <section class="404 h-screen flex">
-    <img src="@/assets/img/errorDesk.jpg" alt="" class="absolute top-0 left-0 -z-10">
+    <img src="@/assets/img/errorDesk.jpg" alt="404 image" class="absolute top-0 left-0 -z-10">
     <div class="container m-auto pt-24 pb-12 px-6 flex flex-col justify-between h-screen lg:h-auto">
       <div class="text-center lg:mb-20">
         <h1 class="uppercase text-[40px] leading-[120%] mb-7 lg:text-[64px]">

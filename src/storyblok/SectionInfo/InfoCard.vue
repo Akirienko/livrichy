@@ -17,7 +17,7 @@ const text = computed(() =>
 <template>
 	<div class="info-card">
 		<div v-html="text"></div>
-		<img :src="data.image.filename">
+		<img :src="data.image.filename" :alt="data.image?.alt">
 	</div>
 </template>
 

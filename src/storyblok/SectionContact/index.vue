@@ -16,7 +16,7 @@ defineProps<{
 				<ContactUsForm class="max-w-[650px] lg:mb-20" />
 			</div>
 			<div class="hidden lg:flex w-1/2 p-8 relative ml-auto justify-center items-center">
-				<img class="w-[60%] phone h-[450px] object-contain" src="/i_phone.png" alt="">
+				<img class="w-[60%] phone h-[450px] object-contain" src="/i_phone.png" alt="phone">
 				<div class="absolute bottom-[-50px] w-[80%] h-auto mx-auto phone_shadow" >
 					<svg class="w-full h-auto" viewBox="0 0 354 96" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<g opacity="0.2" filter="url(#filter0_f_235_188)">
