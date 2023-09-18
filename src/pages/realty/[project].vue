@@ -102,7 +102,8 @@ if(data) {
 				<div class="info">
 					<div class="icon-label">
 						<Icon name="Bedroom" size="22" />
-						<span>{{ data.ProjectItem.content?.bedroom }} bedroom</span>
+						<span v-if="data.ProjectItem.content?.bedroom == 'studio'">{{ data.ProjectItem.content?.bedroom }}</span>
+						<span v-else >{{ data.ProjectItem.content?.bedroom }} bedroom</span>
 					</div>
 					<div class="icon-label" v-if="data.ProjectItem.content?.bathroom">
 						<Icon name="Bathroom" size="22" />

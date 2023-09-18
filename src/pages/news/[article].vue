@@ -40,7 +40,7 @@ if(data) {
     <div v-if="data?.ArticleItem && !pending" class="container mx-auto px-4 xl:px-0">
       <p class="text-lg mb-4 uppercase lg:text-[64px] font-bold lg:leading-[120%]">{{ data.ArticleItem.name }}</p>
       <div class="text-base mb-4 lg:text-2xl lg:flex lg:justify-between lg:items-end lg:mb-8">
-				<p class="uppercase mb-4 lg:max-w-[175px] lg:mb-0">{{ data.ArticleItem.content?.subtitle }}</p>
+				<p class="uppercase mb-4 lg:max-w-[70%]">{{ data.ArticleItem.content?.subtitle }}</p>
 				<p>{{ formattedDate }}</p>
 			</div>
       <div class="">

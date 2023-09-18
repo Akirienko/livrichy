@@ -35,9 +35,9 @@ const formattedDate = date.replace(/\./g, '/')
 
 			<p class="text-lg font-semibold uppercase line-clamp-3 mb-4 md:text-2xl">{{ data.name }}</p>
 
-			<div class="md:flex">
+			<div class="md:flex lg:items-center lg:justify-between">
 				<p class="text-base line-clamp-2">{{ data.content?.cardInfo }}</p>
-				<p class="text-base text-end mt-4 opacity-60">{{ formattedDate }}</p>
+				<p class="text-base text-end mt-4 opacity-60 lg:mt-0">{{ formattedDate }}</p>
 			</div>
 
 		</div>
@@ -53,7 +53,6 @@ const formattedDate = date.replace(/\./g, '/')
   &:hover {
     transform: scale(1.05);
   }
-
 }
 .img-card {
   object-fit: cover;
