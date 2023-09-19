@@ -65,7 +65,7 @@ const FilterMaxPriceAED = computed(() => {
 
 
 // Area
-const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "JLT", "Deema", "jumeirah heights", "Jebel Ali Village", "Jumeirah park", "Discovery gardens", "Springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Falconcity of Wonders", "Silicon Oasis", "Design District", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "Meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim", "International City", "International City PHASE 2", "Expo City", "Sports City"]
+const DataArea = ["Palm Jebel Ali", "Palm Jumeirah", "The World Islands", "Blue Waters", "Dubai Harbour", "Dubai Marina", "Dubai Internet City", "Dubai Islands", "Maritime and Mina Rashid", "Bur Dubai", "Dubai Hills Estate", "Deira", "JLT", "JBR", "Deema", "Jumeirah heights", "Jebel Ali Village", "Jumeirah park", "Discovery gardens", "Springs", "Emirates Hills", "Al Barsha", "Jumeirah Village Circle", "Jumeirah Village Triangle", "Dubai Production City", "Jumeirah Golf Estates", "Motor City", "Damac Hills", "Al Barari", "Falconcity of Wonders", "Silicon Oasis", "Design District", "Nad Al Sheba", "Ras Al Khor", "Dubai Creek Harbour", "Meydan", "Dubai International Airport", "DIFC", "Downtown", "Business Bay", "Al Wasl", "Jumeirah Bay", "Jumeirah", "Umm Suqeim", "International City", "International City PHASE 2", "Expo City", "Sports City"]
 const FilterAreaRef = ref<string[]>([])
 const FilterAreaRefCheck = ref<string[]>([])
 
