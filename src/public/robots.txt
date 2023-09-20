@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://livrichy.com/sitemap.xml
