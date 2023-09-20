@@ -1,9 +1,38 @@
 <script setup lang="ts">
 import type { Link } from '~/types'
-defineProps<{
+const props = defineProps<{
 	links: Link[]
 }>()
 
+type ItemType = {
+  url: string;
+  name: string;
+};
+const items: {
+  '@type': 'ListItem';
+  position: number;
+  item: {
+    '@id': string;
+    name: string;
+  };
+}[] = props.links.map((item: ItemType, index: number) => ({
+  '@type': 'ListItem',
+  position: index + 1,
+  item: {
+    '@id': `https://livrichy.com/${item.url}`,
+    name: item.name,
+  },
+}));
+
+// Define a function that returns the JSON-LD object
+// console.log(items, typeof items);
+
+
+useJsonld({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items
+});
 </script>
 
 <template>

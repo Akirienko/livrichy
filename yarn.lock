@@ -5154,6 +5154,14 @@ nuxt-icon@^0.4.0:
     "@iconify/vue" "^4.1.1"
     "@nuxt/kit" "^3.6.1"
 
+nuxt-jsonld@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/nuxt-jsonld/-/nuxt-jsonld-2.0.8.tgz#88381c2cbe683192dbd3b772ba5e2b7c56a01a35"
+  integrity sha512-EnrEdh8q5TKqrY1ZaIU9xe9iqHc0bj/QR5b8BEO2ckWXIR6rHV+XxWMfdHMgGbo6fzrZTLTtlWUG2q0L7q45HQ==
+  dependencies:
+    pathe "^1.1.0"
+    schema-dts "^1.1.2"
+
 nuxt-swiper@^1.2.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/nuxt-swiper/-/nuxt-swiper-1.2.2.tgz#7b855c4948edb2e8ba4f98eea457a821b84ff53b"
@@ -6214,6 +6222,11 @@ sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
+
+schema-dts@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/schema-dts/-/schema-dts-1.1.2.tgz#82ccf71b5dcb80065a1cc5941888507a4ce1e44b"
+  integrity sha512-MpNwH0dZJHinVxk9bT8XUdjKTxMYrA5bLtrrGmFA6PTLwlOKnhi67XoRd6/ty+Djt6ZC0slR57qFhZDNMI6DhQ==
 
 schema-utils@^3.0.0:
   version "3.3.0"

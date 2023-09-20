@@ -1,6 +1,56 @@
 <script setup lang="ts">
 import type { AppData } from "~~/src/types"
 defineProps<{ data: AppData }>()
+useJsonld({
+	"@context": "https://schema.org",
+	"@type": "RealEstateAgent",
+	"image": [
+		"https://drive.google.com/file/d/1dCtJLJlq6fxeekJE3y3ye9fL9rKofa-C/view?usp=share_link",
+		"https://drive.google.com/file/d/1FkH4FSH9zcOYrbHj9A_YWB3anXOl-m-p/view?usp=share_link",
+		"https://drive.google.com/file/d/1ShwKlWDfaaYrbpVqqkFK0VCI72fA1QV_/view?usp=share_link",
+		"https://drive.google.com/file/d/1tuz4VcP5p6xl3kkoJFielmvRmEvTSvDf/view?usp=share_link",
+	],
+	"name": "LIVRICHY Real Estate",
+	"address": {
+		"@type": "PostalAddress",
+		"streetAddress": "Dubai Hills Estate, Park Heights Square 1, 701 office",
+		"addressLocality": "Dubai",
+		"addressRegion": "AE-DU",
+		"postalCode": "XXXXX",
+		"addressCountry": "AE"
+		},
+	"geo": {
+		"@type": "GeoCoordinates",
+		"latitude": 25.113770,
+		"longitude": 55.246118
+	},
+	"url": "https://livrichy.com",
+	"priceRange": "$$$",
+	"telephone": "+971521100555",
+	"openingHoursSpecification": [
+		{
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": [
+				"Monday",
+				"Tuesday",
+				"Wednesday",
+				"Thursday",
+				"Friday"
+			],
+			"opens": "10:00",
+			"closes": "18:00"
+		},
+		{
+			"@type": "OpeningHoursSpecification",
+			"dayOfWeek": [
+				"Saturday",
+				"Sunday",
+			],
+			"opens": "11:00",
+			"closes": "16:00"
+		}
+	]
+});
 </script>
 
 <template>

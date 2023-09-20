@@ -22,6 +22,12 @@ const links: Link[] = [
 	},
 ]
 const showMenu = ref(false)
+useJsonld({
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	"url": "https://livrichy.com",
+	"logo": "https://drive.google.com/file/d/1c3_fiC2SsKrpjLJRiTN4MXu202ayXyhK/view?usp=sharing"
+});
 </script>
 
 <template>
