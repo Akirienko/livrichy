@@ -26,7 +26,8 @@ useJsonld({
 	},
 	"url": "https://livrichy.com",
 	"priceRange": "$$$",
-	"telephone": "+971521100555",
+	"email": "info@livrichy.com",
+	"telephone": "+97144456741",
 	"openingHoursSpecification": [
 		{
 			"@type": "OpeningHoursSpecification",
