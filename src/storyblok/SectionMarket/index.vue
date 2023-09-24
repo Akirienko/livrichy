@@ -62,7 +62,7 @@ function FilterRealty(value: string) {
       <div @click="FilterRealty('secondary')" class="secondary block h-[280px] overflow-hidden md:w-[50%] lg:h-[533px] black-bg">
 				<picture class="absolute h-full w-full">
 						<source :srcset="transformImage(blok.secondaryImage.filename as string, 500)" media="(max-width: 600px)">
-						<img loading="lazy" :src="transformImage(blok.secondaryImage.filename as string, 900)" >
+						<img loading="lazy" :src="transformImage(blok.secondaryImage.filename as string, 1400)" >
 					</picture>
         <div class="lg:ml-4 mt-20 lg:mt-28 z-10">
           <p class="text-palette-gradient_blue text-lg ml-[72px] lg:text-2xl lg:mb-2 ">{{ blok.secondarySubtitle }}</p>

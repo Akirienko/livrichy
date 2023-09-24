@@ -192,7 +192,7 @@ if(data) {
 
 		.icon {
 			margin-right: 0.5rem;
-			stroke: #081621;
+			// stroke: #081621;
 		}
 	}
 
