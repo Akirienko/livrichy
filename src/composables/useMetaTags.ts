@@ -19,6 +19,11 @@ export default (data: MetaTags) => {
 				href: url
 			},
 		],
+		meta: [{
+			hid: 'google-site-verification',
+			name: 'google-site-verification',
+			content: "q8rS_5lvfXp_lJ7-BrnMY-d-hOyWdxScuAznkhn9ZZI"
+		}]
 	})
 
 	useSeoMeta({
