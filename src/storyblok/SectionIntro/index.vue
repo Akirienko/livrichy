@@ -856,7 +856,7 @@ header {
 		border-radius: 15px;
 		overflow: hidden;
 		box-sizing: border-box;
-		z-index: 90;
+		z-index: 1000;
 		width: 300px;
 		// min-height: 200px;
 		left: var(--left);
