@@ -51,7 +51,7 @@ function FilterRealty(value: string) {
 						<source :srcset="transformImage(blok.primaryImage.filename as string, 500)" media="(max-width: 600px)">
 						<img loading="lazy" :src="transformImage(blok.primaryImage.filename as string, 900)" >
 					</picture>
-        <div class="flex flex-col z-10 items-end mt-20 md:items-start md:left-[20%] lg:left-[30%] lg:mt-28 macbook-13:left-[22%]">
+        <div class="flex flex-col z-10 items-end mt-20 mr-2 md:items-start md:left-[20%] lg:mr-0 lg:left-[30%] lg:mt-28 macbook-13:left-[22%]">
           <p class="text-palette-gradient_blue text-lg lg:text-2xl lg:mb-2 md:ml-[30px]">{{ blok.primarySubtitle }}</p>
           <h2 class="text-[40px] text-palette-gradient_blue leading-[50px] uppercase mr-10 lg:text-[54px] xl:text-[64px] lg:mb-2">{{ blok.primaryTitle }}</h2>
           <svg class="w-[140px] h-8 mr-[200px] md:mr-10" viewBox="0 0 191 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,7 +64,7 @@ function FilterRealty(value: string) {
 						<source :srcset="transformImage(blok.secondaryImage.filename as string, 500)" media="(max-width: 600px)">
 						<img loading="lazy" :src="transformImage(blok.secondaryImage.filename as string, 1400)" >
 					</picture>
-        <div class="lg:ml-4 mt-20 lg:mt-28 z-10">
+        <div class=" ml-2 lg:ml-4 mt-20 lg:mt-28 z-10">
           <p class="text-palette-gradient_blue text-lg ml-[72px] lg:text-2xl lg:mb-2 ">{{ blok.secondarySubtitle }}</p>
           <h2 class="text-[40px] text-palette-gradient_blue leading-[50px] uppercase lg:text-[54px] xl:text-[64px] lg:mb-2">{{ blok.secondaryTitle }}</h2>
           <svg class="w-[140px] mt-2.5 ml-[3px]" viewBox="0 0 191 31" fill="none" xmlns="http://www.w3.org/2000/svg">

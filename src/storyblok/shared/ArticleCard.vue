@@ -16,8 +16,13 @@ const props = defineProps<{
 	}
 }>()
 
-const date = new Date(props.data.published_at).toLocaleDateString();
-const formattedDate = date.replace(/\./g, '/')
+// const date = new Date(props.data.published_at).toLocaleDateString();
+const date = new Date(props.data.published_at).toLocaleDateString('uk-UA', {
+  day: 'numeric',
+  month: 'numeric',
+  year: 'numeric',
+});
+const formattedDate = date.replace(/\./g, '/');
 </script>
 
 <template>
