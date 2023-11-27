@@ -233,7 +233,7 @@ const scrollToTop = () => {
 	<div class="designer px-2.5 py-5">
 		<div class="container mx-auto flex justify-between items-center text-[8px] md:text-sm">
 			<p class="text-white text-xs md:text-base">All Rights Reserved. | © Livrichy Real Estate Brokerage L.L.C | 2023</p>
-			<a href="https://telenkov.com/" target="_blank" class="logo_designer relative w-[10rem] h-[1.5rem]">
+			<a href="https://telenkov.com/" target="_blank" class="logo_designer ml-4 relative w-[6rem] h-[1.5rem]">
 				<svg class="front w-full h-full absolute top-0 left-0" viewBox="0 0 130 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M11.7974 23.5445V4.34453H18.7922V0.280293H0V4.34453H6.96009V23.5445H11.7974Z" fill="white" />
 					<path d="M20.7131 13.2438C20.8871 10.8613 22.3835 9.45986 24.1931 9.45986C25.9679 9.45986 27.6384 10.6861 27.708 13.2438H20.7131ZM32.3712 16.1168C32.3712 9.28467 29.5872 5.8511 24.3323 5.8511C19.0774 5.8511 16.0498 9.28467 16.0498 14.6102C16.0498 20.8467 18.9034 24 24.6107 24C28.2648 24 31.0836 22.0029 32.1276 18.4642H27.4644C27.1512 19.6555 25.8635 20.3912 24.4019 20.3912C22.1747 20.3912 20.7131 18.7095 20.5739 16.1168H32.3712Z" fill="white" />
