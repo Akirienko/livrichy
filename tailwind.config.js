@@ -15,6 +15,7 @@ module.exports = {
 	},
 	theme: {
 		screens: {
+                    xxs: "340px",
 					xs: "400px",
 					sm: "640px",
 					md: "768px",
@@ -55,9 +56,6 @@ module.exports = {
                 md: "10px",
                 large: "20px",
                 "2x-large": "40px",
-            },
-            fontSize: {
-                xxs: "10px",
             },
             container: {
                 screens: {

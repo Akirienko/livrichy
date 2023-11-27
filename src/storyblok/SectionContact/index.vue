@@ -1,10 +1,21 @@
 <script lang="ts" setup>
+import type { AppData } from "~~/src/types"
 defineProps<{
 	blok: {
 		title: string,
 		subtitle: string,
 	}
 }>()
+// const props = defineProps<{
+// 	blok: {
+// 		title: string;
+// 		subtitle: string;
+// 	},
+// 	data: AppData
+// }>()
+
+// console.log(props.data);
+// :href="`tel:${data.content.phone}`"
 </script>
 
 <template>
@@ -15,7 +26,8 @@ defineProps<{
 			<div class="form_wrapper lg:w-[50%] lg:px-[5%] w-full flex items-center justify-center">
 				<ContactUsForm class="max-w-[650px] lg:mb-20" />
 			</div>
-			<div class="hidden lg:flex w-1/2 p-8 relative ml-auto justify-center items-center">
+			<a href="tel:$+971‒52‒110‒0555" target="_blank" class="hidden lg:flex w-1/2 p-8 relative ml-auto justify-center items-center">
+
 				<img class="w-[60%] phone h-[450px] object-contain" src="/i_phone.png" alt="phone">
 				<div class="absolute bottom-[-50px] w-[80%] h-auto mx-auto phone_shadow" >
 					<svg class="w-full h-auto" viewBox="0 0 354 96" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +48,7 @@ defineProps<{
 					</svg>
 
 				</div>
-			</div>
+			</a>
 
 		</div>
 	</section>
