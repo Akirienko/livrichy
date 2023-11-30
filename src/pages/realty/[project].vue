@@ -14,9 +14,9 @@ const { sizeUnitToggle, priceCurrencyToggle } = useProject()
 
 const newPrice = computed(() => {
 	if ( activeCurency.value == "AED")
-		return data.value?.ProjectItem?.content?.priceAED!.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+		return data.value?.ProjectItem?.content?.priceAED!.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 	else
-		return data.value?.ProjectItem?.content?.priceUSD!.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+		return data.value?.ProjectItem?.content?.priceUSD!.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
 })
 
 const links: Link[] = [
