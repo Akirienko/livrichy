@@ -60,7 +60,7 @@ const debouncedHandler = debounce((e: any) => {
 		window.requestAnimationFrame(() => {
 
 			let xCoordinate = e.clientX
-			let yCoordinate = e.layerY
+			let yCoordinate = e.pageY
 			let xCoordinateDiff = screenWidth - xCoordinate
 			let yCoordinateDiff = screenHeight - yCoordinate
 
@@ -107,6 +107,7 @@ const debouncedHandler = debounce((e: any) => {
 	} else {
 		root.style.setProperty('--display', "none")
 	}
+
 
 }, 500);
 
